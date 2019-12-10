@@ -1,0 +1,134 @@
+
+.displayflex {
+	display: flex !important;
+}
+.flexcol {
+	flex-direction: column !important;
+}
+.flexwrap {
+	flex-wrap: wrap !important;
+}
+.flexgrow {
+	flex-grow: 1;
+}
+.marginauto {
+	margin: auto !important;
+}
+
+.positionrel {
+	position: relative;
+}
+.positionabs {
+	position: absolute;
+}
+
+.displaynone {
+	display: none !important;
+}
+
+.nonselect {
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.oneline {
+	white-space: nowrap;
+}
+
+
+.herofont {
+	font-size:  15rem;
+	@media screen and (max-width: $tablet-width) {
+		font-size: 14vw;
+		line-height: 14vw;
+		padding-bottom: 1rem;
+	}
+}
+.hugefont {
+	font-size: 4.8rem !important;
+}
+.biggerfont {
+	font-size: 3.6rem !important;
+}
+.bigfont {
+	font-size: 2.4rem !important;
+}
+.medfont {
+	font-size: 1.8rem !important;
+}
+.smallfont {
+	font-size: 1.4rem !important;
+}
+.smallerfont {
+	font-size: 1.2rem !important;
+}
+.tinyfont {
+	font-size: 1rem !important;
+}
+
+.hugefont-height {
+	height: 4.8rem !important;
+	line-height: 4.8rem !important;
+}
+.biggerfont-height {
+	height: 3.6rem !important;
+	line-height: 3.6rem !important;
+}
+.bigfont-height {
+	height: 2.4rem !important;
+	line-height: 2.4rem !important;
+}
+.medfont-height {
+	height: 1.8rem !important;
+	line-height: 1.8rem !important;
+}
+.smallfont-height {
+	height: 1.4rem !important;
+	line-height: 1.4rem !important;
+}
+.smallfont-height {
+	height: 1.2rem !important;
+	line-height: 1.2rem !important;
+}
+.smallfont-height {
+	height: 1rem !important;
+	line-height: 1rem !important;
+}
+
+.bold8 {
+	font-weight: 800 !important;
+}
+.bold7 {
+	font-weight: 700 !important;
+}
+.bold6 {
+	font-weight: 600 !important;
+}
+.bold5 {
+	font-weight: 500 !important;
+}
+.bold4 {
+	font-weight: 400 !important;
+}
+.bold3 {
+	font-weight: 300 !important;
+}
+.bold2 {
+	font-weight: 200 !important;
+}
+
+
+.shadow-top {
+	box-shadow: -2px -2px 5px $light-shadow;
+}
+
+.card-shadow {
+	box-shadow: 0 0 1.4rem -0.5rem $light-shadow;
+}
+
+.popup-shadow {
+	box-shadow: 0 -1px 3rem -1.5rem $light-shadow;
+}

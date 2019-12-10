@@ -1,0 +1,51 @@
+
+.card {
+	border-radius: 1rem;
+	border: 1px $border-primary-color solid;
+	background-color: $body-secondary-color;
+	box-sizing: border-box;
+	&.green {
+		border-color: hsl(106, 59%, 63%);
+	}
+	&.yellow {
+		border-color: rgba(193, 188, 115, 0.9);
+	}
+}
+
+.popup {
+	border-radius: 0.4rem;
+	border: 1px $border-primary-color solid;
+	background-color: $body-secondary-color;
+	box-sizing: border-box;
+	&.green {
+		border-color: hsl(106, 59%, 63%);
+	}
+	&.yellow {
+		border-color: rgba(193, 188, 115, 0.9);
+	}
+}
+
+
+.indigo-bg {
+	background-color: $indigo;
+}
+
+
+
+.outline-button {
+	background-color: transparent;
+	border: 0.1rem $text-primary-color solid;
+	border-radius: 0.5rem;
+	padding: 1rem 1.5rem;
+	box-shadow: 0px 0px 0px -4px $text-primary-color;
+	transition: all $fast-animation ease-in-out;
+
+	&.blue-button {
+		border-color: #009CDE;
+		color: #009CDE;
+		&:hover {
+			border-color: rgb(1, 114, 163);
+			color: rgb(1, 114, 163);
+		}
+	}
+}

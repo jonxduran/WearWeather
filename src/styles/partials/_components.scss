@@ -1,0 +1,96 @@
+
+
+
+#CurrentWeatherCard {
+	width: calc(100% - 2rem);
+	max-width: 72rem;
+}
+
+.CurrentWeather-circle {
+	width: 50vw;
+	height: 50vw;
+	/* max-width: 24rem;
+	max-height: 24rem; */
+	max-width: 32rem;
+	max-height: 32rem;
+	padding: 2rem;
+	border-radius: 40rem !important;
+	margin: 1rem auto;
+	border-width: 0.3rem !important;
+	/* @media screen and (max-width: $mobile-width) {
+		width: 50vw;
+		height: 50vw;
+	} */
+	@media screen and (min-width: $tablet-width) {
+		width: 40rem;
+		height: 40rem;
+	}
+}
+
+.CurrentWeather-circle .temperature-container {
+	width: 100%;
+	height: 100%;
+	color: $text-secondary-color;
+}
+
+.CurrentWeather-circle span.temperature:after {
+	content: "°";
+	/* width: 0px; */
+	position: absolute;
+	font-size: 10vw;
+	@media screen and (min-width: $tablet-width) {
+		font-size: 4rem;
+	}
+}
+
+#HourlyWeather-section {
+	display: none !important;
+}
+
+.ExtendedWeather-card {
+	width: calc(100% - 2rem);
+	max-width: $mobile-width;
+	margin: 1rem auto;
+	padding: 2rem 3rem;
+}
+
+.ExtendedWeather-day {
+	width: 15rem;
+	@media screen and (max-width: $small-mobile-width) {
+		width: 14rem;
+	}
+	@media screen and (max-width: $tiny-mobile-width) {
+		width: 11rem;
+	}
+}
+.ExtendedWeather-icon {
+	width: 5rem;
+	@media screen and (max-width: $tiny-mobile-width) {
+		width: 4rem;
+	}
+}
+.ExtendedWeather-temp {
+	width: 15rem;
+	margin-left: auto;
+	@media screen and (max-width: $tablet-width) {
+		width: 13rem;
+	}
+	@media screen and (max-width: $small-mobile-width) {
+		width: 10rem;
+	}
+	@media screen and (max-width: $tiny-mobile-width) {
+		width: 7rem;
+	}
+}
+.ExtendedWeather-temp span:first-child {
+	margin: 0 auto 0 0;
+}
+.ExtendedWeather-temp span:last-child {
+	margin: 0 0 0 auto;
+}
+
+
+
+
+
+
