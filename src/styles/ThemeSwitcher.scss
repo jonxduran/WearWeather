@@ -4,8 +4,11 @@ $max-pc-width: 160rem;
 $tablet-width: 120rem;
 $fixed-tablet-width: (120/1.6)+'rem';
 $mobile-width: 72rem;
+$fixed-mobile-width: (72/1.6)+'rem';
 $small-mobile-width: 40rem;
+$fixed-small-mobile-width: (40/1.6)+'rem';
 $tiny-mobile-width: 30rem;
+$fixed-tiny-tablet-width: (30/1.6)+'rem';
 $fast-animation: 0.4s;
 $med-animation: 0.6s;
 $slow-animation: 1s;
@@ -15,17 +18,17 @@ $slow-animation: 1s;
 	&.light-theme {
 		@import './_LightTheme';
 		@import './partials/_basics.scss';
-		@import './partials/_appbar.scss';
-		@import './partials/_components.scss';
 		@import './partials/_elements.scss';
+		@import './components/_appbar.scss';
+		@import './components/_weathercards.scss';
 		@import './_App.scss';
 	}
 	&.dark-theme {
 		@import './_DarkTheme.scss';
 		@import './partials/_basics.scss';
-		@import './partials/_appbar.scss';
-		@import './partials/_components.scss';
 		@import './partials/_elements.scss';
+		@import './components/_appbar.scss';
+		@import './components/_weathercards.scss';
 		@import './_App.scss';
 	}
 	width: 100vw;

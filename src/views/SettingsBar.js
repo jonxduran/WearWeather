@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 /* import AccountCircleOutlineIcon from 'mdi-react/AccountCircleOutlineIcon'; */
+import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
+import RefreshIcon from 'mdi-react/RefreshIcon';
 import WeatherSunnyIcon from 'mdi-react/WeatherSunnyIcon';
 import WeatherNightIcon from 'mdi-react/WeatherNightIcon';
 
@@ -58,6 +60,12 @@ class SettingsBar extends Component {
 		return (
 			<article id='SettingsBar' className='positionrel'>
 				<section id='SettingsButtons-section' className='displayflex'>
+				<div id='Settings-location-icon' className='Settings-icon displayflex positionrel MDI-container'>
+						<MapMarkerIcon />
+					</div>
+					<div id='Settings-refresh-icon' className='Settings-icon displayflex positionrel MDI-container'>
+						<RefreshIcon />
+					</div>
 					<div id='Settings-overflow-icon' className={'Settings-icon displayflex flexcol positionrel' + ((this.state.menuOpen) && ' open')} onClick={()=>this._toggleMenu()}>
 						<span className='Settings-overflow-dot'></span>
 						<span className='Settings-overflow-line-container displayflex marginauto positionrel'>
@@ -72,8 +80,10 @@ class SettingsBar extends Component {
 					<div className='Overflow-row positionrel'>
 						{ Object.keys(this.state.themes).map((thm, i) => {
 							return ( <div key={i} className={'theme-switcher positionabs displayflex ' + ((this.state.themes[thm]['active'] === true) ? 'active' : '')} onClick={()=>this._toggleTheme(thm)}>
-								<span className='theme-icon'>{this.state.themes[thm]['icon']}</span>
-								<span className='theme-title'>{this.state.themes[thm]['title']}</span>
+								<span className='theme-icon MDI-container'>{this.state.themes[thm]['icon']}</span>
+								<div className='theme-title-container displayflex'>
+									<span className='theme-title medfont medfont-height marginauto-height'>{this.state.themes[thm]['title']}</span>
+								</div>
 							</div> )
 						}) }
 					</div>

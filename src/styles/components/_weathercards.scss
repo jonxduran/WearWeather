@@ -9,13 +9,11 @@
 .CurrentWeather-circle {
 	width: 50vw;
 	height: 50vw;
-	/* max-width: 24rem;
-	max-height: 24rem; */
-	max-width: 32rem;
-	max-height: 32rem;
+	max-width: 30rem;
+	max-height: 30rem;
 	padding: 2rem;
 	border-radius: 40rem !important;
-	margin: 1rem auto;
+	margin: 3rem auto 1rem;
 	border-width: 0.3rem !important;
 	/* @media screen and (max-width: $mobile-width) {
 		width: 50vw;
@@ -35,12 +33,7 @@
 
 .CurrentWeather-circle span.temperature:after {
 	content: "°";
-	/* width: 0px; */
 	position: absolute;
-	font-size: 10vw;
-	@media screen and (min-width: $tablet-width) {
-		font-size: 4rem;
-	}
 }
 
 #HourlyWeather-section {

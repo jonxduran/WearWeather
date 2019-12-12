@@ -39,54 +39,18 @@ class WeatherTab extends Component {
 		console.log('new weather for city: ', cityWeather);
 		Common._addToWeather(this.state.weather, cityWeather);
 		this.setState({ 'weather': [cityWeather], 'allLoading': false });
+		this.props.currWeatherUpdate([cityWeather]);
 		console.log(this.state);
 	}
 
-	_getWeather() {
-		let oldWeatherStr = localStorage.getItem("weatherCache") || null;
-		if (oldWeatherStr) {
-			let oldWeather = JSON.parse(oldWeatherStr);
-			let expireTime = new Date().getTime() - (10 * 60 * 1000);
-			if (oldWeather.date < expireTime) {
-				this._getNewWeather();
-			} else {
-				/* this.setState({ 'cities': oldWeather.cities }); */
-			}
-		} else {
-			this._getNewWeather();
-		}
-	}
-
-	_getNewWeather() {
-		this.setState({ 'allLoading': true });
-		console.log(this.state);
-		let weather = this.state.weather;
-		for (let i = 0; i < weather.length; i++) {
-			let newCurrWeather = WeatherApi._getCurrentData(weather[i].zip);
-			let newExtWeather = WeatherApi._getExtendedData(weather[i].zip);
-			weather[i].currentWeather = newCurrWeather;
-			weather[i].extendedWeather = newExtWeather;
-			/* TODO: handle api fail, maybe move loading to top of html */
-		}
-		Common._setWeatherCache(weather);
-		this.props.currWeatherUpdate(weather);
-		/* let newCities = cities.filter((cty)=>{return cty.index===this.state.currentCity})[0];
-		newCities.currentWeather = newCurrWeather;
-		console.log('newCities: ', newCities); */
-		this.setState({ 'weather': weather, 'allLoading': false });
+	_refreshButton() {
+		this._refreshWeather(this.state.currentCity);
 	}
 
 	_refreshWeather(i) {
 		this.setState({ 'allLoading': true });
 		let weather = this.state.weather;
-
-		function getAllData(){
-			return Promise.all([
-				WeatherApi._getCurrentData(weather[i].name), 
-				WeatherApi._getHourlyData(weather[i].name), 
-				WeatherApi._getExtendedData(weather[i].name)
-			]);
-		};
+		let getAllData = WeatherApi._getAllData(weather, i);
 		getAllData().then(([currentData, hourlyData, extendedData]) => {
 			console.log([currentData, hourlyData, extendedData]);
 			if (currentData.error || hourlyData.error || extendedData.error) {
@@ -107,8 +71,6 @@ class WeatherTab extends Component {
 
 	render() {
 		console.log('WeatherTab ', this.state);
-		/* let cW = (this.state.cities.length > 0) ? this.state.cities[0].currentWeather : null; */
-		/* let eW = (this.state.cities.length > 0) ? this.state.cities[0].extendedWeather : null; */
 		return (
 			<section id='WeatherTab' className={'main-tab flexcol' + ((this.props.active===true) ? ' active' : '')}>
 				{ (this.state.weather.length > 0) ? (
@@ -116,25 +78,25 @@ class WeatherTab extends Component {
 						<span className='marginauto'>loading</span>
 					) : (
 						<>
-							<section id='CurrentWeather-section' className='positionrel'>
-								
-								{ this.state.weather.map((city, i) => {
-									return <CurrentWeatherCard key={i} cty={city} scale={this.state.scale} currCity={this.state.currentCity} />
-								}) }
+						<section id='CurrentWeather-section' className='positionrel'>
+							
+							{ this.state.weather.map((city, i) => {
+								return <CurrentWeatherCard key={i} cty={city} scale={this.state.scale} currCity={this.state.currentCity} />
+							}) }
 
-							</section>
+						</section>
 
-							<section id='HourlyWeather-section' className='displayflex flexcol'>
-								{this.state.weather[this.state.currentCity].hourlyWeather.list.slice(0,9).map((wh, i) => {
-									return <HourlyWeatherCard data={wh} scale={this.state.scale} key={i} />
-								}) }
-							</section>
+						<section id='HourlyWeather-section' className='displayflex flexcol'>
+							{this.state.weather[this.state.currentCity].hourlyWeather.list.slice(0,9).map((wh, i) => {
+								return <HourlyWeatherCard data={wh} scale={this.state.scale} key={i} />
+							}) }
+						</section>
 
-							<section id='ExtendedWeather-section' className='displayflex flexcol'>
-								{this.state.weather[this.state.currentCity].extendedWeather.list.map((wh, i) => {
-									return <ExtendedWeatherCard data={wh} scale={this.state.scale} key={i} />
-								}) }
-							</section>
+						<section id='ExtendedWeather-section' className='displayflex flexcol'>
+							{this.state.weather[this.state.currentCity].extendedWeather.list.map((wh, i) => {
+								return <ExtendedWeatherCard data={wh} scale={this.state.scale} key={i} />
+							}) }
+						</section>
 						</>
 					)
 				) : (

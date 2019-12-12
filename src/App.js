@@ -33,7 +33,7 @@ class App extends Component {
 				weatherCached = true;
 				console.log('oldWeather is old, marking as cached');
 			} else {
-				console.log('oldWeather is more recent than checkDate');
+				console.log('oldWeather is still fresh, date more recent than checkDate');
 			}
 		}
 		
@@ -79,14 +79,16 @@ class App extends Component {
 	render() {
 		return (
 			<div id='App' className={'displayflex ' + ((this.state.user === null) ? 'nouser ' : '') + this.state.theme}>
-				<main id='App-main' className='displayflex marginauto'>
+				<main id='App-main' className={'displayflex marginauto' + (null === this.state.weather) && ' full'}>
 					<div id='App-main-inner' className='displayflex'>
 						<WeatherTab active={this.state.tabs[0]['active']} weather={this.state.weather} weatherCached={this.state.weatherCached} currWeatherUpdate={(newWeather)=>this._setCurrentWeather(newWeather)} scale={this.state.scale} />
 						<WearTab active={this.state.tabs[1]['active']} weather={this.state.weather} scale={this.state.scale} />
 					</div>
 				</main>
-				<SettingsBar theme={this.state.theme} themeChange={(newTheme)=>this._setNewTheme(newTheme)} />
-				<Navbar tabs={this.state.tabs} tabClick={(newTab)=>this._tabChanged(newTab)} weather={this.state.weather} />
+				{ (null !== this.state.weather) && <>
+					<SettingsBar theme={this.state.theme} themeChange={(newTheme)=>this._setNewTheme(newTheme)} />
+					<Navbar tabs={this.state.tabs} tabClick={(newTab)=>this._tabChanged(newTab)} weather={this.state.weather} />
+				</> }
 			</div>
 		);
 	};

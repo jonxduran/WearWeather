@@ -5,6 +5,7 @@ import * as WeatherApi from '../api/WeatherApi';
 class CitySelector extends Component {
 	
 	_cityCheck(city) {
+		console.log('_cityCheck for ', city);
 		console.log(this.props.weather);
 		let match = false;
 		for (let i = 0; i < this.props.weather.length; i++) {
@@ -25,7 +26,7 @@ class CitySelector extends Component {
 				console.log('CitySelector data: ', [currentData, hourlyData, extendedData]);
 				if (currentData.error || hourlyData.error || extendedData.error) {
 					alert('Weather data error');
-					document.querySelector('#cityInput').value = '';
+					document.querySelector('#CityInput').value = '';
 				} else {
 					let newCity = {
 						'index': 0,
@@ -42,7 +43,7 @@ class CitySelector extends Component {
 
 		} else {
 			alert('City already added, select a new city');
-			document.querySelector('#cityInput').value = '';
+			document.querySelector('#CityInput').value = '';
 		};
 
 	}
@@ -53,10 +54,11 @@ class CitySelector extends Component {
 				<span className='biggerfont'>Select a City</span>
 			</header>
 			<section className='card-row displayflex flexcol'>
-				<input id='cityInput' type='text' name='zip'></input>
-				<button className='outline-button blue-button' onClick={()=>this._cityCheck(document.querySelector('#cityInput').value)}>Submit</button>
+				<input id='CityInput' className='outline-input biggerfont-height' type='text' name='zip'></input>
 			</section>
-			<section className='card-row'></section>
+			<section className='card-row displayflex'>
+				<button className='outline-button green-button marginauto nonselect' onClick={()=>this._cityCheck(document.querySelector('#CityInput').value)}>Submit</button>
+			</section>
 		</article>);
 	}
 };

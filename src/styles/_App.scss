@@ -6,6 +6,9 @@
 	background-color: $body-primary-color;
 	color: $text-primary-color;
 	z-index: 1;
+	&.full {
+		height: 100% !important;
+	}
 	@media screen and (max-width: $fixed-tablet-width) {
 		height: calc(100% - 6rem);
 	}
@@ -17,9 +20,9 @@
 }
 .main-tab {
 	width: 50%;
-	height: calc(100% - 7rem);
+	height: calc(100% - 6rem);
 	display: flex;
-	padding: 5rem 0 2rem;
+	padding: 4rem 0 2rem;
 	overflow-y: auto;
 	
 	@media screen and (max-width: $fixed-tablet-width) {
@@ -33,11 +36,15 @@
 
 #WeatherTab > section {
 	margin-bottom: 2rem;
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
 }
 
 #CitySelector {
 	width: 40rem;
-	padding: 0 4rem;
+	height: auto;
+	padding: 2rem 3rem;
 }
 
 
@@ -58,7 +65,7 @@
 	}
 }
 #App-Navbar-inner {
-	max-width: calc(100% - 20rem);
+	max-width: calc(100% - 6rem);
 	height: 100%;
 	margin-left: 3rem;
 	@media screen and (max-width: $small-mobile-width) {
@@ -71,7 +78,7 @@
 	height: 100%;
 	margin: auto 2rem;
 	@media screen and (max-width: $tiny-mobile-width) {
-		margin: auto 0.4rem;
+		margin-left: 1rem;
 	}
 }
 .Navbar-tab-inner {
@@ -96,7 +103,7 @@
 
 #SettingsBar {
 	color: $text-primary-color;
-	width: 20rem;
+	width: auto;
 	height: 6rem;
 	position: fixed;
 	bottom: 0;

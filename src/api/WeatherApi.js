@@ -59,3 +59,11 @@ export function _getExtendedData(city) {
 		return { 'error': 'Issue getting weather data', 'detailedError': `_getExtendedData API fail for ${city}` };
 	});
 }
+
+export function _getAllData(weather, i){
+	return Promise.all([
+		_getCurrentData(weather[i].name), 
+		_getHourlyData(weather[i].name), 
+		_getExtendedData(weather[i].name)
+	]);
+};
