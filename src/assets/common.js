@@ -1,4 +1,12 @@
 
+let initialized = false;
+export function setInitialized() {
+	initialized = true;
+};
+export function getInitialized() {
+	return initialized;
+};
+
 export const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export function _addLeadingZero(tme) {
@@ -14,34 +22,6 @@ export function _getTemperature(temp, frmt) {
 	} else {
 		return Math.round(temp - 273.15);
 	}
-}
-
-export function _addToCities(zips, newZip) {
-	zips.push(newZip);
-	_setCitiesCache(zips);
-	return zips;
-}
-
-export function _setCitiesCache(zipArr) {
-	console.log('setting citiesCache: ', zipArr);
-	localStorage.setItem('citiesCache', zipArr);
-}
-
-export function _addToWeather(weatherArr, newWeather) {
-	weatherArr.push(newWeather);
-	let finalWeatherArr = _setWeatherCache(weatherArr);
-	return finalWeatherArr;
-}
-
-export function _setWeatherCache (weatherArr) {
-	let now = new Date().getTime();
-	let weatherCache = {
-		'date': now,
-		'weather': weatherArr
-	};
-	console.log('setting weatherCache: ', weatherCache);
-	localStorage.setItem('weatherCache', JSON.stringify(weatherCache));
-	return weatherCache;
 }
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { getSettings } from './status/SettingsHandler';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
@@ -9,14 +10,20 @@ import * as serviceWorker from './serviceWorker';
 /* let initUserId = '00000001'; */
 let initUser = null;
 
+/* let initSettings = JSON.parse(localStorage.getItem("userSettings")) || getSettings();
+try {
+	localStorage.setItem('userSettings', JSON.stringify(initSettings));
+} catch(err) {
+	console.log('Writing to local Storage error for userSettings: ', initSettings);
+}
+userSettings={initSettings} */
 
 const gpsAvailable = ("geolocation" in navigator) ? true : false;
 
-let themeCache = localStorage.getItem("themeCache") || 'light-theme';
 
 
 ReactDOM.render(
-	<App theme={themeCache} user={initUser} gpsAvailable={gpsAvailable} />, 
+	<App user={initUser} gpsAvailable={gpsAvailable} />, 
 	document.getElementById('root')
 );
 

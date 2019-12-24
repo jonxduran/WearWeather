@@ -60,10 +60,10 @@ export function _getExtendedData(city) {
 	});
 }
 
-export function _getAllData(weather, i){
+export function _getAllData(city){
 	return Promise.all([
-		_getCurrentData(weather[i].name), 
-		_getHourlyData(weather[i].name), 
-		_getExtendedData(weather[i].name)
+		_getCurrentData(city), 
+		_getHourlyData(city), 
+		_getExtendedData(city)
 	]);
 };

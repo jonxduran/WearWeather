@@ -3,7 +3,7 @@ import * as Common from '../assets/common';
 
 
 const CurrentWeatherCard = ({cty, scale}) => {
-	console.log(cty, scale);
+	/* console.log(cty, scale); */
 	let date = new Date(cty.currentWeather.dt * 1000);
 	return <section id='CurrentWeatherCard' className={'displayflex flexcol marginauto ' + cty.currentWeather.weather[0].main}>
 		<header className='card-header displayflex flexcol'>

@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
-import CalendarIcon from 'mdi-react/CalendarIcon';
-import TshirtVIcon from 'mdi-react/TshirtVIcon';
-/* import AccountCircleOutlineIcon from 'mdi-react/AccountCircleOutlineIcon'; */
+
+import { initTab, toggleTab } from './status/TabHandler';
+import { initUserSettings, setNewSetting } from './status/SettingsHandler';
+import handlerToggleTheme from './status/ThemeHandler';
+import * as WeatherHandler from './status/WeatherHandler';
+
+import { _getAllData } from './api/WeatherApi';
 import Navbar from './views/Navbar';
 import SettingsBar from './views/SettingsBar';
 import WeatherTab from './views/WeatherTab';
@@ -10,88 +14,100 @@ import WearTab from './views/WearTab';
 
 
 
-class App extends Component {
+const App = (props) => {
+
+	console.log('beginning of App');
+	const [currentCity, setCurrentCity] = useState(0);
+
+	const [userSettings, setUserSettings] = useState(initUserSettings);
+	const [themeObj, setThemeObj] = useState(handlerToggleTheme(userSettings.theme));
+
+	let initWeatherCheck = WeatherHandler.weatherCacheCheck();
+	const [weather, setWeather] = useState(initWeatherCheck[0]);
+	const [weatherCached, setWeatherCached] = useState(initWeatherCheck[1]);
+	const [weatherLoading, setWeatherLoading] = useState(false);
+	const [tabs, setTabs] = useState(toggleTab(initTab));
+	const [user, setUser] = useState(props.user);
 	
-	constructor(props) {
-		super(props);
 
-		console.log('getting location');
+	useEffect(() => {
+		if (weatherCached) {
+			_updateWeather();
+			console.log('updated weather from useEffect');
+		};
+	}, []);
 
-		let scale = localStorage.getItem("scale") || 'f';
-		let weather = null;
-		let weatherCached = false;
-		let oldWeatherStr = localStorage.getItem("weatherCache") || null;
-		if (oldWeatherStr){
-			let oldWeather = JSON.parse(oldWeatherStr);
-			console.log('oldWeather: ', oldWeather);
-			let cacheDate = new Date(oldWeather.date);
-			let checkTime = new Date().getTime() - (15 * 60 * 1000);
-			let checkDate = new Date(checkTime);
-			console.log('cacheDate: ', cacheDate, ' isGreater?checkDate: ', checkDate);
-			weather = oldWeather.weather;
-			if (oldWeather.date < checkTime) {
-				weatherCached = true;
-				console.log('oldWeather is old, marking as cached');
+	const _tabChanged = (newTab) => {
+		let newTabs = toggleTab(newTab);
+		setTabs(newTabs.slice());
+	};
+
+	const _setNewCity = (cityWeather) => {
+		console.log('_setNewCity current weather: ', weather);
+		console.log('new weather for city: ', cityWeather);
+		let updatedWeather = WeatherHandler.addToWeather(weather, cityWeather);
+		setWeather(updatedWeather);
+	};
+
+	const _updateWeather = () => {
+		setWeatherLoading(true);
+		let newWeather = weather.slice();
+		let city = newWeather[currentCity]['name'];
+		console.log('App updating Weather for city: ', city);
+		_getAllData(city)
+		.then(([currentData, hourlyData, extendedData]) => {
+			console.log('_updateWeather data: ', [currentData, hourlyData, extendedData]);
+			if (currentData.error || hourlyData.error || extendedData.error) {
+				alert('Weather data error');
 			} else {
-				console.log('oldWeather is still fresh, date more recent than checkDate');
-			}
-		}
-		
-		this.state = {
-			"tabs": [
-				{
-					"title": "Today",
-					"icon": <CalendarIcon />,
-					"active": true
-				},
-				{
-					"title": "Wear",
-					"icon": <TshirtVIcon />,
-					"active": false
+				let newWeatherData = {
+					'index': currentCity,
+					'name': currentData.name,
+					'id': currentData.id,
+					'currentWeather': currentData,
+					'hourlyWeather': hourlyData,
+					'extendedWeather': extendedData
 				}
-			],
-			"theme": props.theme,
-			"weather": weather,
-			"weatherCached": weatherCached,
-			'scale': scale,
-			"user": props.user
-		}
-	};
-
-	_tabChanged(newTab) {
-		console.log('App newTab: ', newTab);
+				console.log('newWeather: ', newWeatherData);
+				newWeather[currentCity] = newWeatherData;
+				WeatherHandler.setWeatherCache(newWeather);
+				setWeather(newWeather);
+				setWeatherLoading(false);
+				setWeatherCached(false);
+			}
+		});
 	}
 
-	_themeChange(newTheme) {
-		this.setState({ "theme": newTheme });
-	}
-	
-	_setCurrentWeather(newWeather) {
-		console.log('App setting new Current Weather: ', newWeather);
-		this.setState({ "weather": newWeather });
-	}
-
-	_setNewTheme(newTheme) {
+	const _setNewTheme = (newTheme) => {
 		console.log('setNewTheme: ', newTheme);
-		this.setState({ 'theme': newTheme });
-	}
-
-	render() {
-		return (
-			<div id='App' className={'displayflex ' + ((this.state.user === null) ? 'nouser ' : '') + this.state.theme}>
-				<main id='App-main' className={'displayflex marginauto' + (null === this.state.weather) && ' full'}>
-					<div id='App-main-inner' className='displayflex'>
-						<WeatherTab active={this.state.tabs[0]['active']} weather={this.state.weather} weatherCached={this.state.weatherCached} currWeatherUpdate={(newWeather)=>this._setCurrentWeather(newWeather)} scale={this.state.scale} />
-						<WearTab active={this.state.tabs[1]['active']} weather={this.state.weather} scale={this.state.scale} />
-					</div>
-				</main>
-				{ (null !== this.state.weather) && <>
-					<SettingsBar theme={this.state.theme} themeChange={(newTheme)=>this._setNewTheme(newTheme)} />
-					<Navbar tabs={this.state.tabs} tabClick={(newTab)=>this._tabChanged(newTab)} weather={this.state.weather} />
-				</> }
-			</div>
-		);
+		let newThemeObj = handlerToggleTheme(newTheme);
+		console.log('oldUserSettings: ', {...userSettings});
+		console.log('newThemeObj: ', newThemeObj);
+		
+		let newUserSettings = setNewSetting('theme', newTheme);
+		console.log('newUserSettings: ', {...newUserSettings});
+		setUserSettings({...newUserSettings});
+		setThemeObj({...newThemeObj});
+		console.log('userSettings: ', userSettings);
 	};
+
+
+	return (
+		<div id='App' className={'displayflex ' + ((user === null) ? 'nouser ' : '') + userSettings.theme}>
+			<main id='App-main' className={'displayflex marginauto' + (null === weather) && ' full'}>
+				<div id='App-main-inner' className='displayflex'>
+					<WeatherTab active={tabs[0]['active']} weather={weather} weatherCached={weatherCached} currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} getNewCity={(newCityWeather)=>_setNewCity(newCityWeather)} currentCity={currentCity}  />
+					<WearTab active={tabs[1]['active']} weather={weather} scale={userSettings.scale} />
+				</div>
+			</main>
+			{ (null !== weather) && <>
+				<SettingsBar themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />
+				<Navbar tabs={tabs} tabClick={(newTab)=>_tabChanged(newTab)} />
+			</> }
+		</div>
+	);
+
 }
+
 
 export default App;

@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class WearTab extends Component {
+const WearTab = (props) => {
 
-	constructor(props) {
-		super(props);
-		this.state = {
+	
 
-		}
-	}
+	return (
+		<section id='WearTab' className={'main-tab flexcol' + ((props.active===true) ? ' active' : '')}>
+			
+			<span className='marginauto'>Wear Tab</span>
 
-	render() {
-		return (
-			<section id='WearTab' className={'main-tab flexcol' + ((this.props.active===true) ? ' active' : '')}>
-				
-				<span className='marginauto'>{this.props.currentWeather}</span>
-
-			</section>
-		)
-	}
+		</section>
+	)
 
 }
 
