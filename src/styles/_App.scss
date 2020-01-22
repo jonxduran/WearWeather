@@ -37,9 +37,9 @@
 }
 
 #WeatherTab > section {
-	margin-bottom: 2rem;
+	padding-bottom: 3rem;
 	&:last-child {
-		margin-bottom: 0px !important;
+		padding-bottom: 9rem !important;
 	}
 }
 
@@ -66,7 +66,7 @@
 		display: flex;
 	}
 }
-#App-Navbar-inner {
+#App-Navbar-tabs {
 	max-width: calc(100% - 6rem);
 	height: 100%;
 	margin-left: 3rem;
@@ -101,14 +101,3 @@
 	margin: auto;
 }
 
-
-
-#SettingsBar {
-	color: $text-primary-color;
-	width: auto;
-	height: 6rem;
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	z-index: 3;
-}

@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 
 import { initTab, toggleTab } from './status/TabHandler';
@@ -8,7 +8,6 @@ import * as WeatherHandler from './status/WeatherHandler';
 
 import { _getAllData } from './api/WeatherApi';
 import Navbar from './views/Navbar';
-import SettingsBar from './views/SettingsBar';
 import WeatherTab from './views/WeatherTab';
 import WearTab from './views/WearTab';
 
@@ -28,8 +27,14 @@ const App = (props) => {
 	const [weatherLoading, setWeatherLoading] = useState(false);
 	const [tabs, setTabs] = useState(toggleTab(initTab));
 	const [user, setUser] = useState(props.user);
+	console.log('user: ', user);
 	
 
+	const _setNewUser = (newUser) => {
+		console.log('newUser: ', newUser);
+		setUser(newUser);
+	};
+	
 	useEffect(() => {
 		if (weatherCached) {
 			_updateWeather();
@@ -79,21 +84,20 @@ const App = (props) => {
 	}
 
 	const _setNewTheme = (newTheme) => {
-		console.log('setNewTheme: ', newTheme);
+		/* console.log('setNewTheme: ', newTheme); */
 		let newThemeObj = handlerToggleTheme(newTheme);
-		console.log('oldUserSettings: ', {...userSettings});
-		console.log('newThemeObj: ', newThemeObj);
-		
+		/* console.log('oldUserSettings: ', {...userSettings});
+		console.log('newThemeObj: ', newThemeObj); */
 		let newUserSettings = setNewSetting('theme', newTheme);
-		console.log('newUserSettings: ', {...newUserSettings});
+		/* console.log('newUserSettings: ', {...newUserSettings}); */
 		setUserSettings({...newUserSettings});
 		setThemeObj({...newThemeObj});
-		console.log('userSettings: ', userSettings);
+		/* console.log('userSettings: ', userSettings); */
 	};
 
 
 	return (
-		<div id='App' className={'displayflex ' + ((user === null) ? 'nouser ' : '') + userSettings.theme}>
+		<div id='App' className={'displayflex positionrel ' + ((user === null) ? 'nouser ' : '') + userSettings.theme}>
 			<main id='App-main' className={'displayflex marginauto' + (null === weather) && ' full'}>
 				<div id='App-main-inner' className='displayflex'>
 					<WeatherTab active={tabs[0]['active']} weather={weather} weatherCached={weatherCached} currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} getNewCity={(newCityWeather)=>_setNewCity(newCityWeather)} currentCity={currentCity}  />
@@ -101,8 +105,7 @@ const App = (props) => {
 				</div>
 			</main>
 			{ (null !== weather) && <>
-				<SettingsBar themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />
-				<Navbar tabs={tabs} tabClick={(newTab)=>_tabChanged(newTab)} />
+				<Navbar tabs={tabs} tabClick={(newTab)=>_tabChanged(newTab)} user={user} themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />
 			</> }
 		</div>
 	);
