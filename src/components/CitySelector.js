@@ -41,7 +41,6 @@ const CitySelector = (props) => {
 			alert('City already added, select a new city');
 			cityInputRef.current.value = '';
 		};
-
 	}
 
 	return (<article id='CitySelector' className='card card-shadow displayflex flexcol marginauto'>

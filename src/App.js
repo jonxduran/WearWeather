@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 
-import { initTab, toggleTab } from './status/TabHandler';
 import { initUserSettings, setNewSetting } from './status/SettingsHandler';
 import handlerToggleTheme from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
 
 import { _getAllData } from './api/WeatherApi';
 import Navbar from './views/Navbar';
-import WeatherTab from './views/WeatherTab';
-import WearTab from './views/WearTab';
-
+import WeatherDaily from './views/WeatherDaily';
+import WearSection from './views/WearSection';
+import CitySelector from './components/CitySelector';
 
 
 const App = (props) => {
@@ -25,7 +24,6 @@ const App = (props) => {
 	const [weather, setWeather] = useState(initWeatherCheck[0]);
 	const [weatherCached, setWeatherCached] = useState(initWeatherCheck[1]);
 	const [weatherLoading, setWeatherLoading] = useState(false);
-	const [tabs, setTabs] = useState(toggleTab(initTab));
 	const [user, setUser] = useState(props.user);
 	console.log('user: ', user);
 	
@@ -41,11 +39,6 @@ const App = (props) => {
 			console.log('updated weather from useEffect');
 		};
 	}, []);
-
-	const _tabChanged = (newTab) => {
-		let newTabs = toggleTab(newTab);
-		setTabs(newTabs.slice());
-	};
 
 	const _setNewCity = (cityWeather) => {
 		console.log('_setNewCity current weather: ', weather);
@@ -98,15 +91,17 @@ const App = (props) => {
 
 	return (
 		<div id='App' className={'displayflex positionrel ' + ((user === null) ? 'nouser ' : '') + userSettings.theme}>
-			<main id='App-main' className={'displayflex marginauto' + (null === weather) && ' full'}>
-				<div id='App-main-inner' className='displayflex'>
-					<WeatherTab active={tabs[0]['active']} weather={weather} weatherCached={weatherCached} currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} getNewCity={(newCityWeather)=>_setNewCity(newCityWeather)} currentCity={currentCity}  />
-					<WearTab active={tabs[1]['active']} weather={weather} scale={userSettings.scale} />
-				</div>
-			</main>
-			{ (null !== weather) && <>
-				<Navbar tabs={tabs} tabClick={(newTab)=>_tabChanged(newTab)} user={user} themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />
-			</> }
+			{ (null !== weather) ? <>
+				<main id='App-main' className={'displayflex marginauto' + (null === weather) ? ' full' : ''}>
+					<div id='App-main-inner' className='displayflex flexcol'>
+						<WeatherDaily weather={weather} weatherCached={weatherCached} currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} currentCity={currentCity} />
+						<WearSection weather={weather} scale={userSettings.scale} />
+					</div>
+				</main>
+				<Navbar user={user} themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />
+			</> : <main id='App-main' className='displayflex positionrel'>
+				<CitySelector weather={weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} /> 
+			</main> }
 		</div>
 	);
 

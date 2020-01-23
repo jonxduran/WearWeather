@@ -3,7 +3,6 @@
 
 #CurrentWeatherCard {
 	width: calc(100% - 2rem);
-	max-width: 72rem;
 }
 
 .CurrentWeather-circle {
@@ -42,7 +41,7 @@
 
 .ExtendedWeather-card {
 	width: calc(100% - 2rem);
-	max-width: $mobile-width;
+	max-width: 90rem;
 	margin: 1rem auto;
 	padding: 2rem 3rem;
 }

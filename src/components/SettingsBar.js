@@ -11,7 +11,7 @@ const SettingsBar = (props) => {
 	const [menuOpen, setMenu] = useState(false);
 
 	return (
-		<article id='SettingsBar' className='positionrel'>
+		<article id='SettingsBar' className='positionrel marginauto'>
 			<section id='SettingsButtons-section' className='displayflex'>
 			<div id='Settings-location-icon' className='Settings-icon displayflex positionrel MDI-container'>
 					<MapMarkerIcon />
@@ -29,6 +29,7 @@ const SettingsBar = (props) => {
 				</div>
 			</section>
 			<section id='Overflow-section' className={'positionabs' + ((menuOpen) ? ' open' :'')}>
+				<div id='Overflow-screen' onClick={()=>setMenu(false)}></div>
 				<article id='Overflow-popup' className='displayflex flexcol positionabs popup popup-shadow'>
 					<div className='Overflow-row displayflex positionrel'>
 						{ Object.keys(props.themeObj).map((thm, i) => {
@@ -51,7 +52,6 @@ const SettingsBar = (props) => {
 					</div>
 				</article>
 			</section>
-			<section id='testsection' className='positionabs'>test</section>
 		</article>
 	);
 

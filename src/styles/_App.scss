@@ -4,39 +4,30 @@
 	height: 100%;
 	background-color: $body-primary-color;
 	color: $text-primary-color;
+	overflow-y: auto;
 	z-index: 1;
-	&.full {
-		height: 100% !important;
-	}
-	@media screen and (max-width: $fixed-tablet-width) {
-		height: calc(100% - 6rem);
-	}
 }
 #App-main-inner {
-	width: 100%;
+	width: calc(100% - 4rem);
 	max-width: $max-pc-width;
-	height: 100%;
-	margin: auto;
-}
-.main-tab {
-	width: 50%;
-	height: calc(100% - 6rem);
-	display: flex;
-	padding: 4rem 0 2rem;
-	overflow-y: auto;
-	
+	margin: auto auto 6rem;
 	@media screen and (max-width: $fixed-tablet-width) {
+		max-width: 90rem;
+	}
+	@media screen and (max-width: $small-mobile-width) {
 		width: 100%;
-		height: calc(100% - 10rem);
-		padding-bottom: 6rem;
-		display: none;
-		&.active {
-			display: flex !important;
-		}
 	}
 }
+.main-tab {
+	width: 100%;
+	display: flex;
+	padding: 4rem 0;
+}
 
-#WeatherTab > section {
+#WeatherDaily > section {
+	width: 100%;
+	max-width: 90rem;
+	margin: 0 auto;
 	padding-bottom: 3rem;
 	&:last-child {
 		padding-bottom: 9rem !important;
@@ -53,18 +44,14 @@
 #App-Navbar {
 	width: 100%;
 	height: 6rem;
-	display: none;
 	position: fixed;
 	bottom: 0;
 	background-color: $nav-background-color;
 	color: $text-primary-color;
-	backdrop-filter: saturate(180%) blur(10px);
-	border-top: 1px $border-secondary-color solid;
+	backdrop-filter: saturate(180%) blur(3px);
+	border-top: 1px $nav-border-color solid;
 	box-sizing: border-box;
 	z-index: 2;
-	@media screen and (max-width: $fixed-tablet-width) {
-		display: flex;
-	}
 }
 #App-Navbar-tabs {
 	max-width: calc(100% - 6rem);
