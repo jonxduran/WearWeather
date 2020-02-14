@@ -1,0 +1,30 @@
+{
+	"headwear": {
+		"beanie": {
+			"name": "beanie",
+			"category": "headwear",
+			"primaryColor": "#333333",
+			"secondaryColor": "#2b2b2b",
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"sunglasses": {
+			"name": "sunglasses",
+			"category": "headwear",
+			"primaryColor": "brown",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		}
+	},
+	"socks": {
+		"ankleSocks": {
+			"name": "ankle socks",
+			"category": "socks",
+			"primaryColor": "gray",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		}
+	}
+}

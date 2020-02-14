@@ -31,6 +31,7 @@ $slow-animation: 1s;
 		@import './components/_weathercards.scss';
 		@import './_App.scss';
 	}
+	height: 100%;
 }
 
 #App.nouser #WeatherDaily {

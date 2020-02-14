@@ -15,7 +15,6 @@ let userSettings = {
 export const initUserSettings = JSON.parse(localStorage.getItem("userSettingsCache")) || getSettings();
 
 export function setNewSetting (ky, vl) {
-	
 	userSettings[ky] = vl;
 	try {
 		localStorage.setItem('userSettingsCache',  JSON.stringify(userSettings));

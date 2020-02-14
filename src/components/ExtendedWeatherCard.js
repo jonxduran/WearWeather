@@ -12,8 +12,8 @@ const ExtendedWeatherCard = (props) => {
 			<span className='medfont medfont-height'>{props.data.weather[0].main}</span>
 		</div>
 		<div className='ExtendedWeather-temp displayflex'>
-			<span className='medfont medfont-height'>{Common._getTemperature(props.data.temp.max, props.scale)}°</span>
-			<span className='medfont medfont-height'>{Common._getTemperature(props.data.temp.min, props.scale)}°</span>
+			<span className='medfont medfont-height'>{Common.getTemperature(props.data.temp.max, props.scale)}°</span>
+			<span className='medfont medfont-height'>{Common.getTemperature(props.data.temp.min, props.scale)}°</span>
 		</div>
 		
 	</article>

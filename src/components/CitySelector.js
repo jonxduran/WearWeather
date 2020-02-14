@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { _getAllData } from '../api/WeatherApi';
+import { getAllWeatherData } from '../api/WeatherApi';
 
 
 const CitySelector = (props) => {
@@ -18,7 +18,7 @@ const CitySelector = (props) => {
 			};
 		};
 		if (false === match) {
-			_getAllData(city)
+			getAllWeatherData(city)
 			.then(([currentData, hourlyData, extendedData]) => {
 				console.log('CitySelector data: ', [currentData, hourlyData, extendedData]);
 				if (currentData.error || hourlyData.error || extendedData.error) {

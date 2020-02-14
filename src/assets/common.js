@@ -9,14 +9,14 @@ export function getInitialized() {
 
 export const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-export function _addLeadingZero(tme) {
+export function addLeadingZero(tme) {
 	if (tme < 10) {
 		tme = "0" + tme;
 	}
 	return tme;
 }
 
-export function _getTemperature(temp, frmt) {
+export function getTemperature(temp, frmt) {
 	if (frmt === 'f') {
 		return Math.round(((temp - 273.15) * 1.8) + 32);
 	} else {
@@ -25,7 +25,7 @@ export function _getTemperature(temp, frmt) {
 }
 
 
-export function _weatherDecoder(id) {
+export function weatherDecoder(id) {
 	let decoded;
 	switch(id) {
 		case (/2[0-9][0-9]/).test(id):
@@ -114,4 +114,4 @@ export function _weatherDecoder(id) {
 			break;
 	}
 	return decoded;
-}
+};

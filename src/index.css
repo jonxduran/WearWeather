@@ -3,6 +3,11 @@ html {
 	height: 100vh;
 }
 
+html, html * {
+	scrollbar-color: rgba(170, 170, 170, 0.6) rgba(46,54,69,0) !important;
+	scrollbar-width: thin !important;
+}
+
 body {
 	font-size: 1.6rem;
 	margin: 0;
@@ -11,8 +16,81 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	line-height: 1.2;
 	min-width: 40rem;
+	height: 100%;
 }
 
 #root {
 	height: 100%;
+}
+
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+	width: 1.5rem;
+}
+  
+::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.1);
+} 
+  
+::-webkit-scrollbar-thumb {
+	background-color: rgba(116, 121, 123, 0.7);
+	border: 2px solid transparent;
+	border-radius: 6px;
+	background-clip: content-box;
+	min-height: 20px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(116, 121, 123, 0.8);
+	transition: all 0.3s ease-in-out;
+}
+  
+::-webkit-scrollbar-thumb:active {
+	background-color: rgba(116, 121, 123, 0.8);
+}
+  
+::-webkit-scrollbar-corner {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+  
+::-webkit-resizer {
+	background-color: rgba(116, 121, 123, 0.7);
+}
+  
+::scrollbar-track-color {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+  
+::scrollbar-face-color {
+	background-color: rgba(116, 121, 123, 0.7);
+}
+  
+::scrollbar-face-color:hover {
+	background-color: rgba(116, 121, 123, 0.8);
+	transition: all 0.3s ease-in-out;
+}
+  
+::scrollbar-face-color:active {
+	background-color: rgba(116, 121, 123, 0.8);
+	transition: all 0.3s ease-in-out;
+}
+  
+-ms-scrollbar-track-color {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+  
+-ms-scrollbar-face-color {
+	background-color: rgba(116, 121, 123, 0.7);
+}
+  
+-ms-scrollbar-face-color:hover {
+	background-color: rgba(116, 121, 123, 0.8);
+	transition: all 0.3s ease-in-out;
+}
+  
+-ms-scrollbar-face-color:active {
+	background-color: rgba(116, 121, 123, 0.8);
+	transition: all 0.3s ease-in-out;
 }

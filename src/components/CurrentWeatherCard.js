@@ -12,7 +12,7 @@ const CurrentWeatherCard = ({cty, scale}) => {
 		</header>
 		<article className='card yellow CurrentWeather-circle'>
 			<div className='temperature-container displayflex bold3'>
-				<span className='temperature positionrel herofont marginauto'>{Common._getTemperature(cty.currentWeather.main.temp, scale)}</span>
+				<span className='temperature positionrel herofont marginauto'>{Common.getTemperature(cty.currentWeather.main.temp, scale)}</span>
 			</div>
 		</article>
 		<section className=''></section>

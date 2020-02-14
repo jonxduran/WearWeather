@@ -1,4 +1,9 @@
 
+/*
+weather cache exists and is new enough - [weather, false]
+weather cache exists and is old - [weather, true]
+no weather cache exists - [null, null]
+*/
 export function weatherCacheCheck() {
 	let weather = null;
 	let weatherCached = false;
@@ -7,7 +12,7 @@ export function weatherCacheCheck() {
 		let oldWeather = JSON.parse(oldWeatherStr);
 		/* console.log('oldWeather: ', oldWeather); */
 		let cacheDate = new Date(oldWeather.date);
-		let checkTime = new Date().getTime() - (15 * 60 * 1000);
+		let checkTime = new Date().getTime() - (15 * 60 * 1000); /*000*/
 		let checkDate = new Date(checkTime);
 		console.log('cacheDate: ', cacheDate, ' isGreater?checkDate: ', checkDate);
 		weather = oldWeather.weather;
@@ -17,6 +22,8 @@ export function weatherCacheCheck() {
 		} else {
 			console.log('oldWeather is still fresh, date more recent than checkDate');
 		};
+	} else {
+		weatherCached = null;
 	};
 	return [weather, weatherCached];
 }
@@ -39,6 +46,10 @@ export function setWeatherCache (weatherArr) {
 		'weather': weatherArr
 	};
 	console.log('setting weatherCache: ', weatherCache);
-	localStorage.setItem('weatherCache', JSON.stringify(weatherCache));
+	try {
+		localStorage.setItem('weatherCache', JSON.stringify(weatherCache));
+	} catch(error) {
+		console.log("Writing to local Storage error for weatherCache:", error);
+	}
 	return weatherArr;
 }

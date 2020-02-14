@@ -5,7 +5,7 @@ import { initUserSettings, setNewSetting } from './status/SettingsHandler';
 import handlerToggleTheme from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
 
-import { _getAllData } from './api/WeatherApi';
+import { getAllWeatherData } from './api/WeatherApi';
 import Navbar from './views/Navbar';
 import WeatherDaily from './views/WeatherDaily';
 import WearSection from './views/WearSection';
@@ -20,10 +20,11 @@ const App = (props) => {
 	const [userSettings, setUserSettings] = useState(initUserSettings);
 	const [themeObj, setThemeObj] = useState(handlerToggleTheme(userSettings.theme));
 
-	let initWeatherCheck = WeatherHandler.weatherCacheCheck();
-	const [weather, setWeather] = useState(initWeatherCheck[0]);
+	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
+
+	const [weather, setWeather] = useState(null);
 	const [weatherCached, setWeatherCached] = useState(initWeatherCheck[1]);
-	const [weatherLoading, setWeatherLoading] = useState(false);
+	const [weatherLoading, setWeatherLoading] = useState((false === initWeatherCheck[1]) ? false : true);
 	const [user, setUser] = useState(props.user);
 	console.log('user: ', user);
 	
@@ -34,9 +35,13 @@ const App = (props) => {
 	};
 	
 	useEffect(() => {
-		if (weatherCached) {
+		console.log('useeffect ', weatherCached);
+		if (true === weatherCached) {
 			_updateWeather();
 			console.log('updated weather from useEffect');
+		} else {
+			setWeather(initWeatherCheck[0]);
+			console.log('***** SETWEATHER ', initWeatherCheck[0]);
 		};
 	}, []);
 
@@ -44,19 +49,25 @@ const App = (props) => {
 		console.log('_setNewCity current weather: ', weather);
 		console.log('new weather for city: ', cityWeather);
 		let updatedWeather = WeatherHandler.addToWeather(weather, cityWeather);
+		setWeatherLoading(false);
+		setWeatherCached(false);
 		setWeather(updatedWeather);
+		console.log('***** SETWEATHER ', updatedWeather);
 	};
 
 	const _updateWeather = () => {
-		setWeatherLoading(true);
-		let newWeather = weather.slice();
+		let newWeather = (null === weather) ? initWeatherCheck[0] : weather.slice();
 		let city = newWeather[currentCity]['name'];
 		console.log('App updating Weather for city: ', city);
-		_getAllData(city)
+		getAllWeatherData(city)
 		.then(([currentData, hourlyData, extendedData]) => {
 			console.log('_updateWeather data: ', [currentData, hourlyData, extendedData]);
 			if (currentData.error || hourlyData.error || extendedData.error) {
-				alert('Weather data error');
+				console.log('Weather data error');
+				console.log('Setting weather from cache: ', initWeatherCheck[0]);
+				console.log('***** SETWEATHER');
+				setWeather(initWeatherCheck[0]);
+				//setWeatherCached(false);
 			} else {
 				let newWeatherData = {
 					'index': currentCity,
@@ -69,10 +80,11 @@ const App = (props) => {
 				console.log('newWeather: ', newWeatherData);
 				newWeather[currentCity] = newWeatherData;
 				WeatherHandler.setWeatherCache(newWeather);
-				setWeather(newWeather);
-				setWeatherLoading(false);
 				setWeatherCached(false);
+				console.log('***** SETWEATHER');
+				setWeather(newWeather);
 			}
+			setWeatherLoading(false);
 		});
 	}
 
@@ -88,14 +100,17 @@ const App = (props) => {
 		/* console.log('userSettings: ', userSettings); */
 	};
 
-
+	
 	return (
 		<div id='App' className={'displayflex positionrel ' + ((user === null) ? 'nouser ' : '') + userSettings.theme}>
-			{ (null !== weather) ? <>
+			{ (null !== weatherCached) ? <>
 				<main id='App-main' className={'displayflex marginauto' + (null === weather) ? ' full' : ''}>
 					<div id='App-main-inner' className='displayflex flexcol'>
-						<WeatherDaily weather={weather} weatherCached={weatherCached} currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} currentCity={currentCity} />
-						<WearSection weather={weather} scale={userSettings.scale} />
+						{ (weatherLoading === false) ? <>
+							<WeatherDaily weather={weather}  currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} currentCity={currentCity} />
+							{ (null !== user && null !== weather) && <WearSection weather={weather} scale={userSettings.scale } /> }
+							</> : <span>loading</span>
+						}
 					</div>
 				</main>
 				<Navbar user={user} themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />

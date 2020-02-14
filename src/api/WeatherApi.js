@@ -4,21 +4,7 @@ import HOURLYWEATHER from '../assets/sampleHourlyWeather.json';
 import EXTENDEDWEATHER from '../assets/sampleExtendedWeather.json'; */
 
 
-/* let lclCounter = 0;
-let lat = '40.7306';
-let long = '-73.7181'; */
-
-/* export function _getDailyControls() {
-	lclCounter++;
-	return 'daily controls increased';
-}
-
-export function _getDailyData() {
-	return ('daily counter: ' + lclCounter);
-} */
-
-
-export function _getCurrentData(city) {
+export function getCurrentData(city) {
 	/* return CURRENTWEATHER; */
 	const currentUrl = CONSTANTS.currentForecastUrl + `&q=${city}`;
 	return fetch(currentUrl).then(res => {
@@ -28,11 +14,11 @@ export function _getCurrentData(city) {
 		};
 		return res;
 	}).then(res => res.json()).catch(err => {
-		return { 'error': 'Issue getting weather data', 'detailedError': `_getCurrentData API fail for ${city}` };
+		return { 'error': 'Issue getting weather data', 'detailedError': `getCurrentData API fail for ${city}` };
 	});
 }
 
-export function _getHourlyData(city) {
+export function getHourlyData(city) {
 	/* return HOURLYWEATHER; */
 	const hourlyUrl = CONSTANTS.hourlyForecastUrl + `&q=${city}`;
 	return fetch(hourlyUrl).then(res => {
@@ -42,11 +28,11 @@ export function _getHourlyData(city) {
 		};
 		return res;
 	}).then(res => res.json()).catch(err => {
-		return { 'error': 'Issue getting weather data', 'detailedError': `_getHourlyData API fail for ${city}` };
+		return { 'error': 'Issue getting weather data', 'detailedError': `getHourlyData API fail for ${city}` };
 	});
 }
 
-export function _getExtendedData(city) {
+export function getExtendedData(city) {
 	/* return EXTENDEDWEATHER; */
 	const extendedUrl = CONSTANTS.extendedForecastUrl + `&q=${city}`;
 	return fetch(extendedUrl).then(res => {
@@ -56,14 +42,14 @@ export function _getExtendedData(city) {
 		};
 		return res;
 	}).then(res => res.json()).catch(err => {
-		return { 'error': 'Issue getting weather data', 'detailedError': `_getExtendedData API fail for ${city}` };
+		return { 'error': 'Issue getting weather data', 'detailedError': `getExtendedData API fail for ${city}` };
 	});
 }
 
-export function _getAllData(city){
+export function getAllWeatherData(city){
 	return Promise.all([
-		_getCurrentData(city), 
-		_getHourlyData(city), 
-		_getExtendedData(city)
+		getCurrentData(city), 
+		getHourlyData(city), 
+		getExtendedData(city)
 	]);
 };
