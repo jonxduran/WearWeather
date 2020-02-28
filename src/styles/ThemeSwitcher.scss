@@ -21,6 +21,7 @@ $slow-animation: 1s;
 		@import './partials/_elements.scss';
 		@import './components/_appbar.scss';
 		@import './components/_weathercards.scss';
+		@import './components/clothingcards';
 		@import './_App.scss';
 	}
 	&.dark-theme {
@@ -29,6 +30,7 @@ $slow-animation: 1s;
 		@import './partials/_elements.scss';
 		@import './components/_appbar.scss';
 		@import './components/_weathercards.scss';
+		@import './components/clothingcards';
 		@import './_App.scss';
 	}
 	height: 100%;

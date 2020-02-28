@@ -9,12 +9,19 @@ console.log('OSTheme: ', OSTheme);
 
 let userSettings = {
 	"scale": "f",
+	"gender": "male",
 	"theme": OSTheme
 };
 
-export const initUserSettings = JSON.parse(localStorage.getItem("userSettingsCache")) || getSettings();
+export function getInitUserSettings(user) { 
+	let initUserSettings = JSON.parse(localStorage.getItem("userSettingsCache")) || getSettings();
+	initUserSettings.userObject = user;
+	console.log('initUserSettings: ', initUserSettings);
+	userSettings = initUserSettings;
+	return initUserSettings;
+}
 
-export function setNewSetting (ky, vl) {
+export function setNewSetting(ky, vl) {
 	userSettings[ky] = vl;
 	try {
 		localStorage.setItem('userSettingsCache',  JSON.stringify(userSettings));

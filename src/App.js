@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 
-import { initUserSettings, setNewSetting } from './status/SettingsHandler';
+import { getInitUserSettings, setNewSetting } from './status/SettingsHandler';
 import handlerToggleTheme from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
 
@@ -17,7 +17,8 @@ const App = (props) => {
 	console.log('beginning of App');
 	const [currentCity, setCurrentCity] = useState(0);
 
-	const [userSettings, setUserSettings] = useState(initUserSettings);
+	const initUser = getInitUserSettings(props.user);
+	const [userSettings, setUserSettings] = useState(initUser);
 	const [themeObj, setThemeObj] = useState(handlerToggleTheme(userSettings.theme));
 
 	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
@@ -108,7 +109,7 @@ const App = (props) => {
 					<div id='App-main-inner' className='displayflex flexcol'>
 						{ (weatherLoading === false) ? <>
 							<WeatherDaily weather={weather}  currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} currentCity={currentCity} />
-							{ (null !== user && null !== weather) && <WearSection weather={weather} scale={userSettings.scale } /> }
+							{ (null !== user && null !== weather) && <WearSection weather={weather} scale={userSettings.scale} currentCity={currentCity} userSettings={userSettings} /> }
 							</> : <span>loading</span>
 						}
 					</div>

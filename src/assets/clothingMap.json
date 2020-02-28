@@ -1,17 +1,11 @@
 {
-	"headwear": {
-		"beanie": {
-			"name": "beanie",
-			"category": "headwear",
-			"primaryColor": "#333333",
-			"secondaryColor": "#2b2b2b",
-			"tertiaryColor": null,
-			"selected": false
-		},
-		"sunglasses": {
-			"name": "sunglasses",
-			"category": "headwear",
-			"primaryColor": "brown",
+	"pants": {
+		"shorts": {
+			"name": "shorts",
+			"title": "shorts",
+			"category": "pants",
+			"gender": "male",
+			"primaryColor": "lightblue",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -20,8 +14,44 @@
 	"socks": {
 		"ankleSocks": {
 			"name": "ankle socks",
+			"title": "ankleSocks",
 			"category": "socks",
+			"gender": "neither",
 			"primaryColor": "gray",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		}
+	},
+	"tights": {
+		"energyTights": {
+			"name": "energy tights",
+			"title": "energyTights",
+			"category": "tights",
+			"gender": "female",
+			"primaryColor": "rgba(20, 20, 20, 0.8)",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		}
+	},
+	"headwear": {
+		"beanie": {
+			"name": "beanie",
+			"title": "beanie",
+			"category": "headwear",
+			"gender": "neither",
+			"primaryColor": "#333333",
+			"secondaryColor": "#2b2b2b",
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"sunglasses": {
+			"name": "sunglasses",
+			"title": "sunglasses",
+			"category": "headwear",
+			"gender": "neither",
+			"primaryColor": "brown",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false

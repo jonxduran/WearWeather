@@ -5,6 +5,7 @@
 }
 
 .card {
+	padding: 2rem;
 	border-radius: 1rem;
 	border: 1px $border-primary-color solid;
 	background-color: $body-secondary-color;
@@ -20,6 +21,16 @@
 .card-row {
 	width: 100%;
 	margin: 1rem auto;
+}
+
+.three-card-row {
+	.card {
+		width: calc(33% - 1rem);
+		margin: 1rem;
+	}
+	.card:nth-child(3n-2) {
+		margin-left: 0;
+	}
 }
 
 .popup {
@@ -40,6 +51,16 @@
 	background-color: $indigo;
 }
 
+
+.solid-button {
+	background-color: $button-default-color-1;
+	border: 0.1rem $button-default-color-2 solid;
+	border-radius: 0.5rem;
+	box-sizing: border-box;
+	padding: 1rem 1.5rem;
+	cursor: pointer;
+	transition: all $fast-animation ease-in-out;
+}
 
 
 .outline-button {
