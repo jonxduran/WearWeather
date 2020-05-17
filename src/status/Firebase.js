@@ -1,10 +1,12 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/database';
 import 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
 //console.log(process.env.FIREBASE_APIKEY);
+
 const firebaseConfig = {
 	apiKey: 'AIzaSyD8LP5CySz_KrrgaLiO3-OM-EUpYhFhXQA',
 	authDomain: "wearweather-jxd.firebaseapp.com",
@@ -18,6 +20,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
+firebase.database();
 
 export default firebase;
 

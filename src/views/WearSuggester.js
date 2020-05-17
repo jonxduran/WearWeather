@@ -1,30 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ClothingItem from '../components/ClothingItem';
+import * as ClothesApi from '../api/ClothesApi';
 
 
 const WearSuggester = (props) => {
 
+	console.log("WearSuggester db: ", props.db);
+	/* db.current.collection("api").doc(user.uid).collection("wear") */
 	
-	
-	
-	const suggestedClothes = [
-		{ category: 'headwear', name: "beanie", title: 'beanie', primaryColor: '#333333', secondaryColor: '#2b2b2b', tertiaryColor: null, selected: true },
-		{ category: 'socks', name: "ankle socks", title: 'ankleSocks', primaryColor: 'gray', secondaryColor: 'white', tertiaryColor: null, selected: true }
-	];
+
+	const [suggestedClothes, setSuggestedClothes] = useState([]);
+
+	useEffect(() => {
+		const newClothes = ClothesApi.getClothes(props.db, props.userSettings.userObject);
+		setSuggestedClothes(newClothes);
+	}, []);
+
+	const pickedClothing = function(cloth, direction) {
+		//cloth.selected = !cloth.selected;
+		props.pickClothing([cloth]);
+	};
 	
 	const SuggestThis = function() {
-		props.suggestWear(suggestedClothes);
+		props.pickClothing(suggestedClothes);
 	};
 
 	return (
 		<section id='WearSuggester'>
-			<h3 className='biggerfont bold4'>Suggested for you</h3>
+			<h3 className='Wear-header biggerfont bold4'>Suggested for you</h3>
 			<section id='SuggestedClothes-container' className='displayflex three-card-row'>
 				{ suggestedClothes.map((clo, i) => {
-					return <ClothingItem data={clo} key={i} />
+					return <ClothingItem data={clo} key={i} unPick={(cloth)=>pickedClothing(cloth, 'add')} />
 				}) }
 			</section>
-			<button className='solid-button smallfont' onClick={SuggestThis}>Suggest</button>
+			<article className='Wear-submit-container displayflex positionrel'>
+				<button className='solid-button smallfont' onClick={SuggestThis}>Suggest</button>
+			</article>
 		</section>
 	);
 }

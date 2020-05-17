@@ -9,10 +9,16 @@ import firebase from './status/Firebase';
 
 /* Check for cookie here */
 /* let initUserId = '00000001'; */
+console.log(process.env);
 let user = null;
+/* let myFirestore = null; */
+let myFireDatabase = null;
 firebase.auth().onAuthStateChanged(function(userCheck) {
 	if (userCheck) {
 		user = userCheck;
+		/* myFirestore = firebase.firestore(); */
+		myFireDatabase = firebase.database().ref(`/users/${user.uid}`);
+		/* console.log(myFirestore.ref()); */
 	} else {
 		console.log('no userCheck found');
 	}
@@ -28,7 +34,7 @@ firebase.auth().onAuthStateChanged(function(userCheck) {
 	const gpsAvailable = ("geolocation" in navigator) ? true : false;
 
 	ReactDOM.render(
-		<App user={user} gpsAvailable={gpsAvailable} />, 
+		<App user={user} db={myFireDatabase} gpsAvailable={gpsAvailable} />, 
 		document.getElementById('root')
 	);
 

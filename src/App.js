@@ -27,12 +27,13 @@ const App = (props) => {
 	const [weatherCached, setWeatherCached] = useState(initWeatherCheck[1]);
 	const [weatherLoading, setWeatherLoading] = useState((false === initWeatherCheck[1]) ? false : true);
 	const [user, setUser] = useState(props.user);
-	console.log('user: ', user);
 	
 
 	const _setNewUser = (newUser) => {
 		console.log('newUser: ', newUser);
 		setUser(newUser);
+		window.location.reload();
+		return false;
 	};
 	
 	useEffect(() => {
@@ -109,12 +110,12 @@ const App = (props) => {
 					<div id='App-main-inner' className='displayflex flexcol'>
 						{ (weatherLoading === false) ? <>
 							<WeatherDaily weather={weather}  currWeatherUpdate={()=>_updateWeather()} scale={userSettings.scale} currentCity={currentCity} />
-							{ (null !== user && null !== weather) && <WearSection weather={weather} scale={userSettings.scale} currentCity={currentCity} userSettings={userSettings} /> }
+							{ (null !== user && null !== weather) && <WearSection weather={weather} scale={userSettings.scale} currentCity={currentCity} userSettings={userSettings} db={props.db} /> }
 							</> : <span>loading</span>
 						}
 					</div>
 				</main>
-				<Navbar user={user} themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} />
+				<Navbar user={user} themeObj={themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} />
 			</> : <main id='App-main' className='displayflex positionrel'>
 				<CitySelector weather={weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} /> 
 			</main> }

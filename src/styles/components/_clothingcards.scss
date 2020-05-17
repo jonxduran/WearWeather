@@ -8,6 +8,10 @@
 
 
 #WearSection {
+	.Wear-header {
+		margin: 2rem auto 4rem;
+	}
+	
 	.card {
 		min-height: 25rem;
 
@@ -40,7 +44,7 @@
 	#NoSelectedCards {
 		width: 100%;
 		height: 25rem;
-		margin-top: 1rem;
+		margin-top: 2rem;
 		border: 2px $text-secondary-color dashed;
 		box-sizing: border-box;
 		border-radius: 1rem;;
@@ -54,27 +58,26 @@
 }
 
 #PickedWear-container {
+	margin: 2rem auto;
+}
+
+/* #PickedWear-submit-container {
 	margin-top: 2rem;
-}
+} */
 
 #AllWear-container {
-	margin: 1rem auto 6rem;
-}
+	margin: 0 auto 6rem;
 
-#AllWear-container {
 	> section {
-		margin: 1rem 0;
+		margin-bottom: 3rem;
 	}
 	h4 {
-		margin: 2rem 0 1rem;
+		margin: 0 0 1rem;
 	}
 }
 
 
 #WearSuggester {
-	> h3 {
-		margin: 2rem auto 4rem;
-	}
 	
 	#SuggestedClothes-container {
 		margin: 2rem auto;

@@ -172,6 +172,31 @@
 		> * {
 			background-color: $body-secondary-color !important;
 			margin: auto;
+			box-shadow: none !important;
+		}
+
+		.firebaseui-idp-list {
+			li:first-child button {
+				background-color: rgba(0, 0, 0, 0) !important;
+				color: $google-signin;
+				border: 1px solid $google-signin;
+				box-sizing: border-box;
+				&:hover {
+					background-color: $google-signin-hover !important;
+					.firebaseui-idp-text {
+						color: white !important;
+					}
+				}
+			}
+			li:last-child button {
+				background-color: $email-signin !important;
+				&:hover {
+					background-color: $email-signin-hover !important;
+				}
+			}
+			button {
+				box-shadow: none !important;
+			}
 		}
 	}
 

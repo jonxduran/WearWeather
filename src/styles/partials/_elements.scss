@@ -25,11 +25,14 @@
 
 .three-card-row {
 	.card {
-		width: calc(33% - 1rem);
+		width: calc(33% - 1.04rem);
 		margin: 1rem;
 	}
 	.card:nth-child(3n-2) {
 		margin-left: 0;
+	}
+	.card:nth-child(3n) {
+		margin-right: 0;
 	}
 }
 

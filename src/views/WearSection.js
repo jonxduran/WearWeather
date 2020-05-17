@@ -43,7 +43,7 @@ const WearSection = (props) => {
 	return (
 		<section id='WearSection' className='main-tab displayflex flexcol'>
 			<WearPicker clothing={clothing} pickClothing={(clothing)=>wearSetter(clothing)} />
-			<WearSuggester weather={props.weather} currentCity={props.currentCity} suggestWear={(clothesArr)=>wearSetter(clothesArr)} />
+			<WearSuggester weather={props.weather} currentCity={props.currentCity} pickClothing={(clothesArr)=>wearSetter(clothesArr)} db={props.db} userSettings={props.userSettings} />
 		</section>
 	)
 

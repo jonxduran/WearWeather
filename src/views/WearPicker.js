@@ -39,11 +39,16 @@ const WearPicker = (props) => {
 	};
 
 
+	const submitClothing = function() {
+		console.log('submitClothing');
+	}
+
+
 	return (
 		<section id='WearPicker' className='main-tab displayflex flexcol'>
 			
 			<section id='AllWear-section'>
-				<h3 className='marginauto biggerfont bold4'>Pick your outfit</h3>
+				<h3 className='Wear-header biggerfont bold4'>Pick your outfit</h3>
 				<article id='AllWear-container' className='displayflex flexcol'>
 					{ clothingCategories.map((clothcat, i) => {
 						return (otherClothes[clothcat].length > 0) ? <section id={clothcat+'-section'} key={i}>
@@ -59,15 +64,20 @@ const WearPicker = (props) => {
 			</section>
 
 			<section id='PickedWear-section'>
-				<h3 className='marginauto biggerfont bold4'>Today's Outfit</h3>
-				<section id='PickedWear-container' className='displayflex three-card-row'>
-					{ (selectedClothes.length > 0) ? selectedClothes.map((selcloth, i) => {
-						return <ClothingItem key={i} data={selcloth} unPick={(cloth)=>pickedClothing(cloth, 'rem')} addrem={'rem'} />
-					})
-					: <article id='NoSelectedCards' className='displayflex flexcol nonselect'>
+				<h3 className='Wear-header biggerfont bold4'>Today's Outfit</h3>
+				{ (selectedClothes.length > 0) ? <>
+					<section id='PickedWear-container' className='displayflex flexwrap three-card-row'>
+						{ selectedClothes.map((selcloth, i) => {
+							return <ClothingItem key={i} data={selcloth} unPick={(cloth)=>pickedClothing(cloth, 'rem')} addrem={'rem'} />
+						}) }
+					</section>
+					<article id='PickedWear-submit-container' className='Wear-submit-container displayflex positionrel'>
+						<button className='solid-button smallfont' onClick={submitClothing}>Submit</button>
+					</article>
+				</> : <article id='NoSelectedCards' className='displayflex flexcol nonselect'>
 						<p className='marginauto medfont'>No Clothes Selected</p>
-					</article> }
-				</section>
+				</article> }
+				
 			</section> 
 
 		</section>
