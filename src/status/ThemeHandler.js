@@ -18,6 +18,7 @@ let themes = {
 };
 
 export default function handlerToggleTheme(newActiveTheme) {
+	/* console.log('newActiveTheme: ', newActiveTheme); */
 	Object.keys(themes).map(thm => {
 		return themes[thm]['active'] = false
 	});
