@@ -6,11 +6,134 @@
 	color: $text-primary-color;
 	overflow-y: auto;
 	z-index: 1;
+
+	&.light {
+		background-color: $body-primary-color-light;
+		.weather-drop {
+			animation-duration: $slow-weather !important;
+		}
+	}
+	&.medium {
+		background-color: $body-primary-color-medium;
+		.weather-drop {
+			animation-duration: $med-weather !important;
+		}
+	}
+	&.dark {
+		background-color: $body-primary-color-dark;
+		.weather-drop {
+			animation-duration: $fast-weather !important;
+		}
+	}
+
+	#App-main-blur-background {
+		width: 100%;
+		height: 100%;
+		backdrop-filter: blur(4px);
+		z-index: 2;
+	}
+	#App-main-weather-background {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		z-index: 1;
+	}
+
+	.App-main-weather-container {
+		display: none;
+		height: 100%;
+
+		.weather-drop {
+			content: "";
+			position: absolute;
+			z-index: 2;
+			animation: linear infinite raindrops;
+		}
+	}
+	
+	&.rain {
+		#rain-container {
+			display: block !important;
+		}
+	}
+
+	#rain-container {
+		.raindrop-container {
+			width: 8px;
+			height: calc(100vh + 100px);
+			content: "";
+			position: absolute;
+			top: -100px;
+			transform: rotate(20deg);
+			
+			&.one {
+				left: 6%;
+				> .raindrop {
+					animation-delay: 0s;
+				}
+			}
+			&.two {
+				left: 20%;
+				> .raindrop {
+					animation-delay: 2.1s;
+					animation-duration: 0.5s !important;
+				}
+			}
+			&.three {
+				left: 33%;
+				> .raindrop {
+					animation-delay: 0.75s;
+				}
+			}
+			&.four {
+				left: 48%;
+				> .raindrop {
+					animation-delay: 3.8s;
+					animation-duration: 0.5s !important;
+				}
+			}
+			&.five {
+				left: 60%;
+				> .raindrop {
+					animation-delay: 1.3s;
+				}
+			}
+			&.six {
+				left: 79%;
+				> .raindrop {
+					animation-delay: 2.5s;
+					animation-duration: 0.5s !important;
+				}
+			}
+			&.seven {
+				left: 94%;
+				> .raindrop {
+					animation-delay: 0.5s;
+				}
+			}
+			
+			> .raindrop {
+				width: 100%;
+				height: 24px;
+				background-color: rgb(74, 138, 179);
+				top: -30px;
+				border-radius: 50% 50% 33% 25%;
+			}
+		}
+
+		@keyframes raindrops {
+			from { top: -30px; }
+			to {top: 100vh; }
+		}
+	}
+
 }
 #App-main-inner {
 	width: calc(100% - 4rem);
 	max-width: $max-pc-width;
 	margin: auto auto 6rem;
+	background: none;
+	z-index: 3;
 	@media screen and (max-width: $fixed-tablet-width) {
 		max-width: 90rem;
 	}

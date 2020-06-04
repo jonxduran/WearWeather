@@ -1,5 +1,6 @@
 
 $body-primary-color: rgb(35, 43, 56);
+$body-primary-color-blur: rgba(35, 43, 56, 0.4);
 $body-secondary-color: rgb(52, 61, 78);
 
 $nav-background-color: rgba(48, 90, 85, 0.8);
@@ -19,6 +20,7 @@ $button-default-color-1: rgb(220, 220, 220);
 $button-default-color-2: rgb(233, 242, 247);
 
 
+
 $indigo: rgb(54, 70, 216);
 
 $red-bold: red;
@@ -29,3 +31,9 @@ $google-signin: rgb(117, 117, 151);
 $google-signin-hover: rgb(93, 93, 116);
 $email-signin: rgb(219, 68, 55);
 $email-signin-hover: rgb(184, 68, 58);
+
+
+
+$body-primary-color-light: rgb(35, 43, 56);
+$body-primary-color-medium: rgb(35, 43, 56);
+$body-primary-color-dark: rgb(35, 43, 56);

@@ -26,90 +26,105 @@ export function getTemperature(temp, frmt) {
 
 
 export function weatherDecoder(id) {
+	console.log('weatherDecoded id: ', id);
 	let decoded;
-	switch(id) {
+	switch(true) {
 		case (/2[0-9][0-9]/).test(id):
 			decoded = {
 				ambiance: 'dark',
-				description: 'thunderstorm'
+				description: 'thunderstorm',
+				background: 'rain'
 			};
 			break;
 		case (/3[0-9][0-9]/).test(id):
 			decoded = {
-				ambiance: 'medium',
-				description: 'drizzle'
+				ambiance: 'light',
+				description: 'drizzle',
+				background: 'rain'
 			};
 			break;
 		case (/50[2-4]/).test(id):
 			decoded = {
 				ambiance: 'dark',
-				description: 'heavy rain'
+				description: 'heavy rain',
+				background: 'rain'
 			};
 			break;
 		case (/5[0-9][0-9]/).test(id):
-			decoded = {
+		decoded = {
 				ambiance: 'medium',
-				description: 'rain'
+				description: 'rain',
+				background: 'rain'
 			};
 			break;
 		case (/6[0-9][0-9]/).test(id):
 			decoded = {
 				ambiance: 'medium',
-				description: 'snow'
+				description: 'snow',
+				background: 'snow'
 			};
 			break;
 		case (/7[0,2,4]1/).test(id):
 			decoded = {
 				ambiance: 'medium',
-				description: 'fog'
+				description: 'fog',
+				background: 'cloud'
 			};
 			break;
 		case (/711/).test(id):
 			decoded = {
 				ambiance: 'medium',
-				description: 'smoke'
+				description: 'smoke',
+				background: 'cloud'
 			};
 			break;
 		case (/7[3,5]1/).test(id):
 			decoded = {
 				ambiance: 'medium',
-				description: 'sand'
+				description: 'sand',
+				background: 'wind'
 			};
 			break;
 		case (/76[1-2]/).test(id):
 			decoded = {
 				ambiance: 'medium',
-				description: 'dust'
+				description: 'dust',
+				background: 'wind'
 			};
 			break;
 		case (/7[7-8]1/).test(id):
 			decoded = {
 				ambiance: 'light',
-				description: 'strong winds'
+				description: 'strong winds',
+				background: 'wind'
 			};
 			break;
 		case (/800/).test(id):
 			decoded = {
 				ambiance: 'light',
-				description: 'clear'
+				description: 'clear',
+				background: 'clear'
 			};
 			break;
 		case (/80[1-2]/).test(id):
 			decoded = {
 				ambiance: 'light',
-				description: 'partly cloudy'
+				description: 'partly cloudy',
+				background: 'clear'
 			};
 			break;
 		case (/80[3-4]/).test(id):
 			decoded = {
 				ambiance: 'medium',
-				description: 'cloudy'
+				description: 'cloudy',
+				background: 'cloud'
 			};
 			break;
 		default: 
 			decoded = {
 				ambiance: 'light',
-				description: 'clear'
+				description: 'clear',
+				background: 'clear'
 			};
 			break;
 	}

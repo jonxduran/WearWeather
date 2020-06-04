@@ -7,7 +7,7 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 
 const SettingsBar = (props) => {
 
-	/* console.log('SettingsBar props: ', props); */
+	console.log('SettingsBar props: ', props);
 	const [menuOpen, setMenu] = useState(false);
 
 	return (
