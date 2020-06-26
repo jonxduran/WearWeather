@@ -1,3 +1,22 @@
+import React from 'react';
+import { isNight } from '../assets/common';
+
+const SunnyClearIcon = React.lazy(() => import('mdi-react/WeatherSunnyIcon'));
+const NightClearIcon = React.lazy(() => import('mdi-react/WeatherNightIcon'));
+const PartlyCloudyIcon = React.lazy(() => import('mdi-react/WeatherPartlyCloudyIcon'));
+const CloudyIcon = React.lazy(() => import('mdi-react/WeatherCloudyIcon'));
+const CloudyAlertIcon = React.lazy(() => import('mdi-react/WeatherCloudyAlertIcon'));
+const PartlyRainyIcon = React.lazy(() => import('mdi-react/WeatherPartlyRainyIcon'));
+const RainyIcon = React.lazy(() => import('mdi-react/WeatherRainyIcon'));
+const PouringIcon = React.lazy(() => import('mdi-react/WeatherPouringIcon'));
+const LightningIcon = React.lazy(() => import('mdi-react/WeatherLightningIcon'));
+const SnowyIcon = React.lazy(() => import('mdi-react/WeatherSnowyIcon'));
+const FogIcon = React.lazy(() => import('mdi-react/WeatherFogIcon'));
+const WindyIcon = React.lazy(() => import('mdi-react/WeatherWindyIcon'));
+const WindyVariantIcon = React.lazy(() => import('mdi-react/WeatherWindyVariantIcon'));
+
+const now = new Date(); 
+
 
 /*
 weather cache exists and is new enough - [weather, false]
@@ -53,3 +72,124 @@ export function setWeatherCache (weatherArr) {
 	}
 	return weatherArr;
 }
+
+export function weatherDecoder(id) {
+	let decoded;
+	switch(true) {
+		case (/2[0-9][0-9]/).test(id):
+			decoded = {
+				ambiance: 'dark',
+				description: 'thunderstorm',
+				background: 'rain',
+				icon: <LightningIcon />
+			};
+			break;
+		case (/3[0-9][0-9]/).test(id):
+			decoded = {
+				ambiance: 'light',
+				description: 'drizzle',
+				background: 'rain',
+				icon: <PartlyRainyIcon />
+			};
+			break;
+		case (/50[2-4]/).test(id):
+			decoded = {
+				ambiance: 'dark',
+				description: 'heavy rain',
+				background: 'rain',
+				icon: <PouringIcon />
+			};
+			break;
+		case (/5[0-9][0-9]/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'rain',
+				background: 'rain',
+				icon: <RainyIcon />
+			};
+			break;
+		case (/6[0-9][0-9]/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'snow',
+				background: 'snow',
+				icon: <SnowyIcon />
+			};
+			break;
+		case (/7[0,2,4]1/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'fog',
+				background: 'cloud',
+				icon: <FogIcon />
+			};
+			break;
+		case (/711/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'smoke',
+				background: 'cloud',
+				icon: <CloudyAlertIcon />
+			};
+			break;
+		case (/7[3,5]1/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'sand',
+				background: 'wind',
+				icon: <WindyVariantIcon />
+			};
+			break;
+		case (/76[1-2]/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'dust',
+				background: 'wind',
+				icon: <WindyVariantIcon />
+			};
+			break;
+		case (/7[7-8]1/).test(id):
+			decoded = {
+				ambiance: 'light',
+				description: 'strong winds',
+				background: 'wind',
+				icon: <WindyIcon />
+			};
+			break;
+		case (/800/).test(id):
+			decoded = {
+				ambiance: 'light',
+				description: 'clear',
+				background: 'clear',
+				icon: <SunnyClearIcon />,
+				timeIcon: isNight(now.getHours()) ? <NightClearIcon /> : <SunnyClearIcon />
+			};
+			break;
+		case (/80[1-2]/).test(id):
+			decoded = {
+				ambiance: 'light',
+				description: 'partly cloudy',
+				background: 'clear',
+				icon: <PartlyCloudyIcon />
+			};
+			break;
+		case (/80[3-4]/).test(id):
+			decoded = {
+				ambiance: 'medium',
+				description: 'cloudy',
+				background: 'cloud',
+				icon: <CloudyIcon />
+			};
+			break;
+		default: 
+			decoded = {
+				ambiance: 'light',
+				description: 'clear',
+				background: 'clear',
+				icon: <SunnyClearIcon />,
+				timeIcon: isNight(now.getHours()) ? <NightClearIcon /> : <SunnyClearIcon />
+			};
+			break;
+	}
+	return decoded;
+};

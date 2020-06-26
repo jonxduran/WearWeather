@@ -46,7 +46,7 @@
 	font-size:  14rem;
 	line-height: 14rem;
 	padding-bottom: 1rem;
-	@media screen and (max-width: $fixed-mobile-width) {
+	@media screen and (max-width: $fixed-large-mobile-width) {
 		font-size: 20vw !important;
 		line-height: 20vw;
 	}
@@ -54,7 +54,7 @@
 .herofont:after {
 	font-size:  9rem;
 	line-height: 10rem;
-	@media screen and (max-width: $fixed-mobile-width) {
+	@media screen and (max-width: $fixed-large-mobile-width) {
 		font-size: 16vw !important;
 		line-height: 16vw;
 	}

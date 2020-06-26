@@ -1,88 +1,174 @@
 
 
 
-#CurrentWeatherCard {
+#CurrentWeatherCard-section {
 	width: calc(100% - 2rem);
-}
 
-.CurrentWeather-circle {
-	width: 50vw;
-	height: 50vw;
-	max-width: 30rem;
-	max-height: 30rem;
-	padding: 2rem;
-	border-radius: 40rem !important;
-	margin: 3rem auto 1rem;
-	border-width: 0.3rem !important;
-	/* @media screen and (max-width: $mobile-width) {
-		width: 50vw;
-		height: 50vw;
-	} */
-	@media screen and (min-width: $tablet-width) {
-		width: 40rem;
-		height: 40rem;
+	#CurrentWeatherCard-description {
+		margin-top: 1rem;
+		font-style: italic;
+	}
+
+	#CurrentWeatherCard-container {
+		width: 100%;
+		margin: 5rem auto 2rem;
+	
+
+		#CurrentWeatherCard {
+			width: 100%;
+			max-width: 56rem;
+			height: 30rem;
+
+			#CurrentWeatherCard-temperature {
+				margin: 0 auto;
+				&:after {
+					content: "°";
+					position: absolute;
+				}
+			}
+
+			#CurrentWeatherCard-details {
+				margin: auto auto 1rem 1rem;
+				#CurrentWeatherCard-minmax {
+					margin-top: 1rem;
+					span {
+						margin-right: 2rem;
+					}
+				}
+			}
+		}
+
+		.weather-icon-container {
+			max-width: 10rem;
+			max-height: 10rem;
+			bottom: 1rem;
+			right: 1rem;
+		}
+
+		span.temperature:after {
+			content: "°";
+			position: absolute;
+		}
+
+		#CurrentWeather-circle {
+			width: 50vw;
+			height: 50vw;
+			max-width: 30rem;
+			max-height: 30rem;
+			padding: 2rem;
+			border-radius: 40rem !important;
+			margin: 3rem auto 1rem;
+			border-width: 0.3rem !important;
+			@media screen and (min-width: $tablet-width) {
+				width: 40rem;
+				height: 40rem;
+			}
+	
+			.temperature-container {
+				width: 100%;
+				height: 100%;
+				color: $text-secondary-color;
+			}
+
+			#CurrentWeather-max {
+				top: 2rem;
+				left: -8rem;
+				@media screen and (max-width: $fixed-large-mobile-width) {
+					font-size: 8vw !important;
+					line-height: 8vw !important;
+				}
+			}
+
+			#CurrentWeather-min {
+				top: 2rem;
+				right: -8rem;
+				@media screen and (max-width: $fixed-large-mobile-width) {
+					font-size: 8vw !important;
+					line-height: 8vw !important;
+				}
+			}
+	
+		}
+
 	}
 }
 
-.CurrentWeather-circle .temperature-container {
-	width: 100%;
-	height: 100%;
-	color: $text-secondary-color;
-}
 
-.CurrentWeather-circle span.temperature:after {
-	content: "°";
-	position: absolute;
-}
 
 #HourlyWeather-section {
 	display: none !important;
 }
 
-.ExtendedWeather-card {
-	width: calc(100% - 2rem);
-	max-width: 90rem;
-	margin: 1rem auto;
-	padding: 2rem 3rem;
-}
-
-.ExtendedWeather-day {
-	width: 15rem;
-	@media screen and (max-width: $small-mobile-width) {
-		width: 14rem;
-	}
-	@media screen and (max-width: $tiny-mobile-width) {
-		width: 11rem;
-	}
-}
-.ExtendedWeather-icon {
-	width: 5rem;
-	@media screen and (max-width: $tiny-mobile-width) {
-		width: 4rem;
-	}
-}
-.ExtendedWeather-temp {
-	width: 15rem;
-	margin-left: auto;
-	@media screen and (max-width: $tablet-width) {
-		width: 13rem;
-	}
-	@media screen and (max-width: $small-mobile-width) {
-		width: 10rem;
-	}
-	@media screen and (max-width: $tiny-mobile-width) {
-		width: 7rem;
-	}
-}
-.ExtendedWeather-temp span:first-child {
-	margin: 0 auto 0 0;
-}
-.ExtendedWeather-temp span:last-child {
-	margin: 0 0 0 auto;
-}
 
 
+#ExtendedWeather-section {
+	/* border-top: 1px $border-primary-color solid;
+	border-bottom: 1px $border-primary-color solid;
+	box-sizing: border-box; */
+
+	.ExtendedWeather-row {
+		width: calc(100% - 6rem);
+		max-width: 70rem;
+		margin: 1.6rem auto;
+		padding: 2rem 3rem;
+	
+		.ExtendedWeather-day {
+			/* width: 20rem; */
+			width: 30rem;
+			@media screen and (max-width: $fixed-large-mobile-width) {
+				width: 26rem;
+			}
+			@media screen and (max-width: $fixed-med-mobile-width) {
+				width: 20rem;
+			}
+			@media screen and (max-width: $fixed-small-mobile-width) {
+				width: 16rem;
+			}
+			@media screen and (max-width: $fixed-tiny-mobile-width) {
+				width: 14rem;
+			}
+		}
+		.ExtendedWeather-icon {
+			width: 2.4rem;
+			margin-right: 1rem;
+		}
+		.ExtendedWeather-temp {
+			width: 15rem;
+			margin-left: auto;
+			@media screen and (max-width: $fixed-tablet-width) {
+				width: 13rem;
+			}
+			@media screen and (max-width: $fixed-small-mobile-width) {
+				width: 10rem;
+			}
+			@media screen and (max-width: $fixed-tiny-mobile-width) {
+				width: 7rem;
+			}
+		}
+		.ExtendedWeather-temp span:first-child {
+			margin: 0 auto 0 0;
+		}
+		.ExtendedWeather-temp span:last-child {
+			margin: 0 0 0 auto;
+		}
+	}
+}
 
 
+
+
+
+
+.weather-icon-container {
+	display: flex;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+
+	> svg {
+		width: 100%;
+		height: 100%;
+	}
+}
 
 

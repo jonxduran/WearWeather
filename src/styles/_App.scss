@@ -59,13 +59,21 @@
 
 	#rain-container {
 		.raindrop-container {
-			width: 8px;
+			width: 4px;
 			height: calc(100vh + 100px);
 			content: "";
 			position: absolute;
 			top: -100px;
 			transform: rotate(20deg);
 			
+			> .raindrop {
+				width: 100%;
+				height: 28px;
+				background-color: rgb(67, 125, 176);
+				top: -30px;
+				border-radius: 50% 50% 33% 25%;
+			}
+
 			&.one {
 				left: 6%;
 				> .raindrop {
@@ -111,14 +119,6 @@
 					animation-delay: 0.5s;
 				}
 			}
-			
-			> .raindrop {
-				width: 100%;
-				height: 24px;
-				background-color: rgb(74, 138, 179);
-				top: -30px;
-				border-radius: 50% 50% 33% 25%;
-			}
 		}
 
 		@keyframes raindrops {
@@ -151,10 +151,10 @@
 	width: 100%;
 	max-width: 90rem;
 	margin: 0 auto;
-	padding-bottom: 3rem;
-	/* &:last-child {
-		padding-bottom: 9rem !important;
-	} */
+	padding-bottom: 6rem;
+	&:last-child {
+		padding-bottom: 3rem !important;
+	}
 }
 
 #CitySelector {

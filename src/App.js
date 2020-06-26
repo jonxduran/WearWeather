@@ -19,8 +19,8 @@ const App = (props) => {
 
 	const initUserSettings = getInitUserSettings(props.user);
 	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
-	const weatherCodeObj = (null !== initWeatherCheck[0][0]) ? weatherDecoder(initWeatherCheck[0][0]['currentWeather']['weather'][0]['id']) : {ambiance: 'medium', description: 'clear', background: 'clear'};
-	/* const weatherCodeObj = {ambiance: 'light', description: 'drizzle', background: 'rain'}; */
+	const weatherCodeObj = (null !== initWeatherCheck[0][0]) ? WeatherHandler.weatherDecoder(initWeatherCheck[0][0]['currentWeather']['weather'][0]['id']) : WeatherHandler.weatherDecoder(800);
+	/* const weatherCodeObj = WeatherHandler.weatherDecoder(303); */
 	const initState = {
 		user: props.user,
 		userSettings: initUserSettings,
@@ -67,13 +67,12 @@ const App = (props) => {
 		let newWeather = (null === appState.weather) ? initWeatherCheck[0] : appState.weather.slice();
 		let city = newWeather[appState.currentCity]['name'];
 		console.log('App updating Weather for city: ', city);
-		getAllWeatherData(city)
-		.then(([currentData, hourlyData, extendedData]) => {
+		getAllWeatherData(city).then(([currentData, hourlyData, extendedData]) => {
 			console.log('_updateWeather data: ', [currentData, hourlyData, extendedData]);
 			if (currentData.error || hourlyData.error || extendedData.error) {
 				console.log('Weather data error');
 				console.log('Setting weather from cache: ', initWeatherCheck[0][appState.currentCity]);
-				const weatherCodeObj = weatherDecoder(initWeatherCheck[0][appState.currentCity]['currentWeather']['weather'][0]['id']);
+				const weatherCodeObj = WeatherHandler.weatherDecoder(initWeatherCheck[0][appState.currentCity]['currentWeather']['weather'][0]['id']);
 				const newState = {...appState};
 				newState.weatherLoading = false;
 				newState.weather = initWeatherCheck[0];
@@ -87,15 +86,16 @@ const App = (props) => {
 					'currentWeather': currentData,
 					'hourlyWeather': hourlyData,
 					'extendedWeather': extendedData
-				}
+				};
 				console.log('newWeather: ', newWeatherData);
-				const weatherCodeObj = weatherDecoder(currentData['weather'][0]['id']);
+				const weatherCodeObj = WeatherHandler.weatherDecoder(currentData['weather'][0]['id']);
 				newWeather[appState.currentCity] = newWeatherData;
 				WeatherHandler.setWeatherCache(newWeather);
 				const newState = {...appState};
 				newState.weatherCached = false;
 				newState.weatherLoading = false;
 				newState.weather = newWeather;
+				newState.weatherCodeObj = weatherCodeObj;
 				console.log('new state: ', newState);
 				setAppState(newState);
 			};
@@ -122,7 +122,7 @@ const App = (props) => {
 				<main id='App-main' className={'displayflex marginauto positionrel' + ((null === appState.weather) ? ' full' : '') + ' ' + appState.weatherCodeObj.ambiance + ' ' + appState.weatherCodeObj.background}>
 					<article id='App-main-inner' className='displayflex flexcol'>
 						{ (appState.weatherLoading === false) ? <>
-							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} />
+							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} weatherCodeObj={appState.weatherCodeObj} />
 							{ (null !== appState.user && null !== appState.weather) && <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} db={props.db} /> }
 							</> : <span>loading</span>
 						}
