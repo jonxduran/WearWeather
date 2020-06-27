@@ -81,6 +81,7 @@ export function weatherDecoder(id) {
 				ambiance: 'dark',
 				description: 'thunderstorm',
 				background: 'rain',
+				color: 'darkblue',
 				icon: <LightningIcon />
 			};
 			break;
@@ -89,6 +90,7 @@ export function weatherDecoder(id) {
 				ambiance: 'light',
 				description: 'drizzle',
 				background: 'rain',
+				color: 'blue',
 				icon: <PartlyRainyIcon />
 			};
 			break;
@@ -97,6 +99,7 @@ export function weatherDecoder(id) {
 				ambiance: 'dark',
 				description: 'heavy rain',
 				background: 'rain',
+				color: 'darkblue',
 				icon: <PouringIcon />
 			};
 			break;
@@ -105,6 +108,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'rain',
 				background: 'rain',
+				color: 'blue',
 				icon: <RainyIcon />
 			};
 			break;
@@ -113,6 +117,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'snow',
 				background: 'snow',
+				color: 'gray',
 				icon: <SnowyIcon />
 			};
 			break;
@@ -121,6 +126,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'fog',
 				background: 'cloud',
+				color: 'gray',
 				icon: <FogIcon />
 			};
 			break;
@@ -129,6 +135,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'smoke',
 				background: 'cloud',
+				color: 'gray',
 				icon: <CloudyAlertIcon />
 			};
 			break;
@@ -137,6 +144,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'sand',
 				background: 'wind',
+				color: 'lightbrown',
 				icon: <WindyVariantIcon />
 			};
 			break;
@@ -145,6 +153,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'dust',
 				background: 'wind',
+				color: 'lightbrown',
 				icon: <WindyVariantIcon />
 			};
 			break;
@@ -153,6 +162,7 @@ export function weatherDecoder(id) {
 				ambiance: 'light',
 				description: 'strong winds',
 				background: 'wind',
+				color: 'gray',
 				icon: <WindyIcon />
 			};
 			break;
@@ -161,6 +171,7 @@ export function weatherDecoder(id) {
 				ambiance: 'light',
 				description: 'clear',
 				background: 'clear',
+				color: 'yellow',
 				icon: <SunnyClearIcon />,
 				timeIcon: isNight(now.getHours()) ? <NightClearIcon /> : <SunnyClearIcon />
 			};
@@ -170,6 +181,7 @@ export function weatherDecoder(id) {
 				ambiance: 'light',
 				description: 'partly cloudy',
 				background: 'clear',
+				color: 'lightgray',
 				icon: <PartlyCloudyIcon />
 			};
 			break;
@@ -178,6 +190,7 @@ export function weatherDecoder(id) {
 				ambiance: 'medium',
 				description: 'cloudy',
 				background: 'cloud',
+				color: 'gray',
 				icon: <CloudyIcon />
 			};
 			break;
@@ -186,6 +199,7 @@ export function weatherDecoder(id) {
 				ambiance: 'light',
 				description: 'clear',
 				background: 'clear',
+				color: 'yellow',
 				icon: <SunnyClearIcon />,
 				timeIcon: isNight(now.getHours()) ? <NightClearIcon /> : <SunnyClearIcon />
 			};

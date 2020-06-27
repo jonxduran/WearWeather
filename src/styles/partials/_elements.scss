@@ -5,17 +5,43 @@
 }
 
 .card {
-	padding: 2rem;
-	border-radius: 1rem;
-	border: 1px $border-primary-color solid;
-	background-color: $body-secondary-color;
+	padding: 4rem;
 	box-sizing: border-box;
-	&.green {
-		border-color: hsl(106, 59%, 63%);
+	@media screen and (max-width: $fixed-large-mobile-width) {
+		padding: 2rem;
 	}
-	&.yellow {
-		border-color: rgba(193, 188, 115, 0.9);
+
+	&.solid-card {
+		background-color: $body-secondary-color;
+		border: 1px $border-primary-color solid;
+		border-radius: 1rem;
+
+		&.green {
+			border-color: hsl(106, 59%, 63%);
+		}
+		&.yellow {
+			border-color: rgba(193, 188, 115, 0.9);
+		}
 	}
+
+	&.fluent-card {
+		background-color: $fluent-background-color;
+		backdrop-filter: saturate(180%) blur(2px);
+		border-radius: 0.6rem;
+
+		&.yellow {
+			border: 0.1rem $fluent-yellow solid;
+		}
+		&.blue {
+			border: 0.1rem $fluent-blue solid;
+		}
+		&.gray {
+			border: 0.1rem $fluent-gray solid;
+		}
+		&.lightgray {
+			border: 0.1rem $fluent-lightgray solid;
+		}
+	}	
 }
 
 .card-row {
@@ -62,10 +88,6 @@
 	}
 }
 
-
-.indigo-bg {
-	background-color: $indigo;
-}
 
 
 .solid-button {

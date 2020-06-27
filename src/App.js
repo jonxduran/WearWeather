@@ -127,8 +127,8 @@ const App = (props) => {
 							</> : <span>loading</span>
 						}
 					</article>
-					<section id='App-main-blur-background' className='positionabs'></section>
-					<section id='App-main-weather-background' className='positionabs'>
+					<section id='App-main-blur-background' className='positionfixed'></section>
+					<section id='App-main-weather-background' className='positionfixed'>
 						<article id='rain-container' className='App-main-weather-container'>
 							<span className='raindrop-container one'>
 								<span className='raindrop weather-drop'></span>
@@ -154,7 +154,7 @@ const App = (props) => {
 						</article>
 					</section>
 				</main>
-				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} />
+				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} />
 			</> : <main id='App-main' className='displayflex positionrel'>
 				<CitySelector weather={appState.weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} /> 
 			</main> }

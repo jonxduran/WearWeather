@@ -8,7 +8,7 @@ const ClothingItem = (props) => {
 	};
 	
 	return (
-		<article className='card displayflex flexcol nonselect positionrel' onClick={()=>onclickFunc()}>
+		<article className='card fluent-card card-shadow displayflex flexcol nonselect positionrel' onClick={()=>onclickFunc()}>
 			<span className={'card-addrem positionabs ' + props.addrem}></span>
 			<span className='card-icon-container displayflex'></span>
 			<span className='card-name-container medfont medfont-height'>

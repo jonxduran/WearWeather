@@ -12,7 +12,7 @@ const CurrentWeatherCard = ({allWeather, scale, currCity, weatherCodeObj}) => {
 			<span id='CurrentWeatherCard-description' className='biggerfont bold3'>{allWeather.currentWeather.weather[0].description}</span>
 		</header>
 		<article id='CurrentWeatherCard-container' className='displayflex'>
-			<article id='CurrentWeather-circle' className='card yellow positionrel'>
+			<article id='CurrentWeather-circle' className={'card fluent-card card-shadow positionrel ' + weatherCodeObj.color}>
 				<span id='CurrentWeather-max' className='temperature hugefont hugefont-height positionabs'>{getTemperature(allWeather.currentWeather.main.temp_max, scale)}</span>
 				<div className='temperature-container displayflex bold3'>
 					<span className='temperature positionrel herofont marginauto'>{getTemperature(allWeather.currentWeather.main.temp, scale)}</span>

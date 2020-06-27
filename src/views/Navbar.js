@@ -16,7 +16,7 @@ const Navbar = (props) => {
 	}
 
 	return (
-		<nav id='App-Navbar' className='bigfont'>
+		<nav id='App-Navbar' className={'bigfont ' + props.color}>
 			<SettingsBar user={props.user} themeObj={props.themeObj} sendNewTheme={(newTheme)=>props.sendNewTheme(newTheme)} accessUserLoginClick={()=>_accessUserLogin()} />
 			{ userLoginOpen && <UserLogin user={props.user} userUpdate={(newUser)=>props.userUpdate(newUser)} closeClick={_closeUserLogin} /> }
 		</nav>

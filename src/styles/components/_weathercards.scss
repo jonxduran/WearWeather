@@ -2,7 +2,7 @@
 
 
 #CurrentWeatherCard-section {
-	width: calc(100% - 2rem);
+	width: 100%;
 
 	#CurrentWeatherCard-description {
 		margin-top: 1rem;
@@ -96,7 +96,52 @@
 
 
 #HourlyWeather-section {
-	display: none !important;
+
+	#HourlyWeather-scroll-section {
+		width: 100%;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	#HourlyWeather-cards-container {
+		padding-bottom: 28rem;
+		width: fit-content;
+	
+		.HourlyWeather-card {
+			min-width: 8rem;
+			margin: 0 2rem;
+			&:first-child {
+				margin-left: 0px;
+			}
+			&:last-child {
+				margin-right: 0px;
+			}
+
+			.HourlyWeather-icon {
+				margin: 1rem auto;
+				.weather-icon-container {
+					width: 3rem;
+				}
+			}
+
+			.HourlyWeather-temperature:after {
+				content: '°';
+				position: absolute;
+			}
+		}
+	}
+
+	#HourlyWeather-graphs-container {
+		width: 100%;
+		height: 26rem;
+		top: 12rem;
+		left: 0;
+
+		.d3-graph {
+			width: 100%;
+			height: 100%;
+		}
+	}
 }
 
 
@@ -107,14 +152,20 @@
 	box-sizing: border-box; */
 
 	.ExtendedWeather-row {
-		width: calc(100% - 6rem);
-		max-width: 70rem;
-		margin: 1.6rem auto;
-		padding: 2rem 3rem;
+		/* width: calc(100% - 6rem);
+		max-width: 72rem; 
+		padding: 2rem 3rem; */
+		width: 100%;
+		margin: 2.4rem auto;
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
 	
 		.ExtendedWeather-day {
-			/* width: 20rem; */
-			width: 30rem;
+			width: 32rem;
 			@media screen and (max-width: $fixed-large-mobile-width) {
 				width: 26rem;
 			}
@@ -129,27 +180,27 @@
 			}
 		}
 		.ExtendedWeather-icon {
-			width: 2.4rem;
+			width: 3rem;
 			margin-right: 1rem;
 		}
 		.ExtendedWeather-temp {
 			width: 15rem;
 			margin-left: auto;
 			@media screen and (max-width: $fixed-tablet-width) {
-				width: 13rem;
+				width: 12rem;
 			}
 			@media screen and (max-width: $fixed-small-mobile-width) {
-				width: 10rem;
+				width: 9rem;
 			}
 			@media screen and (max-width: $fixed-tiny-mobile-width) {
 				width: 7rem;
 			}
 		}
 		.ExtendedWeather-temp span:first-child {
-			margin: 0 auto 0 0;
+			margin: auto auto auto 0;
 		}
 		.ExtendedWeather-temp span:last-child {
-			margin: 0 0 0 auto;
+			margin: auto 0 auto auto;
 		}
 	}
 }

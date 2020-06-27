@@ -24,6 +24,9 @@
 .positionabs {
 	position: absolute;
 }
+.positionfixed {
+	position: fixed;
+}
 
 .displaynone {
 	display: none !important;
@@ -39,6 +42,9 @@
 
 .oneline {
 	white-space: nowrap;
+}
+.text-center {
+	text-align: center;
 }
 
 
@@ -83,31 +89,31 @@
 
 .hugefont-height {
 	height: 4.8rem !important;
-	line-height: 4.8rem !important;
+	line-height: 4.6rem !important;
 }
 .biggerfont-height {
 	height: 3.6rem !important;
-	line-height: 3.6rem !important;
+	line-height: 3.4rem !important;
 }
 .bigfont-height {
 	height: 2.6rem !important;
-	line-height: 2.6rem !important;
+	line-height: 2.4rem !important;
 }
 .medfont-height {
 	height: 2.2rem !important;
-	line-height: 2.2rem !important;
+	line-height: 2rem !important;
 }
 .smallfont-height {
 	height: 1.7rem !important;
-	line-height: 1.7rem !important;
+	line-height: 1.5rem !important;
 }
 .smallfont-height {
 	height: 1.4rem !important;
-	line-height: 1.4rem !important;
+	line-height: 1.3rem !important;
 }
 .smallfont-height {
 	height: 1.2rem !important;
-	line-height: 1.2rem !important;
+	line-height: 1.1rem !important;
 }
 
 .bold8 {
@@ -138,7 +144,7 @@
 }
 
 .card-shadow {
-	box-shadow: 0 0 1.4rem -0.5rem $light-shadow;
+	box-shadow: 0 0 1.4rem -0.8rem $light-shadow;
 }
 
 .popup-shadow {
