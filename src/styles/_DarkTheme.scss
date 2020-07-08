@@ -1,9 +1,12 @@
 
 $body-primary-color: rgb(35, 43, 56);
 $body-primary-color-blur: rgba(35, 43, 56, 0.4);
+$body-primary-color-light: rgb(35, 43, 56);
+$body-primary-color-medium: rgb(35, 43, 56);
+$body-primary-color-dark: rgb(35, 43, 56);
 $body-secondary-color: rgb(52, 61, 78);
 
-$fluent-background-color: rgba(248, 248, 248, 0.7);
+$fluent-background-color: rgba(52, 61, 78, 0.7);
 
 $nav-background-color: rgba(48, 90, 85, 0.8);
 $nav-border-color: rgb(60, 66, 65);
@@ -24,9 +27,12 @@ $button-default-color-2: rgb(233, 242, 247);
 
 $fluent-yellow: rgba(203, 194, 68, 0.6);
 $fluent-blue: rgba(105, 169, 207, 0.6);
-$fluent-gray: rgba(164, 174, 179, 0.6);
-$fluent-lightgray: rgba(195, 205, 211, 0.6);
+$fluent-gray: rgba(120, 126, 130, 0.6);
+$fluent-lightgray: rgba(144, 155, 162, 0.6);
 
+
+$theme-blue-med: rgb(140, 170, 187);
+$theme-blue-subtle: rgb(106, 135, 152);
 
 $red-bold: red;
 $red-med: rgb(241, 83, 83);
@@ -38,7 +44,3 @@ $email-signin: rgb(219, 68, 55);
 $email-signin-hover: rgb(184, 68, 58);
 
 
-
-$body-primary-color-light: rgb(35, 43, 56);
-$body-primary-color-medium: rgb(35, 43, 56);
-$body-primary-color-dark: rgb(35, 43, 56);

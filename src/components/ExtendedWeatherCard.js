@@ -14,11 +14,11 @@ const ExtendedWeatherCard = (props) => {
 				<span className='biggerfont biggerfont-height weather-icon-container'>{weatherDecoder(props.data.weather[props.currentCity].id).icon}</span>
 			</React.Suspense>
 		</div>
-		{/* <div className='ExtendedWeather-description'>
-			<span className='medfont medfont-height'>{props.data.weather[0].main}</span>
-		</div> */}
+		<div className='ExtendedWeather-description'>
+			<span className='medfont medfont-height marginauto-height'>{props.data.weather[0].main}</span>
+		</div>
 		<div className='ExtendedWeather-temp displayflex'>
-			<span className='medfont medfont-height'>{Common.getTemperature(props.data.temp.max, props.scale)}°</span>
+			<span className='medfont medfont-height bold5'>{Common.getTemperature(props.data.temp.max, props.scale)}°</span>
 			<span className='medfont medfont-height'>{Common.getTemperature(props.data.temp.min, props.scale)}°</span>
 		</div>
 		

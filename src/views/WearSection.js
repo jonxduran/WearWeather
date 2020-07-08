@@ -6,7 +6,7 @@ import ClothingMap from '../assets/clothingMap.json';
 
 const WearSection = (props) => {
 
-	console.log('WearSection usersettings: ', props.userSettings);
+	/* console.log('WearSection usersettings: ', props.userSettings); */
 	const clothingMapKeys = Object.keys(ClothingMap);
 	const clothingMapKeysLength = clothingMapKeys.length;
 	for (let i = 0; i < clothingMapKeysLength; i++) {
@@ -25,7 +25,7 @@ const WearSection = (props) => {
 		};
 	};
 
-	console.log('***** ***** ClothingMap: ', ClothingMap);
+	/* console.log('***** ***** ClothingMap: ', ClothingMap); */
 	/* const OGClothingMap = JSON.parse(JSON.stringify(ClothingMap)); */
 
 	const [clothing, setClothing] = useState(ClothingMap);

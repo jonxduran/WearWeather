@@ -5,13 +5,14 @@ import * as ClothesApi from '../api/ClothesApi';
 
 const WearSuggester = (props) => {
 
-	console.log("WearSuggester db: ", props.db);
+	/* console.log("WearSuggester db: ", props.db); */
 	/* db.current.collection("api").doc(user.uid).collection("wear") */
 	
 
 	const [suggestedClothes, setSuggestedClothes] = useState([]);
 
 	useEffect(() => {
+		/* console.log('wear suggester useeffect'); */
 		const newClothes = ClothesApi.getClothes(props.db, props.userSettings.userObject);
 		setSuggestedClothes(newClothes);
 	}, []);

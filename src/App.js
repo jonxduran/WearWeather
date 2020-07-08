@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 
-import { getInitUserSettings, setNewSetting } from './status/SettingsHandler';
-import handlerToggleTheme from './status/ThemeHandler';
+import { getInitUserSettings, getSettings, setNewSetting } from './status/SettingsHandler';
+import { handlerToggleTheme } from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
 
 import { getAllWeatherData } from './api/WeatherApi';
@@ -103,12 +103,12 @@ const App = (props) => {
 	}
 
 	const _setNewTheme = (newTheme) => {
-		/* console.log('setNewTheme: ', newTheme); */
+		console.log('setNewTheme: ', newTheme);
 		let newThemeObj = handlerToggleTheme(newTheme);
 		/* console.log('oldUserSettings: ', {...userSettings}); */
 		/* console.log('newThemeObj: ', newThemeObj); */
-		let newUserSettings = setNewSetting('theme', newTheme);
-		/* console.log('newUserSettings: ', {...newUserSettings}); */
+		/* let newUserSettings = setNewSetting('theme', newThemeObj[newTheme].class); */
+		const newUserSettings = getSettings();
 		const newState = {...appState};
 		newState.userSettings = {...newUserSettings};
 		newState.themeObj = {...newThemeObj};
@@ -117,7 +117,7 @@ const App = (props) => {
 
 	console.log('render appState: ', appState);
 	return (
-		<div id='App' className={'displayflex positionrel ' + ((appState.user === null) ? 'nouser ' : '') + appState.userSettings.theme}>
+		<div id='App' className={'displayflex positionrel ' + ((appState.user === null) ? 'nouser ' : '') + appState.themeObj[appState.userSettings.theme].class}>
 			{ (null !== appState.weatherCached) ? <>
 				<main id='App-main' className={'displayflex marginauto positionrel' + ((null === appState.weather) ? ' full' : '') + ' ' + appState.weatherCodeObj.ambiance + ' ' + appState.weatherCodeObj.background}>
 					<article id='App-main-inner' className='displayflex flexcol'>

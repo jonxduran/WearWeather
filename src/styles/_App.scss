@@ -27,13 +27,13 @@
 	}
 
 	#App-main-blur-background {
-		width: 100%;
+		width: calc(100% - 1.5rem);
 		height: 100%;
 		backdrop-filter: blur(4px);
 		z-index: 2;
 	}
 	#App-main-weather-background {
-		width: 100%;
+		width: calc(100% - 1.5rem);
 		height: 100%;
 		overflow: hidden;
 		z-index: 1;

@@ -181,7 +181,14 @@
 		}
 		.ExtendedWeather-icon {
 			width: 3rem;
-			margin-right: 1rem;
+			margin-right: 2rem;
+		}
+		.ExtendedWeather-description {
+			display: flex;
+			/* font-style: italic; */
+			@media screen and (max-width: $fixed-med-mobile-width) {
+				display: none;
+			}
 		}
 		.ExtendedWeather-temp {
 			width: 15rem;

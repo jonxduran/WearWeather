@@ -20,6 +20,21 @@ export function addLeadingZero(tme) {
 	return tme;
 };
 
+export function getSimpleTime(tme, scale) {
+	const tempDate = new Date(tme);
+	const hr = tempDate.getHours();
+	if (scale === 'c') {
+		return (hr + ':' + addLeadingZero(tempDate.getMinutes()));
+	};
+	if (hr === 0) {
+		return '12am';
+	} else if (hr < 13) {
+		return (hr + 'am');
+	} else {
+		return ((hr-12) + 'pm');
+	};
+}
+
 export function getTemperature(temp, frmt) {
 	if (frmt === 'f') {
 		return Math.round(((temp - 273.15) * 1.8) + 32);

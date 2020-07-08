@@ -8,7 +8,6 @@ export function getCurrentData(city) {
 	/* return CURRENTWEATHER; */
 	const currentUrl = CONSTANTS.currentForecastUrl + `&q=${city}`;
 	return fetch(currentUrl).then(res => {
-		console.log(res);
 		if (!res.ok) {
 			throw Error('currentForecast API error')
 		};
@@ -22,7 +21,6 @@ export function getHourlyData(city) {
 	/* return HOURLYWEATHER; */
 	const hourlyUrl = CONSTANTS.hourlyForecastUrl + `&q=${city}`;
 	return fetch(hourlyUrl).then(res => {
-		console.log(res);
 		if (!res.ok) {
 			throw Error('hourlyForecast API error')
 		};
@@ -36,7 +34,6 @@ export function getExtendedData(city) {
 	/* return EXTENDEDWEATHER; */
 	const extendedUrl = CONSTANTS.extendedForecastUrl + `&q=${city}`;
 	return fetch(extendedUrl).then(res => {
-		console.log(res);
 		if (!res.ok) {
 			throw Error('extendedForecast API error')
 		};

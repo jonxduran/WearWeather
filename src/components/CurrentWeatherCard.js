@@ -2,7 +2,6 @@ import React from 'react';
 import { weekDays, getTemperature } from '../assets/common';
 
 const CurrentWeatherCard = ({allWeather, scale, currCity, weatherCodeObj}) => {
-	console.log(weatherCodeObj);
 	const date = new Date(allWeather.currentWeather.dt * 1000);
 	
 	return <section id='CurrentWeatherCard-section' className={'displayflex flexcol marginauto ' + allWeather.currentWeather.weather[currCity].main}>
