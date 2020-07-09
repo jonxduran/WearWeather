@@ -10,7 +10,8 @@ const HourlyWeatherCard = (props) => {
 
 	const temperaturesArr = props.data.list.slice(0, 10).map(hw => {
 		return { 
-			'time': getSimpleTime((hw.dt*1000), props.scale),
+			'timeSimple': getSimpleTime((hw.dt*1000), props.scale),
+			'timeObj': new Date(hw.dt*1000),
 			'temperature': getTemperature(hw.main.temp, props.scale),
 			'icon': weatherDecoder(hw.weather[0].id).icon
 		};
@@ -20,15 +21,24 @@ const HourlyWeatherCard = (props) => {
 
 	const _buildD3 = function(where, myData) {
 		console.log(where, myData);
-		/* d3.select(where)
-			.data(myData)
-			.enter()
-			.append(); */
+		const whereWidth = where.offsetWidth;
+		const whereHeight = where.offsetHeight-20;
+		const xScale = d3.scaleTime().range([0, whereWidth]).domain(d3.extent(myData, d=>d.timeObj));
+		const yScale = d3.scaleLinear().rangeRound([whereHeight, 0]).domain(d3.extent(myData, d=>d.temperature));
+		const svg = d3.select(where).append('svg').attr('width', whereWidth-100);
+		/* const xaxis = d3.axisBottom(xScale);
+		const yaxis = d3.axisLeft(yScale); */
+		const line = d3.line()
+			.x(d=>xScale(d.timeObj))
+			.y(d=>yScale(d.temperature));
+		/* svg.append('g').attr('class', 'axis xaxis').attr("transform", `translate(0, ${whereHeight})`).call(xaxis);
+		svg.append('g').attr('class', 'axis yaxis').attr("transform", "translate(20, 10)").call(yaxis); */
+		svg.append('path').datum(myData).attr("fill", "none").attr("stroke", "orange").attr("stroke-width", 1.5).attr('d', line);
 	};
 
-	/* useEffect(() => {
+	useEffect(() => {
 		_buildD3(temperatureD3.current, temperaturesArr);
-	}, [props.weather]); */
+	}, [props.weather]);
 
 	
 	return <article id='HourlyWeather-card' className='card fluent-card card-shadow displayflex'>
@@ -36,7 +46,7 @@ const HourlyWeatherCard = (props) => {
 			<article id='HourlyWeather-cards-container' className='displayflex positionrel'>
 				{ temperaturesArr.map((hw, i) => {
 					return <article className='HourlyWeather-card displayflex flexcol' key={i}>
-						<span className='HourlyWeather-time medfont medfont-height text-center'>{hw.time}</span>
+						<span className='HourlyWeather-time medfont medfont-height text-center'>{hw.timeSimple}</span>
 						<span className='HourlyWeather-icon'>
 							<React.Suspense fallback={<></>}>
 								<span className='biggerfont biggerfont-height weather-icon-container'>{hw.icon}</span>
