@@ -1,32 +1,104 @@
 {
-	"pants": {
-		"shorts": {
-			"name": "shorts",
-			"title": "shorts",
-			"category": "pants",
-			"gender": "male",
-			"primaryColor": "lightblue",
+	"headwear": {
+		"sunglasses": {
+			"name": "sunglasses",
+			"title": "sunglasses",
+			"category": "headwear",
+			"gender": "neither",
+			"primaryColor": "brown",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
 		}
 	},
-	"socks": {
-		"ankleSocks": {
-			"name": "ankle socks",
-			"title": "ankleSocks",
-			"category": "socks",
+	"tops": {
+		"tShirt": {
+			"name": "t-shirt",
+			"title": "tShirt",
+			"category": "tops",
 			"gender": "neither",
-			"primaryColor": "gray",
+			"primaryColor": "lightgray",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"dressShirt": {
+			"name": "dress shirt",
+			"title": "dressShirt",
+			"category": "tops",
+			"gender": "male",
+			"primaryColor": "darkblue",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"dress": {
+			"name": "dress",
+			"title": "dress",
+			"category": "tops",
+			"gender": "female",
+			"primaryColor": "white",
+			"secondaryColor": "pink",
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"sweater": {
+			"name": "sweater",
+			"title": "sweater",
+			"category": "tops",
+			"gender": "neither",
+			"primaryColor": "rust",
+			"secondaryColor": "beige",
+			"tertiaryColor": null,
+			"selected": false
+		}
+	},
+	"bottoms": {
+		"jeans": {
+			"name": "jeans",
+			"title": "jeans",
+			"category": "bottoms",
+			"gender": "neither",
+			"primaryColor": "lightblue",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"shorts": {
+			"name": "shorts",
+			"title": "shorts",
+			"category": "bottoms",
+			"gender": "male",
+			"primaryColor": "lightblue",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"shortShorts": {
+			"name": "shorts",
+			"title": "shortShorts",
+			"category": "bottoms",
+			"gender": "female",
+			"primaryColor": "lightblue",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		},
+		"skirt": {
+			"name": "skirt",
+			"title": "skirt",
+			"category": "bottoms",
+			"gender": "female",
+			"primaryColor": "white",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
 		}
 	},
 	"tights": {
-		"energyTights": {
-			"name": "energy tights",
-			"title": "energyTights",
+		"tights": {
+			"name": "tights",
+			"title": "tights",
 			"category": "tights",
 			"gender": "female",
 			"primaryColor": "rgba(20, 20, 20, 0.8)",
@@ -35,23 +107,13 @@
 			"selected": false
 		}
 	},
-	"headwear": {
-		"beanie": {
-			"name": "beanie",
-			"title": "beanie",
-			"category": "headwear",
+	"socks": {
+		"longSocks": {
+			"name": "long socks",
+			"title": "longSocks",
+			"category": "socks",
 			"gender": "neither",
-			"primaryColor": "#333333",
-			"secondaryColor": "#2b2b2b",
-			"tertiaryColor": null,
-			"selected": false
-		},
-		"sunglasses": {
-			"name": "sunglasses",
-			"title": "sunglasses",
-			"category": "headwear",
-			"gender": "neither",
-			"primaryColor": "brown",
+			"primaryColor": "red",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false

@@ -16,16 +16,16 @@ const HourlyWeatherCard = (props) => {
 			'icon': weatherDecoder(hw.weather[0].id).icon
 		};
 	});
-	console.log(temperaturesArr);
-	//const humidityArr = hourlyWeather.map(hw => hw.main.humidity);
+	/* console.log(temperaturesArr); */
+	/* const humidityArr = hourlyWeather.map(hw => hw.main.humidity); */
 
 	const _buildD3 = function(where, myData) {
-		console.log(where, myData);
+		/* console.log(where, myData); */
 		const whereWidth = where.offsetWidth;
-		const whereHeight = where.offsetHeight-20;
-		const xScale = d3.scaleTime().range([0, whereWidth]).domain(d3.extent(myData, d=>d.timeObj));
-		const yScale = d3.scaleLinear().rangeRound([whereHeight, 0]).domain(d3.extent(myData, d=>d.temperature));
-		const svg = d3.select(where).append('svg').attr('width', whereWidth-100);
+		const whereHeight = where.offsetHeight;
+		const xScale = d3.scaleTime().range([2, whereWidth-2]).domain(d3.extent(myData, d=>d.timeObj));
+		const yScale = d3.scaleLinear().rangeRound([whereHeight-24, 4]).domain(d3.extent(myData, d=>d.temperature));
+		const svg = d3.select(where).append('svg').attr('width', whereWidth-100).attr('height', whereHeight-40);
 		/* const xaxis = d3.axisBottom(xScale);
 		const yaxis = d3.axisLeft(yScale); */
 		const line = d3.line()
@@ -41,7 +41,7 @@ const HourlyWeatherCard = (props) => {
 	}, [props.weather]);
 
 	
-	return <article id='HourlyWeather-card' className='card fluent-card card-shadow displayflex'>
+	return <article id='HourlyWeather-card' className='card largecard fluent-card card-shadow displayflex'>
 		<section id='HourlyWeather-scroll-section' className='displayflex flexcol'>
 			<article id='HourlyWeather-cards-container' className='displayflex positionrel'>
 				{ temperaturesArr.map((hw, i) => {

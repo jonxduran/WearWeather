@@ -27,7 +27,7 @@ const WearSuggester = (props) => {
 	};
 
 	return (
-		<section id='WearSuggester'>
+		<section id='WearSuggester' className='displayflex flexcol'>
 			<h3 className='Wear-header biggerfont bold4'>Suggested for you</h3>
 			<section id='SuggestedClothes-container' className='displayflex three-card-row'>
 				{ suggestedClothes.map((clo, i) => {
@@ -37,6 +37,7 @@ const WearSuggester = (props) => {
 			<article className='Wear-submit-container displayflex positionrel'>
 				<button className='solid-button smallfont' onClick={SuggestThis}>Suggest</button>
 			</article>
+			<span style={{marginTop: '2rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
 		</section>
 	);
 }

@@ -7,10 +7,7 @@ import { getTemperature } from '../assets/common';
 
 
 const WeatherDaily = (props) => {
-	console.log('WeatherDaily props: ', props);
-	const hourlyWeather = props.weather[props.currentCity].hourlyWeather.list.slice(0,10);
-	
-
+	/* console.log('WeatherDaily props: ', props); */
 	return (
 		<section id='WeatherDaily' className='main-tab flexcol'>
 			{ (props.weather && (props.weather.length > 0)) ? (
@@ -26,7 +23,7 @@ const WeatherDaily = (props) => {
 				</section>
 
 				<section id='ExtendedWeather-section' className='displayflex flexcol'>
-					<article id='ExtendedWeather-card' className='card fluent-card card-shadow displayflex flexcol'>
+					<article id='ExtendedWeather-card' className='card largecard fluent-card card-shadow displayflex flexcol'>
 						{props.weather[props.currentCity].extendedWeather.list.map((wh, i) => {
 							return <ExtendedWeatherCard data={wh} scale={props.scale} currentCity={props.currentCity} key={i} />
 						}) }
