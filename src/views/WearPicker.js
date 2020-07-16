@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ClothingItem from '../components/ClothingItem';
 
 
@@ -33,15 +33,14 @@ const WearPicker = (props) => {
 	console.log('  -  otherClothes: ', otherClothes); */
 
 
-	const pickedClothing = function(cloth, direction) {
-		cloth.selected = !cloth.selected;
-		props.pickClothing([cloth]);
+	const editClothing = function(cloth, action) {
+		console.log('newClothing: ', cloth);
+		props.editClothing([cloth]);
 	};
 
-
 	const submitClothing = function() {
-		console.log('submitClothing');
-	}
+		console.log('submitClothing ', selectedClothes);
+	};
 
 
 	return (
@@ -53,9 +52,9 @@ const WearPicker = (props) => {
 					{ clothingCategories.map((clothcat, i) => {
 						return (otherClothes[clothcat].length > 0) ? <section id={clothcat+'-section'} key={i}>
 							<h4 className='bigfont bold4'>{clothcat}</h4>
-							<section id={clothcat+'-container'} className='displayflex three-card-row'>
+							<section id={clothcat+'-container'} className='displayflex horz-scroll'>
 								{ otherClothes[clothcat].map((catcloth, j) => {
-									return <ClothingItem key={j} data={catcloth} unPick={(cloth)=>pickedClothing(cloth, 'add')} addrem={'add'} />
+									return <ClothingItem key={j} data={catcloth} addrem={'Add'} editCloth={(cloth,action)=>editClothing(cloth, action)} />
 								}) }
 							</section>
 						</section> : null
@@ -66,9 +65,9 @@ const WearPicker = (props) => {
 			<section id='PickedWear-section'>
 				<h3 className='Wear-header biggerfont bold4'>Today's Outfit</h3>
 				{ (selectedClothes.length > 0) ? <>
-					<section id='PickedWear-container' className='displayflex flexwrap three-card-row'>
+					<section id='PickedWear-container' className='displayflex flexwrap horz-scroll'>
 						{ selectedClothes.map((selcloth, i) => {
-							return <ClothingItem key={i} data={selcloth} unPick={(cloth)=>pickedClothing(cloth, 'rem')} addrem={'rem'} />
+							return <ClothingItem key={i} data={selcloth} editCloth={(cloth,action)=>editClothing(cloth, action)} addrem={'Remove'} />
 						}) }
 					</section>
 					<article id='PickedWear-submit-container' className='Wear-submit-container displayflex positionrel'>

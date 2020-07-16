@@ -5,8 +5,8 @@
 			"title": "sunglasses",
 			"category": "headwear",
 			"gender": "neither",
-			"primaryColor": "brown",
-			"secondaryColor": null,
+			"primaryColor": "rgb(128, 49, 11)",
+			"secondaryColor": "rgb(219, 202, 112)",
 			"tertiaryColor": null,
 			"selected": false
 		}
@@ -17,7 +17,7 @@
 			"title": "tShirt",
 			"category": "tops",
 			"gender": "neither",
-			"primaryColor": "lightgray",
+			"primaryColor": "rgb(211, 211, 211)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -27,7 +27,7 @@
 			"title": "dressShirt",
 			"category": "tops",
 			"gender": "male",
-			"primaryColor": "darkblue",
+			"primaryColor": "rgb(118, 161, 240)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -37,8 +37,8 @@
 			"title": "dress",
 			"category": "tops",
 			"gender": "female",
-			"primaryColor": "white",
-			"secondaryColor": "pink",
+			"primaryColor": "rgb(251, 251, 251)",
+			"secondaryColor": "rgb(234, 204, 204)",
 			"tertiaryColor": null,
 			"selected": false
 		},
@@ -47,8 +47,8 @@
 			"title": "sweater",
 			"category": "tops",
 			"gender": "neither",
-			"primaryColor": "rust",
-			"secondaryColor": "beige",
+			"primaryColor": "rgb(3, 98, 3)",
+			"secondaryColor": "rgb(217, 217, 187)",
 			"tertiaryColor": null,
 			"selected": false
 		}
@@ -59,7 +59,7 @@
 			"title": "jeans",
 			"category": "bottoms",
 			"gender": "neither",
-			"primaryColor": "lightblue",
+			"primaryColor": "rgb(114, 196, 223)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -69,7 +69,7 @@
 			"title": "shorts",
 			"category": "bottoms",
 			"gender": "male",
-			"primaryColor": "lightblue",
+			"primaryColor": "rgb(17, 46, 83)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -79,7 +79,7 @@
 			"title": "shortShorts",
 			"category": "bottoms",
 			"gender": "female",
-			"primaryColor": "lightblue",
+			"primaryColor": "rgb(17, 46, 83)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -89,7 +89,7 @@
 			"title": "skirt",
 			"category": "bottoms",
 			"gender": "female",
-			"primaryColor": "white",
+			"primaryColor": "rgb(241, 240, 240)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -101,7 +101,7 @@
 			"title": "tights",
 			"category": "tights",
 			"gender": "female",
-			"primaryColor": "rgba(20, 20, 20, 0.8)",
+			"primaryColor": "rgb(20, 20, 20)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -113,8 +113,8 @@
 			"title": "longSocks",
 			"category": "socks",
 			"gender": "neither",
-			"primaryColor": "red",
-			"secondaryColor": null,
+			"primaryColor": "rgb(142, 44, 44)",
+			"secondaryColor": "rgb(219, 202, 112)",
 			"tertiaryColor": null,
 			"selected": false
 		}

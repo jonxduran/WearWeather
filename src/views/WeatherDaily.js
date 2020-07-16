@@ -2,7 +2,6 @@ import React from 'react';
 import CurrentWeatherCard from '../components/CurrentWeatherCard';
 import HourlyWeatherCard from '../components/HourlyWeatherCard';
 import ExtendedWeatherCard from '../components/ExtendedWeatherCard'
-import { getTemperature } from '../assets/common';
 
 
 

@@ -15,11 +15,11 @@ const WearSuggester = (props) => {
 		/* console.log('wear suggester useeffect'); */
 		const newClothes = ClothesApi.getClothes(props.db, props.userSettings.userObject);
 		setSuggestedClothes(newClothes);
-	}, []);
+	}, [props.db, props.userSettings.userObject]);
 
-	const pickedClothing = function(cloth, direction) {
-		//cloth.selected = !cloth.selected;
-		props.pickClothing([cloth]);
+	const editClothing = function(cloth, action) {
+		console.log('newClothing: ', cloth);
+		props.editClothing([cloth]);
 	};
 	
 	const SuggestThis = function() {
@@ -29,9 +29,9 @@ const WearSuggester = (props) => {
 	return (
 		<section id='WearSuggester' className='displayflex flexcol'>
 			<h3 className='Wear-header biggerfont bold4'>Suggested for you</h3>
-			<section id='SuggestedClothes-container' className='displayflex three-card-row'>
+			<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
 				{ suggestedClothes.map((clo, i) => {
-					return <ClothingItem data={clo} key={i} unPick={(cloth)=>pickedClothing(cloth, 'add')} />
+					return <ClothingItem data={clo} key={i} editCloth={(cloth,action)=>editClothing(cloth, action)} addrem={'Add'} />
 				}) }
 			</section>
 			<article className='Wear-submit-container displayflex positionrel'>

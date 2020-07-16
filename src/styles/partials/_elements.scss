@@ -53,15 +53,36 @@
 }
 
 .three-card-row {
-	.card {
-		width: calc(33% - 1.04rem);
-		margin: 1rem;
+	@media screen and (min-width: $fixed-large-mobile-width+1) {
+		.card {
+			width: calc(33% - 1.2rem);
+			margin: 1rem;
+			transition: width $fast-animation ease-in-out, min-width $fast-animation ease-in-out;
+		}
+		.card:nth-child(3n-2) {
+			margin-left: 0.1rem;
+		}
+		.card:nth-child(3n) {
+			margin-right: 0.1rem;
+		}
 	}
-	.card:nth-child(3n-2) {
-		margin-left: 0;
+	@media screen and (max-width: $fixed-large-mobile-width) {
+		.card {
+			width: calc(50% - 1.04rem);
+			margin: 1rem;
+		}
+		.card:nth-child(2n-1) {
+			margin-left: 0;
+		}
+		.card:nth-child(2n) {
+			margin-right: 0;
+		}
 	}
-	.card:nth-child(3n) {
-		margin-right: 0;
+	@media screen and (max-width: $fixed-small-mobile-width) {
+		.card {
+			width: calc(100% - 1.04rem) !important;
+			margin: 1rem !important;
+		}
 	}
 }
 .two-card-row {
@@ -98,7 +119,7 @@
 	border: 0.1rem $button-default-color-2 solid;
 	border-radius: 0.5rem;
 	box-sizing: border-box;
-	padding: 1rem 1.5rem;
+	padding: 0.8rem 1.5rem;
 	cursor: pointer;
 	transition: all $fast-animation ease-in-out;
 }
@@ -109,7 +130,7 @@
 	border: 0.1rem $text-primary-color solid;
 	border-radius: 0.5rem;
 	box-sizing: border-box;
-	padding: 1rem 1.5rem;
+	padding: 0.8rem 1.5rem;
 	box-shadow: 0px 0px 0px -4px $text-primary-color;
 	font-size: 1.5rem;
 	cursor: pointer;
@@ -241,5 +262,35 @@
 	}
 	.dropdown-title {
 		display: flex;
+	}
+}
+
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 0.7rem;
+	border-radius: 0.5rem;
+	background-color: $slider-color;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: opacity .15s ease-in-out;
+	transition: opacity .15s ease-in-out;
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 1.6rem;
+		height: 1.6rem;
+		border: 0;
+		border-radius: 50%;
+		background-color: $theme-blue-med;
+		cursor: pointer;
+	}
+	&::-moz-range-thumb {
+		width: 1.6rem;
+		height: 1.6rem;
+		border: 0;
+		border-radius: 50%;
+		background-color: $theme-blue-med;
+		cursor: pointer;
 	}
 }

@@ -24,7 +24,7 @@ const HourlyWeatherCard = (props) => {
 		const whereWidth = where.offsetWidth;
 		const whereHeight = where.offsetHeight;
 		const xScale = d3.scaleTime().range([2, whereWidth-2]).domain(d3.extent(myData, d=>d.timeObj));
-		const yScale = d3.scaleLinear().rangeRound([whereHeight-24, 4]).domain(d3.extent(myData, d=>d.temperature));
+		const yScale = d3.scaleLinear().rangeRound([whereHeight-40, 50]).domain(d3.extent(myData, d=>d.temperature));
 		const svg = d3.select(where).append('svg').attr('width', whereWidth-100).attr('height', whereHeight-40);
 		/* const xaxis = d3.axisBottom(xScale);
 		const yaxis = d3.axisLeft(yScale); */
@@ -38,7 +38,7 @@ const HourlyWeatherCard = (props) => {
 
 	useEffect(() => {
 		_buildD3(temperatureD3.current, temperaturesArr);
-	}, [props.weather]);
+	}, [props.weather, temperaturesArr]);
 
 	
 	return <article id='HourlyWeather-card' className='card largecard fluent-card card-shadow displayflex'>

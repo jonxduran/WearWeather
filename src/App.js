@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 
-import { getInitUserSettings, getSettings, setNewSetting } from './status/SettingsHandler';
+import { getInitUserSettings, getSettings } from './status/SettingsHandler';
 import { handlerToggleTheme } from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
 
@@ -10,7 +10,6 @@ import Navbar from './views/Navbar';
 import WeatherDaily from './views/WeatherDaily';
 import WearSection from './views/WearSection';
 import CitySelector from './components/CitySelector';
-import { weatherDecoder } from './assets/common';
 
 
 const App = (props) => {
@@ -40,7 +39,9 @@ const App = (props) => {
 			_updateWeather();
 			console.log('updated weather from useEffect');
 		};
-	}, []);
+	}, 
+	// eslint-disable-next-line
+	[]);
 
 
 	const _setNewUser = (newUser) => {
@@ -107,7 +108,6 @@ const App = (props) => {
 		let newThemeObj = handlerToggleTheme(newTheme);
 		/* console.log('oldUserSettings: ', {...userSettings}); */
 		/* console.log('newThemeObj: ', newThemeObj); */
-		/* let newUserSettings = setNewSetting('theme', newThemeObj[newTheme].class); */
 		const newUserSettings = getSettings();
 		const newState = {...appState};
 		newState.userSettings = {...newUserSettings};

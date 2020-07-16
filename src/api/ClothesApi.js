@@ -1,4 +1,4 @@
-import CONSTANTS from '../assets/constants.json';
+/* import CONSTANTS from '../assets/constants.json'; */
 
 
 const fakeClothes = [
@@ -7,8 +7,8 @@ const fakeClothes = [
 		"title": "sunglasses",
 		"category": "headwear",
 		"gender": "neither",
-		"primaryColor": "brown",
-		"secondaryColor": null,
+		"primaryColor": "rgb(128, 49, 11)",
+		"secondaryColor": "rgb(219, 202, 112)",
 		"tertiaryColor": null,
 		"selected": false
 	},
@@ -17,8 +17,8 @@ const fakeClothes = [
 		"title": "longSocks",
 		"category": "socks",
 		"gender": "neither",
-		"primaryColor": "red",
-		"secondaryColor": null,
+		"primaryColor": "rgb(142, 44, 44)",
+		"secondaryColor": "rgb(219, 202, 112)",
 		"tertiaryColor": null,
 		"selected": false
 	}

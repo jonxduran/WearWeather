@@ -30,9 +30,9 @@ export function weatherCacheCheck() {
 	if (oldWeatherStr) {
 		let oldWeather = JSON.parse(oldWeatherStr);
 		/* console.log('oldWeather: ', oldWeather); */
-		let cacheDate = new Date(oldWeather.date);
+		/* let cacheDate = new Date(oldWeather.date); */
 		let checkTime = new Date().getTime() - (15 * 60 * 1000); /*000*/
-		let checkDate = new Date(checkTime);
+		/* let checkDate = new Date(checkTime); */
 		/* console.log('cacheDate: ', cacheDate, ' isGreater?checkDate: ', checkDate); */
 		weather = oldWeather.weather;
 		if (oldWeather.date < checkTime) {

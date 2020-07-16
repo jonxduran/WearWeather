@@ -13,12 +13,107 @@
 	}
 	
 	.card {
-		min-height: 25rem;
+		min-width: 28.5rem;
+		min-height: 36rem;
+		margin: 1rem;
+		&:first-child {
+			margin-left: 0.2rem;
+		}
+		&:last-child {
+			margin-right: 0.2rem;
+		}
 
+		.card-contents {
+			width: calc(100% - 5.7rem);
+			height: calc(100% - 6rem);
+			z-index: 2;
+			transition: width $fast-animation ease-out;
+		}
+		
 		.card-icon-container {
-			width: 100%;
 			height: 15rem;
-			margin-bottom: 2rem;
+			margin-bottom: 1rem;
+			transition: height $fast-animation ease-in-out;
+			svg {
+				width: 100%;
+			}
+			g, path {
+				fill: $text-secondary-color;
+			}
+		}
+
+		.card-name-container {
+			margin: auto 0 2rem;
+		}
+
+		.card-color-picker-container {
+			width: calc(100% - 4rem);
+			height: calc(100% - 15rem);
+			bottom: 2rem;
+			right: 2rem;
+			background-color: $fluent-background-color-blur;
+			backdrop-filter: saturate(180%) blur(2px);
+			opacity: 0;
+			z-index: 1;
+			transition: opacity $fast-animation ease-in-out, z-index $fast-animation ease-in-out;
+
+			.card-color-picker-close {
+				top: 0;
+				right: 0;
+			}
+
+			.card-color-picker-swapper {
+				padding: 1rem;
+				margin: 4rem 0 2rem;
+
+				.card-color-picker-option {
+					width: 3rem;
+					height: 4rem;
+					display: flex;
+					cursor: pointer;
+					background-color: none;
+					position: relative;
+					transition: background-color $fast-animation ease-in-out;
+					&.active {
+						&::after {
+							position: absolute;
+							width: 100%;
+							height: 0.4rem;
+							border-radius: 0.3rem;
+							background-color: $text-secondary-color;
+							content: '';
+							top: 4rem;
+						}
+					}
+					> span {
+						width: 3rem;
+						height: 3rem;
+						margin: 0 auto;
+						border-radius: 3rem;
+						transition: width $fast-animation ease-in-out, height $fast-animation ease-in-out;
+					}
+				}
+			}
+
+			.card-color-picker-sliders-container {
+				
+				.card-color-picker-slider {
+					height: 3rem;
+					span {
+						width: 4rem;
+					}
+					input {
+						width: calc(100% - 4rem);
+					}
+				}
+			}
+		}
+
+		.card-color-picker-button {
+			margin-left: 1rem;
+			&:hover {
+				background-color: $theme-blue-med !important;
+			}
 		}
 
 		.card-addrem {
@@ -29,16 +124,33 @@
 			right: 1rem;
 			opacity: 0;
 			transition: opacity $fast-animation ease-in-out;
-			&.add {
+			&.Add {
 				background-color: green;
 			}
-			&.rem {
+			&.Remove {
 				background-color: red;
 			}
 		}
 		&:hover {
 			.card-addrem {
 				opacity: 1;
+			}
+		}
+
+		&.active {
+			
+			.card-contents {
+				
+			}
+			.card-icon-container {
+				height: 10rem;
+			}
+			.card-color-picker-container {
+				opacity: 1;
+				z-index: 3;
+			}
+			.card-color-picker-button {
+				background-color: $theme-blue-subtle;
 			}
 		}
 	}
@@ -51,6 +163,10 @@
 		border-radius: 1rem;;
 		opacity: 0.5;
 		cursor: default !important;
+	}
+
+	.horz-scroll {
+		padding-bottom: 1rem;
 	}
 }
 

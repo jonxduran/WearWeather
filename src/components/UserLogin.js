@@ -21,7 +21,9 @@ const UserLogin = (props) => {
 	useEffect(() => {
 		console.log('test ', firebaseUIRef.current);
 		firebaseUIStarter(firebaseUIRef.current);
-	}, []);
+	}, 
+	// eslint-disable-next-line
+	[]);
 
 	return (
 		<section id='UserLogin-section' className={'positionabs displayflex'}>

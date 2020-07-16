@@ -18,6 +18,11 @@ body {
 	min-width: 40rem;
 	height: 100%;
 }
+@media screen and (max-width: 400px) {
+	body {
+		min-width: 34rem;
+	}
+}
 
 #root {
 	height: 100%;
