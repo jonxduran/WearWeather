@@ -127,7 +127,8 @@
 
 .outline-button {
 	background-color: transparent;
-	border: 0.1rem $text-primary-color solid;
+	color: $text-secondary-color;
+	border: 0.1rem $text-secondary-color solid;
 	border-radius: 0.5rem;
 	box-sizing: border-box;
 	padding: 0.8rem 1.5rem;

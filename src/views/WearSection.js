@@ -31,7 +31,7 @@ const WearSection = (props) => {
 	const [clothing, setClothing] = useState(ClothingMap);
 
 	const wearSetter = function(clothesArr) {
-		console.log('wearSetter clothesArr: ', clothesArr);
+		/* console.log('wearSetter clothesArr: ', clothesArr); */
 		let oldClothingMap = JSON.parse(JSON.stringify(clothing));
 		for (let i = 0; i < clothesArr.length; i++) {
 			oldClothingMap[clothesArr[i].category][clothesArr[i].title] = clothesArr[i];

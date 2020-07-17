@@ -31,7 +31,7 @@
 		}
 		
 		.card-icon-container {
-			height: 15rem;
+			height: 16rem;
 			margin-bottom: 1rem;
 			transition: height $fast-animation ease-in-out;
 			svg {
@@ -138,10 +138,6 @@
 		}
 
 		&.active {
-			
-			.card-contents {
-				
-			}
 			.card-icon-container {
 				height: 10rem;
 			}

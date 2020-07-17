@@ -1,11 +1,11 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import { getClothingSvg } from '../status/ClothingHandler';
 import { debounce } from '../assets/common';
 
 
 const ClothingItem = (props) => {
 	
-	console.log(props);
+	/* console.log(props); */
 	const redSlider = useRef();
 	const greenSlider = useRef();
 	const blueSlider = useRef();
@@ -22,7 +22,7 @@ const ClothingItem = (props) => {
 				props.editCloth(newCloth, 'addrem');
 				break;
 			case 'colorChange':
-				console.log(editedClothing);
+				console.log('colorChange ', editedClothing);
 				props.editCloth(editedClothing, 'colorChange');
 				break;
 			default:
@@ -31,29 +31,31 @@ const ClothingItem = (props) => {
 	};
 
 	const colorChange = debounce(function(newVal, rgbLabel, rgbIndex) {
-		console.log(clothingState.activeColorSwap, rgbLabel, rgbIndex, newVal);
 		const editedClothing = {...props.data};
-		const activeColorIndex = (clothingState.activeColorSwap === 0) ? 'primaryColor' : (clothingState.activeColorSwap === 1) ? 'secondaryColor' : 'tertiaryColor';
-		const activeRgbNew = getRGB(editedClothing[activeColorIndex]);
+		const activeColorLabel = (clothingState.activeColorSwap === 0) ? 'primaryColor' : (clothingState.activeColorSwap === 1) ? 'secondaryColor' : 'tertiaryColor';
+		const activeRgbNew = getRGB(editedClothing[activeColorLabel]);
 		activeRgbNew[rgbIndex] = newVal;
 		const newRgb = 'rgb(' + activeRgbNew.toString() + ')';
-		editedClothing[activeColorIndex] = newRgb;
+		editedClothing[activeColorLabel] = newRgb;
 		const newSvgIcon = getClothingSvg(editedClothing.title, editedClothing.primaryColor, editedClothing.secondaryColor, editedClothing.tertiaryColor);
 		clothingChangeSend('colorChange', editedClothing);
-		dispatch({type:'colorChange', rgbLabel, newVal, newSvgIcon});
+		dispatch({type:'colorChange', rgbLabel, newVal, activeColorLabel, newSvgIcon});
 	}, 250);
 
-
-	const initRgb = getRGB(props.data.primaryColor);
-	const initSvgIcon = getClothingSvg(props.data.title, props.data.primaryColor, props.data.secondaryColor, props.data.tertiaryColor);
-	const initClothingState = {
-		cardActive: false,
-		activeColorSwap: 0,
-		red: initRgb[0],
-		green: initRgb[1],
-		blue: initRgb[2],
-		svgIcon: initSvgIcon
+	const getNewClothingState = function(colorLabel, title, primaryColor, secondaryColor, tertiaryColor, isActive, colorSwapIndex) {
+		const newRgb = getRGB(colorLabel);
+		const newSvgIcon = getClothingSvg(title, primaryColor, secondaryColor, tertiaryColor);
+		return {
+			cardActive: isActive,
+			activeColorSwap: colorSwapIndex,
+			red: newRgb[0],
+			green: newRgb[1],
+			blue: newRgb[2],
+			svgIcon: newSvgIcon
+		};
 	};
+
+	const initClothingState = getNewClothingState(props.data.primaryColor, props.data.title, props.data.primaryColor, props.data.secondaryColor, props.data.tertiaryColor, false, 0);
 
 	const clothingReducer = function(state, action) {
 		const newState = {...state};
@@ -65,24 +67,42 @@ const ClothingItem = (props) => {
 				if (action.index !== newState.activeColorSwap) {
 					newState.activeColorSwap = action.index;
 					const activeColor = (action.index === 0) ? props.data.primaryColor : (action.index === 1) ? props.data.secondaryColor : props.data.tertiaryColor;
-					console.log('activeColor: ', activeColor);
 					const newRgb = getRGB(activeColor);
 					newState.red = newRgb[0];
 					newState.green = newRgb[1];
 					newState.blue = newRgb[2];
 					redSlider.current.value = newRgb[0];
+					greenSlider.current.value = newRgb[1];
+					blueSlider.current.value = newRgb[2];
 				};
 				return newState;
 			case 'colorChange':
 				newState[action.rgbLabel] = action.newVal;
 				newState['svgIcon'] = action.newSvgIcon;
-				console.log('colorChange newState: ', newState);
+				const activeColor = props.data[action.activeColorLabel];
+				const newRgb = getRGB(activeColor);
+				newState.red = newRgb[0];
+				newState.green = newRgb[1];
+				newState.blue = newRgb[2];
+				redSlider.current.value = newRgb[0];
+				greenSlider.current.value = newRgb[1];
+				blueSlider.current.value = newRgb[2];
 				return newState;
+			case 'newStateFromProps':
+				return action.newState;
 			default:
 				return state;
 		}
 	};
 	const [clothingState, dispatch] = useReducer(clothingReducer, initClothingState);
+
+	useEffect(() => {
+		const activeColor = (clothingState.activeColorSwap === 0) ? props.data.primaryColor : (clothingState.activeColorSwap === 1) ? props.data.secondaryColor : props.data.tertiaryColor;
+		const newClothingState = getNewClothingState(activeColor, props.data.title, props.data.primaryColor, props.data.secondaryColor, props.data.tertiaryColor, clothingState.cardActive, clothingState.activeColorSwap);
+		dispatch({type: 'newStateFromProps', newState: newClothingState});
+	}, 
+	// eslint-disable-next-line
+	[props.data, clothingState.activeColorSwap, clothingState.cardActive]);
 
 	
 	return (
@@ -102,7 +122,7 @@ const ClothingItem = (props) => {
 				</div>
 			</section>
 			<section className='card-color-picker-container displayflex flexcol positionabs'>
-				<span className='card-color-picker-close positionabs' onClick={()=>dispatch({type:'colorPickerToggle'})}>close</span>
+				<span className='card-color-picker-close positionabs pointer nonselect' onClick={()=>dispatch({type:'colorPickerToggle'})}>close</span>
 				<article className='card-color-picker-swapper displayflex'>
 					{<span className={'card-color-picker-option primary marginauto' + (clothingState.activeColorSwap === 0 ? ' active' : '')} onClick={()=>dispatch({type:'colorPickerSwap', index:0})}>
 						<span style={{backgroundColor: props.data.primaryColor}}></span>

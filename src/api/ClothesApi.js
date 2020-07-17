@@ -7,8 +7,8 @@ const fakeClothes = [
 		"title": "sunglasses",
 		"category": "headwear",
 		"gender": "neither",
-		"primaryColor": "rgb(128, 49, 11)",
-		"secondaryColor": "rgb(219, 202, 112)",
+		"primaryColor": "rgb(174, 159, 74)",
+		"secondaryColor": "rgb(138, 154, 179)",
 		"tertiaryColor": null,
 		"selected": false
 	},
@@ -19,7 +19,7 @@ const fakeClothes = [
 		"gender": "neither",
 		"primaryColor": "rgb(142, 44, 44)",
 		"secondaryColor": "rgb(219, 202, 112)",
-		"tertiaryColor": null,
+		"tertiaryColor": "rgb(219, 202, 112)",
 		"selected": false
 	}
 ];
