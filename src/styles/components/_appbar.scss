@@ -78,7 +78,7 @@
 	height: 0;
 	bottom: 6rem;
 	right: 0rem;
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: $popup-overlay-background-color;
 	display: flex;
 	padding-right: 0.75rem;
 	opacity: 0;
@@ -124,7 +124,7 @@
 		};
 		&:first-child {
 			margin-top: 0;
-			margin-bottom: 2rem;
+			margin-bottom: 5rem;
 		}
 		&:last-child {
 			margin-bottom: 0;
@@ -134,8 +134,11 @@
 			margin-right: auto;
 		}
 
-		.Overflow-row-options {
-
+		.Overflow-row-icon svg {
+			width: 4rem;
+			height: 4rem;
+			margin: auto 0 auto auto;
+			cursor: pointer;
 		}
 	}
 	.theme-switcher {

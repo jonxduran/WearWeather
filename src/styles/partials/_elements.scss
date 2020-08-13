@@ -30,7 +30,7 @@
 	&.fluent-card {
 		background-color: $fluent-background-color;
 		backdrop-filter: saturate(180%) blur(2px);
-		border-radius: 0.6rem;
+		border-radius: 0.75rem;
 
 		&.yellow {
 			border: 0.1rem $fluent-yellow solid;
@@ -206,6 +206,7 @@
 		visibility: hidden;
 		opacity: 0;
 		top: -2rem;
+		background-color: $body-secondary-color;
 		border: 0.2rem $theme-blue-med solid;
 		border-top: none;
 		z-index: 1;
@@ -223,12 +224,17 @@
 
 	.dropdown-input:checked + .dropdown-label {
 		border-bottom: none;
+		border-width: 0.4rem;
+		border-color: $text-tertiary-color;
 		&:hover {
 			background-color: $theme-blue-subtle;
 		}
 	}
 
 	.dropdown-input:checked ~ .dropdown-ul {
+		border-width: 0.4rem;
+		border-color: $text-tertiary-color;
+		box-shadow: 0px 15px 30px -12px $popup-overlay-background-color;
 		visibility: visible;
 		opacity: 1;
 		top: 0;

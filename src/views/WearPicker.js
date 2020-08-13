@@ -1,5 +1,6 @@
 import React from 'react';
 import ClothingItem from '../components/ClothingItem';
+import { roundNumber } from '../assets/common';
 
 
 const WearPicker = (props) => {
@@ -39,7 +40,15 @@ const WearPicker = (props) => {
 	};
 
 	const submitClothing = function() {
-		console.log('submitClothing ', selectedClothes);
+		const tempNow = new Date();
+		const key = tempNow.getTime() + '_' + roundNumber(props.weather[props.currentCity].currentWeather.main.temp);
+		console.log('key: ', key);
+		const submittedClothing = {
+			temperature: props.weather[props.currentCity].currentWeather.main.temp,
+			weatherId: props.weather[props.currentCity].currentWeather.weather[0].id,
+			clothing: selectedClothes
+		};
+		console.log('submittedClothing ', submittedClothing);
 	};
 
 

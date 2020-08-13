@@ -54,3 +54,7 @@ export function debounce(func, duration) {
 		timeout = setTimeout(effect, duration);
 	};
 };
+
+export function roundNumber(num) {
+	return Math.round(num);
+};

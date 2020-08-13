@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { isNight } from '../assets/common';
 
-const SunnyClearIcon = React.lazy(() => import('mdi-react/WeatherSunnyIcon'));
-const NightClearIcon = React.lazy(() => import('mdi-react/WeatherNightIcon'));
-const PartlyCloudyIcon = React.lazy(() => import('mdi-react/WeatherPartlyCloudyIcon'));
-const CloudyIcon = React.lazy(() => import('mdi-react/WeatherCloudyIcon'));
-const CloudyAlertIcon = React.lazy(() => import('mdi-react/WeatherCloudyAlertIcon'));
-const PartlyRainyIcon = React.lazy(() => import('mdi-react/WeatherPartlyRainyIcon'));
-const RainyIcon = React.lazy(() => import('mdi-react/WeatherRainyIcon'));
-const PouringIcon = React.lazy(() => import('mdi-react/WeatherPouringIcon'));
-const LightningIcon = React.lazy(() => import('mdi-react/WeatherLightningIcon'));
-const SnowyIcon = React.lazy(() => import('mdi-react/WeatherSnowyIcon'));
-const FogIcon = React.lazy(() => import('mdi-react/WeatherFogIcon'));
-const WindyIcon = React.lazy(() => import('mdi-react/WeatherWindyIcon'));
-const WindyVariantIcon = React.lazy(() => import('mdi-react/WeatherWindyVariantIcon'));
+const SunnyClearIcon = lazy(() => import('mdi-react/WeatherSunnyIcon'));
+const NightClearIcon = lazy(() => import('mdi-react/WeatherNightIcon'));
+const PartlyCloudyIcon = lazy(() => import('mdi-react/WeatherPartlyCloudyIcon'));
+const CloudyIcon = lazy(() => import('mdi-react/WeatherCloudyIcon'));
+const CloudyAlertIcon = lazy(() => import('mdi-react/WeatherCloudyAlertIcon'));
+const PartlyRainyIcon = lazy(() => import('mdi-react/WeatherPartlyRainyIcon'));
+const RainyIcon = lazy(() => import('mdi-react/WeatherRainyIcon'));
+const PouringIcon = lazy(() => import('mdi-react/WeatherPouringIcon'));
+const LightningIcon = lazy(() => import('mdi-react/WeatherLightningIcon'));
+const SnowyIcon = lazy(() => import('mdi-react/WeatherSnowyIcon'));
+const FogIcon = lazy(() => import('mdi-react/WeatherFogIcon'));
+const WindyIcon = lazy(() => import('mdi-react/WeatherWindyIcon'));
+const WindyVariantIcon = lazy(() => import('mdi-react/WeatherWindyVariantIcon'));
 
 const now = new Date(); 
 

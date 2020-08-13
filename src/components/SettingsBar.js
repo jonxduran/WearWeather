@@ -1,17 +1,51 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy } from 'react';
 import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import RefreshIcon from 'mdi-react/RefreshIcon';
 
 
+const CloseIcon = lazy(()=>import('mdi-react/WindowCloseIcon'));
+
 const SettingsBar = (props) => {
 
-	/* console.log('SettingsBar props: ', props); */
+	console.log('SettingsBar props: ', props);
+
+	let unitObj = [
+		{ unit: "f", active: false },
+		{ unit: "c", active: false }
+	];
+	unitObj.forEach(uo => {
+		if (uo.unit === props.userSettings.scale) {
+			uo.active = true
+		};
+	});
+	let pronounObj = [
+		{ pronoun: "he", active: false },
+		{ pronoun: "she", active: false },
+		{ pronoun: "they", active: false }
+	];
+	pronounObj.forEach(po => {
+		if (po.pronoun === props.userSettings.pronoun) {
+			po.active = true;
+		};
+	});
 	const [menuOpen, setMenu] = useState(false);
 	const themeRef = useRef();
+	const unitRef = useRef();
+	const pronounRef = useRef();
 
 	const _themeClick = function(thm) {
 		props.sendNewTheme(thm);
 		themeRef.current.checked = false;
+	};
+
+	const _unitClick = function(unt) {
+		props.sendNewSetting('scale', unt);
+		unitRef.current.checked = false;
+	};
+
+	const _pronounClick = function(pro) {
+		props.sendNewSetting('pronoun', pro);
+		pronounRef.current.checked = false;
 	};
 
 	return (
@@ -35,14 +69,19 @@ const SettingsBar = (props) => {
 			<section id='Overflow-section' className={'positionabs' + ((menuOpen) ? ' open' :'')}>
 				<div id='Overflow-screen' className='positionabs' onClick={()=>setMenu(false)}></div>
 				<article id='Overflow-popup' className='displayflex flexcol marginauto popup popup-shadow'>
-					<div className='Overflow-row header-row displayflex positionrel'>
+					<h3 className='Overflow-row header-row displayflex positionrel'>
 						<div className="Overflow-row-title displayflex">
 						{ (props.user === null) ? 
-							<span className='medfont medfont-height marginauto-height' onClick={props.accessUserLoginClick}>Log In</span>
-							: <div className='bigfont bigfont-height marginauto-height'>{props.user.displayName}'s Settings</div>
+							<span className='bigfont bigfont-height bold4 marginauto-height' onClick={props.accessUserLoginClick}>Log In</span>
+							: <div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
 						}
 						</div>
-					</div>
+						<div className='Overflow-row-icon displayflex' onClick={()=>setMenu(false)}>
+							<React.Suspense fallback={<></>}>
+								{<CloseIcon />}
+							</React.Suspense>
+						</div>
+					</h3>
 					<div className='Overflow-row displayflex positionrel'>
 						<div className='Overflow-row-title displayflex'>
 							<span className='medfont medfont-height marginauto-height'>Theme</span>
@@ -70,6 +109,60 @@ const SettingsBar = (props) => {
 												<span className='medfont medfont-height marginauto-height'>{props.themeObj[thm]['title']}</span>
 											</div>
 										</li>
+									}) }
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div className='Overflow-row displayflex positionrel'>
+						<div className='Overflow-row-title displayflex'>
+							<span className='medfont medfont-height marginauto-height'>Unit</span>
+						</div>
+						<div className='Overflow-row-options displayflex'>
+							<div className='dropdown medfont'>
+								<input id='DropdownUnits' className='dropdown-input' type='checkbox' ref={unitRef}></input>
+								{ unitObj.filter(uo => uo.active===true).map((uo, i) => {
+									return (<label htmlFor='DropdownUnits' className='dropdown-label' key={i}>
+										<div className='dropdown-title'>
+											<span className='medfont medfont-height marginauto-height'>{'° ' + uo.unit}</span>
+										</div>
+									</label>)
+								}) }
+								<ul className='dropdown-ul'>
+									{ unitObj.filter(uo => uo.active===false).map((uo, i) => {
+										return (<li className='dropdown-li displayflex' onClick={()=>_unitClick(uo.unit)} key={i}>
+											<div className='dropdown-title'>
+												<span className='medfont medfont-height marginauto-height'>{'° ' + uo.unit}</span>
+											</div>
+										</li>)
+									}) }
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div className='Overflow-row displayflex positionrel'>
+						<div className='Overflow-row-title displayflex'>
+							<span className='medfont medfont-height marginauto-height'>Pronoun</span>
+						</div>
+						<div className='Overflow-row-options displayflex'>
+							<div className='dropdown medfont'>
+								<input id='DropdownPronouns' className='dropdown-input' type='checkbox' ref={pronounRef}></input>
+								{ pronounObj.filter(po => po.active===true).map((po, i) => {
+									return (<label htmlFor='DropdownPronouns' className='dropdown-label' key={i}>
+										<div className='dropdown-title'>
+											<span className='medfont medfont-height marginauto-height'>{po.pronoun}</span>
+										</div>
+									</label>)
+								}) }
+								<ul className='dropdown-ul'>
+									{ pronounObj.filter(po => po.active===false).map((po, i) => {
+										return (<li className='dropdown-li displayflex' onClick={()=>_pronounClick(po.pronoun)} key={i}>
+											<div className='dropdown-title'>
+												<span className='medfont medfont-height marginauto-height'>{po.pronoun}</span>
+											</div>
+										</li>)
 									}) }
 								</ul>
 							</div>
