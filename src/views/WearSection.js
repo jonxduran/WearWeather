@@ -7,26 +7,24 @@ import ClothingMap from '../assets/clothingMap.json';
 const WearSection = (props) => {
 
 	/* console.log('WearSection usersettings: ', props.userSettings); */
+	/* let ClothingMap = JSON.parse(JSON.stringify(ClothingMap)); */
 	const clothingMapKeys = Object.keys(ClothingMap);
 	const clothingMapKeysLength = clothingMapKeys.length;
 	for (let i = 0; i < clothingMapKeysLength; i++) {
 		let clothingTitles = Object.keys(ClothingMap[clothingMapKeys[i]]);
 		let clothingTitlesLength = clothingTitles.length;
 		for (let j = 0; j < clothingTitlesLength; j++) {
-			if (props.userSettings.gender === "male") {
-				if (ClothingMap[clothingMapKeys[i]][clothingTitles[j]]['gender'] === "female") {
+			if (props.userSettings.pronoun === "he") {
+				if (ClothingMap[clothingMapKeys[i]][clothingTitles[j]]['pronoun'] === "she") {
 					delete ClothingMap[clothingMapKeys[i]][clothingTitles[j]];
-				}
-			} else if (props.userSettings.gender === "female") {
-				if (ClothingMap[clothingMapKeys[i]][clothingTitles[j]]['gender'] === "male") {
+				};
+			} else if (props.userSettings.pronoun === "she") {
+				if (ClothingMap[clothingMapKeys[i]][clothingTitles[j]]['pronoun'] === "he") {
 					delete ClothingMap[clothingMapKeys[i]][clothingTitles[j]];
-				}
+				};
 			};
 		};
 	};
-
-	/* console.log('***** ***** ClothingMap: ', ClothingMap); */
-	/* const OGClothingMap = JSON.parse(JSON.stringify(ClothingMap)); */
 
 	const [clothing, setClothing] = useState(ClothingMap);
 
@@ -36,14 +34,14 @@ const WearSection = (props) => {
 		for (let i = 0; i < clothesArr.length; i++) {
 			oldClothingMap[clothesArr[i].category][clothesArr[i].title] = clothesArr[i];
 		};
-		console.log('setClothing with oldClothingMap: ', oldClothingMap);
+		/* thisClothingMap = oldClothingMap; */
 		setClothing(oldClothingMap);
 	}
 
 	return (
 		<section id='WearSection' className='main-tab displayflex flexcol'>
-			<WearPicker clothing={clothing} editClothing={(clothing)=>wearSetter(clothing)} />
-			<WearSuggester weather={props.weather} currentCity={props.currentCity} editClothing={(clothesArr)=>wearSetter(clothesArr)} db={props.db} userSettings={props.userSettings} />
+			<WearSuggester weather={props.weather} currentCity={props.currentCity} editClothing={(clothesArr)=>wearSetter(clothesArr)} db={props.db} user={props.user} userSettings={props.userSettings} />
+			<WearPicker weather={props.weather} currentCity={props.currentCity} clothing={clothing} editClothing={(clothing)=>wearSetter(clothing)} />
 		</section>
 	)
 

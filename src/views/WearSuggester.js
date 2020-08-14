@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import SuggestedClothingItem from '../components/SuggestedClothingItem';
-import * as ClothesApi from '../api/ClothesApi';
+import { getClothes, getClothingSet } from '../api/ClothesApi';
 
 
 const WearSuggester = (props) => {
 
-	/* console.log("WearSuggester db: ", props.db); */
-	/* db.current.collection("api").doc(user.uid).collection("wear") */
+	/* console.log("WearSuggester ", props); */
+	/* const wearCollection = props.db.current.collection("api").doc(props.user.uid).collection("wear"); */
 	
-	const [suggestedClothes, setSuggestedClothes] = useState([]);
+	const [suggestedClothes, setSuggestedClothes] = useState(null);
 
 	useEffect(() => {
 		/* console.log('wear suggester useeffect'); */
-		SuggestNewClothes();
+		getSuggestedClothes();
 	}, 
 	// eslint-disable-next-line
 	[props.db, props.userSettings.userObject]);
@@ -27,28 +27,43 @@ const WearSuggester = (props) => {
 		props.editClothing([cloth]);
 	};
 
-	const getClothing = function() {
-		return ClothesApi.getClothes(props.db, props.userSettings.userObject);
+
+	const getSuggestedClothes = function() {
+		getClothes(props.db, props.weather[props.currentCity].currentWeather.main.temp, props.userSettings.userObject).then(newClothes => {
+			/* console.log('New Clothes: ', newClothes); */
+			setSuggestedClothes(newClothes);
+		});
 	};
-	
-	const SuggestNewClothes = function() {
-		const newClothes = getClothing();
-		console.log('New Clothes: ', newClothes);
-		setSuggestedClothes(newClothes);
+
+	const getNewSuggested = function() {
+		const newSet = getClothingSet();
+		console.log(newSet);
 	};
 
 	return (
 		<section id='WearSuggester' className='displayflex flexcol'>
 			<h3 className='Wear-header biggerfont bold4'>Suggested for you</h3>
-			<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
-				{ suggestedClothes.map((clo, i) => {
-					return <SuggestedClothingItem data={clo} key={i} editCloth={(cloth)=>editClothing(cloth, i)} addrem={'Add'} />
-				}) }
-			</section>
-			<article className='Wear-submit-container displayflex positionrel'>
-				<button className='solid-button smallfont' onClick={SuggestNewClothes}>Suggest New Clothes</button>
-			</article>
-			<span style={{marginTop: '2rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
+			{ (null===suggestedClothes) ?
+				<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
+					<div className='loadingcard displayflex'>
+						<p className='marginauto medfont'>loading</p>
+					</div>
+				</section> :
+				(suggestedClothes.length > 0) ?
+				<>
+					<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
+						{ suggestedClothes.map((clo, i) => {
+							return <SuggestedClothingItem data={clo} key={i} editCloth={(cloth)=>editClothing(cloth, i)} addrem={'Add'} />
+						}) }
+					</section>
+					<article className='Wear-submit-container displayflex positionrel'>
+						<button className='solid-button large smallfont' onClick={getNewSuggested}>Suggest New Clothes</button>
+					</article>
+				</>
+				: <article id='NoSuggestedClothes' className='displayflex flexcol nonselect'>
+					<p className='marginauto-height medfont'>No Suggested Clothes Available</p>
+				</article>
+			}
 		</section>
 	);
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 
-import { getInitUserSettings, getSettings } from './status/SettingsHandler';
+import { getInitUserSettings, getSettings, setNewSetting } from './status/SettingsHandler';
 import { handlerToggleTheme } from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
 
@@ -34,11 +34,7 @@ const App = (props) => {
 
 	
 	useEffect(() => {
-		console.log('useEffect weatherCached is old: ', appState.weatherCached);
-		if (true === appState.weatherCached) {
-			_updateWeather();
-			console.log('updated weather from useEffect');
-		};
+		_tryUpdateWeather();
 	}, 
 	// eslint-disable-next-line
 	[]);
@@ -63,6 +59,15 @@ const App = (props) => {
 		newState.weather = updatedWeather;
 		setAppState(newState);
 	};
+
+	const _tryUpdateWeather = () => {
+		const weatherCheck = WeatherHandler.weatherCacheCheck();
+		console.log('Check if weatherCached is old: ', weatherCheck[1]);
+		if (true === weatherCheck[1]) {
+			_updateWeather();
+			console.log('updated weather from useEffect');
+		};
+	}
 
 	const _updateWeather = () => {
 		let newWeather = (null === appState.weather) ? initWeatherCheck[0] : appState.weather.slice();
@@ -115,6 +120,16 @@ const App = (props) => {
 		setAppState(newState);
 	};
 
+	const _setNewSetting = (ky, vl) => {
+		const newState = {...appState};
+		const newUserSettings = setNewSetting(ky, vl);
+		newState.userSettings = newUserSettings;
+		setAppState(newState);
+		if (ky === 'pronoun') {
+			window.location.reload(false);
+		};
+	};
+
 	console.log('render appState: ', appState);
 	return (
 		<div id='App' className={'displayflex positionrel ' + ((appState.user === null) ? 'nouser ' : '') + appState.themeObj[appState.userSettings.theme].class}>
@@ -123,7 +138,7 @@ const App = (props) => {
 					<article id='App-main-inner' className='displayflex flexcol'>
 						{ (appState.weatherLoading === false) ? <>
 							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} weatherCodeObj={appState.weatherCodeObj} />
-							{ (null !== appState.user && null !== appState.weather) && <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} db={props.db} /> }
+							{ (null !== appState.user && null !== appState.weather) && <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} /> }
 							</> : <span>loading</span>
 						}
 					</article>
@@ -154,7 +169,7 @@ const App = (props) => {
 						</article>
 					</section>
 				</main>
-				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} />
+				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} userSettings={appState.userSettings} sendNewSetting={(ky, vl)=>_setNewSetting(ky, vl)} refreshWeather={_tryUpdateWeather} />
 			</> : <main id='App-main' className='displayflex positionrel'>
 				<CitySelector weather={appState.weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} /> 
 			</main> }

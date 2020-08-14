@@ -9,7 +9,7 @@ console.log('OSTheme: ', OSTheme); */
 
 let userSettings = {
 	"scale": "f",
-	"gender": "male",
+	"pronoun": "he",
 	"theme": 'system-theme'
 };
 

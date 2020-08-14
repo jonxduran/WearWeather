@@ -2,33 +2,36 @@
 $body-primary-color: rgb(35, 43, 56);
 $body-primary-color-blur: rgba(35, 43, 56, 0.4);
 $body-primary-color-light: rgb(35, 43, 56);
-$body-primary-color-medium: rgb(35, 43, 56);
-$body-primary-color-dark: rgb(35, 43, 56);
+$body-primary-color-medium: rgb(34, 42, 53);
+$body-primary-color-dark: rgb(33, 40, 51);
 $body-secondary-color: rgb(52, 61, 78);
 
 $fluent-background-color: rgba(52, 61, 78, 0.7);
-$fluent-background-color-blur: rgba(47, 57, 74, 0.7);
+$fluent-background-color-blur: rgba(47, 57, 74, 0.9);
 
 $nav-background-color: rgba(48, 90, 85, 0.8);
 $nav-border-color: rgb(60, 66, 65);
 
 $popup-background-color: rgb(47, 55, 70);
+$popup-overlay-background-color: rgba(20, 20, 20, 0.6);
 
 $text-primary-color: rgb(248, 248, 248);
 $text-secondary-color: rgb(220, 220, 220);
 $text-tertiary-color: rgb(160, 160, 160);
+$text-opposite-color: rgb(20, 20, 20);
 
 $border-primary-color: rgb(65, 65, 66);
 $border-secondary-color: rgb(105, 105, 106);
 
-$light-shadow: rgba(60, 60, 60, 0.62);
+$light-shadow: rgba(0, 0, 0, 0.69);
 $button-default-color-1: rgb(220, 220, 220);
 $button-default-color-2: rgb(233, 242, 247);
 $slider-color: rgb(179, 185, 189);
 
 
-$fluent-yellow: rgba(203, 194, 68, 0.6);
-$fluent-blue: rgba(105, 169, 207, 0.6);
+$fluent-yellow: rgba(206, 200, 118, 0.6);
+$fluent-blue: rgba(130, 169, 192, 0.6);
+$fluent-darkblue: rgba(65, 89, 108, 0.6);
 $fluent-gray: rgba(120, 126, 130, 0.6);
 $fluent-lightgray: rgba(144, 155, 162, 0.6);
 
@@ -36,6 +39,21 @@ $fluent-lightgray: rgba(144, 155, 162, 0.6);
 $theme-blue-dark: rgb(150, 184, 204);
 $theme-blue-med: rgb(140, 170, 187);
 $theme-blue-subtle: rgb(106, 135, 152);
+
+$button-green-background-color: rgb(91, 225, 182);
+$button-green-border-color: rgb(91, 225, 182);
+$button-green-hover-background-color: rgb(67, 180, 153);
+$button-green-hover-border-color: rgb(37, 135, 112);
+
+$button-teal-background-color: rgb(102, 182, 173);
+$button-teal-border-color: rgb(46, 157, 145);
+$button-teal-hover-background-color: rgb(78, 170, 147);
+$button-teal-hover-border-color: rgb(37, 135, 112);
+
+$button-red-background-color: rgb(246, 132, 120);
+$button-red-border-color: rgb(246, 132, 120);
+$button-red-hover-background-color: rgb(225, 131, 122);
+$button-red-hover-border-color: rgb(194, 99, 90);
 
 $red-bold: red;
 $red-med: rgb(241, 83, 83);

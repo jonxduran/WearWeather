@@ -14,12 +14,11 @@ const UserLogin = (props) => {
 				props.userUpdate(user);
 			} else {
 				console.log('no user');
-			}
+			};
 		});
 	}
 
 	useEffect(() => {
-		console.log('test ', firebaseUIRef.current);
 		firebaseUIStarter(firebaseUIRef.current);
 	}, 
 	// eslint-disable-next-line
