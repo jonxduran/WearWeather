@@ -80,7 +80,7 @@ const WearPicker = (props) => {
 						}) }
 					</section>
 					<article id='PickedWear-submit-container' className='Wear-submit-container displayflex positionrel'>
-						<button className='solid-button smallfont' onClick={submitClothing}>Submit</button>
+						<button className='solid-button large teal-button smallfont' onClick={submitClothing}>Submit</button>
 					</article>
 				</> : <article id='NoSelectedCards' className='displayflex flexcol nonselect'>
 						<p className='marginauto medfont'>No Clothes Selected</p>

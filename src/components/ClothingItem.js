@@ -117,7 +117,7 @@ const ClothingItem = (props) => {
 					<p className='card-name marginauto-height'>{props.data.name}</p>
 				</header>
 				<div className='card-buttons-container displayflex positionrel'>
-					<button className='outline-button' onClick={()=>clothingChangeSend('addrem', null)}>{props.addrem}</button>
+					<button className={'outline-button ' + (props.addrem==='Add' ? 'green-button' : 'red-button')} onClick={()=>clothingChangeSend('addrem', null)}>{props.addrem}</button>
 					<button className='card-color-picker-button outline-button' onClick={()=>dispatch({type:'colorPickerToggle'})}>Color</button>
 				</div>
 			</section>

@@ -122,6 +122,30 @@
 	padding: 0.8rem 1.5rem;
 	cursor: pointer;
 	transition: all $fast-animation ease-in-out;
+
+	&.large {
+		padding: 1.2rem 2.2rem;
+	}
+
+	&.teal-button {
+		border-color: $button-teal-border-color;
+		background-color: $button-teal-background-color;
+		color: $text-opposite-color;
+		&:hover {
+			border-color: $button-teal-hover-border-color;
+			background-color: $button-teal-hover-background-color;
+		}
+	}
+
+	&.red-button {
+		border-color: $button-red-border-color;
+		background-color: $button-red-background-color;
+		color: $text-opposite-color;
+		&:hover {
+			border-color: $button-red-hover-border-color;
+			background-color: $button-red-hover-background-color;
+		}
+	}
 }
 
 
@@ -146,19 +170,21 @@
 		}
 	}
 	&.green-button {
-		border-color: green;
-		color: green;
+		border-color: $button-green-border-color;
+		color: $button-green-background-color;
 		&:hover {
-			border-color: green;
-			color: green;
+			border-color: $button-green-hover-border-color;
+			background-color: $button-green-hover-background-color;
+			color: $text-opposite-color;
 		}
 	}
 	&.red-button {
-		border-color: $red-med;
-		color: $red-med;
+		border-color: $button-red-border-color;
+		color: $button-red-background-color;
 		&:hover {
-			border-color: $red-bold;
-			color: $red-bold;
+			border-color: $button-red-hover-border-color;
+			background-color: $button-red-hover-background-color;
+			color: $text-opposite-color;
 		}
 	}
 }
@@ -192,11 +218,20 @@
 	}
 	.dropdown-label {
 		width: 100%;
-		padding: 1rem 2rem;
+		height: 100%;
+		padding: 1rem 1.4rem;
 		border: 0.2rem $theme-blue-med solid;
 		display: flex;
+		position: relative;
 		box-sizing: border-box;
 		cursor: pointer;
+		&:after {
+			position: absolute;
+			right: 1.6rem;
+			line-height: 2.8rem !important;
+			content: "\25BD";
+			opacity: 1;
+		}
 	}
 
 	.dropdown-ul {
@@ -212,7 +247,7 @@
 		z-index: 1;
 
 		.dropdown-li {
-			padding: 1rem 2rem;
+			padding: 1.4rem;
 			cursor: pointer;
 			
 			&:hover {
@@ -228,6 +263,9 @@
 		border-color: $text-tertiary-color;
 		&:hover {
 			background-color: $theme-blue-subtle;
+		}
+		&:after {
+			opacity: 0;
 		}
 	}
 
@@ -255,7 +293,7 @@
 	.dropdown-icon {
 		width: 3rem;
 		display: flex;
-		margin: auto 1rem auto 0;
+		margin: auto 1rem auto -0.4rem;
 
 		.theme-icon {
 			width: 3rem;

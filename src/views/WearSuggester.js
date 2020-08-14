@@ -58,14 +58,14 @@ const WearSuggester = (props) => {
 							}) }
 						</section>
 						<article className='Wear-submit-container displayflex positionrel'>
-							<button className='solid-button smallfont' onClick={getNewSuggested}>Suggest New Clothes</button>
+							<button className='solid-button large smallfont' onClick={getNewSuggested}>Suggest New Clothes</button>
 						</article>
 					</>
 					: <article id='NoSuggestedClothes' className='displayflex flexcol nonselect'>
 						<p className='marginauto-height medfont'>No Suggested Clothes Available</p>
 					</article>
 				}
-			<span style={{marginTop: '4rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
+			<span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
 		</section>
 	);
 }

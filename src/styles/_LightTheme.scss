@@ -18,6 +18,7 @@ $popup-overlay-background-color: rgba(0, 0, 0, 0.3);
 $text-primary-color: rgb(20, 20, 20);
 $text-secondary-color: rgb(60, 60, 63);
 $text-tertiary-color: rgb(100, 100, 106);
+$text-opposite-color: rgb(252, 252, 252);
 
 $border-primary-color: rgb(211, 211, 214);
 $border-secondary-color: rgb(115, 115, 115);
@@ -38,6 +39,21 @@ $fluent-lightgray: rgba(195, 205, 211, 0.6);
 $theme-blue-dark: rgb(90, 133, 158);
 $theme-blue-med: rgb(116, 162, 189);
 $theme-blue-subtle: rgb(142, 175, 194);
+
+$button-green-background-color: rgb(46, 83, 75);
+$button-green-border-color: rgb(34, 105, 93);
+$button-green-hover-background-color: rgb(85, 152, 144);
+$button-green-hover-border-color: rgb(51, 98, 92);
+
+$button-teal-background-color: rgb(61, 145, 140);
+$button-teal-border-color: rgb(41, 105, 102);
+$button-teal-hover-background-color: rgb(52, 123, 119);
+$button-teal-hover-border-color: rgb(28, 69, 67);
+
+$button-red-background-color: rgb(167, 67, 56);
+$button-red-border-color: rgb(137, 53, 44);
+$button-red-hover-background-color: rgb(185, 97, 87);
+$button-red-hover-border-color: rgb(143, 61, 51);
 
 $red-bold: red;
 $red-med: red;

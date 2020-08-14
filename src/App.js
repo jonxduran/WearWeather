@@ -34,11 +34,7 @@ const App = (props) => {
 
 	
 	useEffect(() => {
-		console.log('useEffect weatherCached is old: ', appState.weatherCached);
-		if (true === appState.weatherCached) {
-			_updateWeather();
-			console.log('updated weather from useEffect');
-		};
+		_tryUpdateWeather();
 	}, 
 	// eslint-disable-next-line
 	[]);
@@ -63,6 +59,15 @@ const App = (props) => {
 		newState.weather = updatedWeather;
 		setAppState(newState);
 	};
+
+	const _tryUpdateWeather = () => {
+		const weatherCheck = WeatherHandler.weatherCacheCheck();
+		console.log('Check if weatherCached is old: ', weatherCheck[1]);
+		if (true === weatherCheck[1]) {
+			_updateWeather();
+			console.log('updated weather from useEffect');
+		};
+	}
 
 	const _updateWeather = () => {
 		let newWeather = (null === appState.weather) ? initWeatherCheck[0] : appState.weather.slice();
@@ -120,6 +125,9 @@ const App = (props) => {
 		const newUserSettings = setNewSetting(ky, vl);
 		newState.userSettings = newUserSettings;
 		setAppState(newState);
+		if (ky === 'pronoun') {
+			window.location.reload(false);
+		};
 	};
 
 	console.log('render appState: ', appState);
@@ -161,7 +169,7 @@ const App = (props) => {
 						</article>
 					</section>
 				</main>
-				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} userSettings={appState.userSettings} sendNewSetting={(ky, vl)=>_setNewSetting(ky, vl)} />
+				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} userSettings={appState.userSettings} sendNewSetting={(ky, vl)=>_setNewSetting(ky, vl)} refreshWeather={_tryUpdateWeather} />
 			</> : <main id='App-main' className='displayflex positionrel'>
 				<CitySelector weather={appState.weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} /> 
 			</main> }

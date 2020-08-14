@@ -1,6 +1,8 @@
 import React, { useState, useRef, lazy } from 'react';
-import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
+/* import MapMarkerIcon from 'mdi-react/MapMarkerIcon'; */
 import RefreshIcon from 'mdi-react/RefreshIcon';
+import AccountPlusIcon from 'mdi-react/AccountPlusIcon';
+import firebase from '../status/Firebase';
 
 
 const CloseIcon = lazy(()=>import('mdi-react/WindowCloseIcon'));
@@ -48,15 +50,31 @@ const SettingsBar = (props) => {
 		pronounRef.current.checked = false;
 	};
 
+	const _refreshClick = function() {
+		document.getElementById('Settings-refresh-icon').classList.add('spin');
+		setTimeout(function () {
+			document.getElementById('Settings-refresh-icon').classList.remove('spin');
+		}, 600);
+		props.refreshWeather();
+	};
+
+	const _signout = function() {
+		setTimeout(function () {
+			window.location.reload(false);
+		}, 3000);
+		firebase.auth().signOut();
+	};
+
 	return (
 		<article id='SettingsBar' className='positionrel marginauto'>
 			<section id='SettingsButtons-section' className='displayflex'>
-			<div id='Settings-location-icon' className='Settings-icon displayflex positionrel MDI-container'>
+				{/* <div id='Settings-location-icon' className='Settings-icon displayflex positionrel MDI-container'>
 					<MapMarkerIcon />
-				</div>
-				<div id='Settings-refresh-icon' className='Settings-icon displayflex positionrel MDI-container'>
+				</div> */}
+				<div id='Settings-refresh-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={_refreshClick}>
 					<RefreshIcon />
 				</div>
+				{ (props.user !== null) ?
 				<div id='Settings-overflow-icon' className={'Settings-icon displayflex flexcol positionrel' + ((menuOpen) && ' open')} onClick={()=>setMenu(!menuOpen)}>
 					<span className='Settings-overflow-dot'></span>
 					<span className='Settings-overflow-line-container displayflex marginauto positionrel'>
@@ -65,16 +83,17 @@ const SettingsBar = (props) => {
 					</span>
 					<span className='Settings-overflow-dot'></span>
 				</div>
+				: <div id='Settings-AccountPlus-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={props.accessUserLoginClick}>
+					<AccountPlusIcon />
+				</div> }
 			</section>
+			{ (props.user !== null) ?
 			<section id='Overflow-section' className={'positionabs' + ((menuOpen) ? ' open' :'')}>
 				<div id='Overflow-screen' className='positionabs' onClick={()=>setMenu(false)}></div>
 				<article id='Overflow-popup' className='displayflex flexcol marginauto popup popup-shadow'>
 					<h3 className='Overflow-row header-row displayflex positionrel'>
 						<div className="Overflow-row-title displayflex">
-						{ (props.user === null) ? 
-							<span className='bigfont bigfont-height bold4 marginauto-height' onClick={props.accessUserLoginClick}>Log In</span>
-							: <div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
-						}
+							<div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
 						</div>
 						<div className='Overflow-row-icon displayflex' onClick={()=>setMenu(false)}>
 							<React.Suspense fallback={<></>}>
@@ -82,6 +101,7 @@ const SettingsBar = (props) => {
 							</React.Suspense>
 						</div>
 					</h3>
+					
 					<div className='Overflow-row displayflex positionrel'>
 						<div className='Overflow-row-title displayflex'>
 							<span className='medfont medfont-height marginauto-height'>Theme</span>
@@ -168,9 +188,14 @@ const SettingsBar = (props) => {
 							</div>
 						</div>
 					</div>
+
+					<div className='Overflow-bottom-row displayflex positionrel'>
+						<button className='solid-button red-button smallfont' onClick={_signout}>Sign out</button>
+					</div>
 					
 				</article>
 			</section>
+			: null }
 		</article>
 	);
 

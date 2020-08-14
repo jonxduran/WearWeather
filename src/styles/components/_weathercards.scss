@@ -128,6 +128,10 @@
 				content: '°';
 				position: absolute;
 			}
+
+			@media screen and (max-width: $fixed-med-mobile-width) {
+				margin: 0 1rem;
+			}
 		}
 	}
 
@@ -138,13 +142,15 @@
 		left: 0;
 
 		.d3-graph {
-			/* width: 100%; */
 			width: calc(100% - 10rem);
 			height: 100%;
 			margin-left: 4rem;
 			> svg {
 				width: 100%;
 				height: 100%;
+			}
+			@media screen and (max-width: $fixed-med-mobile-width) {
+				width: calc(100% - 9rem);
 			}
 		}
 	}
