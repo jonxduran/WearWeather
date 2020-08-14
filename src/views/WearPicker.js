@@ -85,8 +85,9 @@ const WearPicker = (props) => {
 				</> : <article id='NoSelectedCards' className='displayflex flexcol nonselect'>
 						<p className='marginauto medfont'>No Clothes Selected</p>
 				</article> }
-				
-			</section> 
+			</section>
+
+			<span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
 
 		</section>
 	)

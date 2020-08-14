@@ -43,29 +43,27 @@ const WearSuggester = (props) => {
 	return (
 		<section id='WearSuggester' className='displayflex flexcol'>
 			<h3 className='Wear-header biggerfont bold4'>Suggested for you</h3>
-			
-				{ (null===suggestedClothes) ?
+			{ (null===suggestedClothes) ?
+				<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
+					<div className='loadingcard displayflex'>
+						<p className='marginauto medfont'>loading</p>
+					</div>
+				</section> :
+				(suggestedClothes.length > 0) ?
+				<>
 					<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
-						<div className='loadingcard displayflex'>
-							<p className='marginauto medfont'>loading</p>
-						</div>
-					</section> :
-					(suggestedClothes.length > 0) ?
-					<>
-						<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
-							{ suggestedClothes.map((clo, i) => {
-								return <SuggestedClothingItem data={clo} key={i} editCloth={(cloth)=>editClothing(cloth, i)} addrem={'Add'} />
-							}) }
-						</section>
-						<article className='Wear-submit-container displayflex positionrel'>
-							<button className='solid-button large smallfont' onClick={getNewSuggested}>Suggest New Clothes</button>
-						</article>
-					</>
-					: <article id='NoSuggestedClothes' className='displayflex flexcol nonselect'>
-						<p className='marginauto-height medfont'>No Suggested Clothes Available</p>
+						{ suggestedClothes.map((clo, i) => {
+							return <SuggestedClothingItem data={clo} key={i} editCloth={(cloth)=>editClothing(cloth, i)} addrem={'Add'} />
+						}) }
+					</section>
+					<article className='Wear-submit-container displayflex positionrel'>
+						<button className='solid-button large smallfont' onClick={getNewSuggested}>Suggest New Clothes</button>
 					</article>
-				}
-			<span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
+				</>
+				: <article id='NoSuggestedClothes' className='displayflex flexcol nonselect'>
+					<p className='marginauto-height medfont'>No Suggested Clothes Available</p>
+				</article>
+			}
 		</section>
 	);
 }
