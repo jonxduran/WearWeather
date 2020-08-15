@@ -6,7 +6,8 @@ const CitySelector = (props) => {
 
 	const cityInputRef = useRef();
 
-	const _cityCheck = (city) => {
+	const _citySubmit = (e) => {
+		const city = cityInputRef.current.value;
 		console.log('_cityCheck for ', city);
 		let match = false;
 		if (null !== props.weather && props.weather.length > 0) {
@@ -41,20 +42,22 @@ const CitySelector = (props) => {
 			alert('City already added, select a new city');
 			cityInputRef.current.value = '';
 		};
-	}
+		e.preventDefault();
+	};
 
-	return (<article id='CitySelector' className='card card-shadow displayflex flexcol marginauto'>
+	return (<article id='CitySelector' className='card fluent-card card-shadow displayflex flexcol marginauto'>
 		<header className='card-header card-row'>
 			<span className='biggerfont'>Select a City</span>
 		</header>
-		<section className='card-row displayflex flexcol'>
-			<input id='CityInput' className='outline-input biggerfont-height' type='text' name='zip' ref={cityInputRef}></input>
-		</section>
-		<section className='card-row displayflex'>
-			<button className='outline-button green-button marginauto nonselect' onClick={()=>_cityCheck(cityInputRef.current.value)}>Submit</button>
-		</section>
+		<form onSubmit={_citySubmit} action=''>
+			<section className='card-row displayflex flexcol'>
+				<input id='CityInput' className='outline-input biggerfont-height' type='text' name='zip' ref={cityInputRef}></input>
+			</section>
+			<section className='card-row displayflex'>
+				<input className='outline-button green-button marginauto nonselect' type='submit' value='Submit'></input>
+			</section>
+		</form>
 	</article>);
-
 };
 
 
