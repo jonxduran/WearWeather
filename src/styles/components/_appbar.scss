@@ -198,6 +198,10 @@
 			box-shadow: none !important;
 		}
 
+		* {
+			color: $text-primary-color;
+		}
+
 		.firebaseui-idp-list {
 			li:first-child button {
 				background-color: rgba(0, 0, 0, 0) !important;
@@ -220,6 +224,12 @@
 			button {
 				box-shadow: none !important;
 			}
+		}
+
+		input {
+			width: calc(100% - 1.2rem);
+			height: 3rem;
+			padding: 0.2rem 0.6rem;
 		}
 	}
 
