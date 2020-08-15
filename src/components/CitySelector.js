@@ -54,7 +54,7 @@ const CitySelector = (props) => {
 				<input id='CityInput' className='outline-input biggerfont-height' type='text' name='zip' ref={cityInputRef}></input>
 			</section>
 			<section className='card-row displayflex'>
-				<input className='outline-button green-button marginauto nonselect' type='submit' value='Submit'></input>
+				<input style={{margin:'1rem 0 0 auto'}} className='outline-button green-button nonselect' type='submit' value='Submit'></input>
 			</section>
 		</form>
 	</article>);
