@@ -2,6 +2,7 @@ import React, { useState, useRef, lazy } from 'react';
 /* import MapMarkerIcon from 'mdi-react/MapMarkerIcon'; */
 import RefreshIcon from 'mdi-react/RefreshIcon';
 import AccountPlusIcon from 'mdi-react/AccountPlusIcon';
+import CogIcon from 'mdi-react/CogIcon';
 import firebase from '../status/Firebase';
 
 
@@ -34,6 +35,15 @@ const SettingsBar = (props) => {
 	const themeRef = useRef();
 	const unitRef = useRef();
 	const pronounRef = useRef();
+
+	const _overlayCheck = function(bool) {
+		if (menuOpen) {
+			document.querySelector('html').classList.remove('locked');
+		} else {
+			document.querySelector('html').classList.add('locked');
+		};
+		setMenu(bool);
+	};
 
 	const _themeClick = function(thm) {
 		props.sendNewTheme(thm);
@@ -74,28 +84,23 @@ const SettingsBar = (props) => {
 				<div id='Settings-refresh-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={_refreshClick}>
 					<RefreshIcon />
 				</div>
-				{ (props.user !== null) ?
-				<div id='Settings-overflow-icon' className={'Settings-icon displayflex flexcol positionrel' + ((menuOpen) && ' open')} onClick={()=>setMenu(!menuOpen)}>
-					<span className='Settings-overflow-dot'></span>
-					<span className='Settings-overflow-line-container displayflex marginauto positionrel'>
-						<span className='Settings-overflow-line positionabs'></span>
-						<span className='Settings-overflow-line positionabs'></span>
-					</span>
-					<span className='Settings-overflow-dot'></span>
-				</div>
-				: <div id='Settings-AccountPlus-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={props.accessUserLoginClick}>
+				{ (props.user === null) ? <div id='Settings-AccountPlus-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={props.accessUserLoginClick}>
 					<AccountPlusIcon />
-				</div> }
+				</div> : null }
+				<div id='Settings-cog-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={()=>_overlayCheck(!menuOpen)}>
+					<CogIcon />
+				</div>
 			</section>
-			{ (props.user !== null) ?
+			
 			<section id='Overflow-section' className={'positionabs' + ((menuOpen) ? ' open' :'')}>
-				<div id='Overflow-screen' className='positionabs' onClick={()=>setMenu(false)}></div>
+				<div id='Overflow-screen' className='positionabs' onClick={()=>_overlayCheck(false)}></div>
 				<article id='Overflow-popup' className='displayflex flexcol marginauto popup popup-shadow'>
 					<h3 className='Overflow-row header-row displayflex positionrel'>
 						<div className="Overflow-row-title displayflex">
-							<div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
+							{ (props.user !== null) ? <div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
+								: <div className='biggerfont biggerfont-height bold4 marginauto-height'>Settings</div> }
 						</div>
-						<div className='Overflow-row-icon displayflex' onClick={()=>setMenu(false)}>
+						<div className='Overflow-row-icon displayflex' onClick={()=>_overlayCheck(false)}>
 							<React.Suspense fallback={<></>}>
 								{<CloseIcon />}
 							</React.Suspense>
@@ -162,6 +167,8 @@ const SettingsBar = (props) => {
 						</div>
 					</div>
 
+					{ (props.user !== null) ?
+					<>
 					<div className='Overflow-row displayflex positionrel'>
 						<div className='Overflow-row-title displayflex'>
 							<span className='medfont medfont-height marginauto-height'>Pronoun</span>
@@ -192,10 +199,11 @@ const SettingsBar = (props) => {
 					<div className='Overflow-bottom-row displayflex positionrel'>
 						<button className='solid-button red-button smallfont' onClick={_signout}>Sign out</button>
 					</div>
+					</>
+					: null }
 					
 				</article>
 			</section>
-			: null }
 		</article>
 	);
 

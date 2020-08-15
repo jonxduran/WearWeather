@@ -8,12 +8,14 @@ const Navbar = (props) => {
 	const [userLoginOpen, setUserLoginOpen] = useState(false);
 
 	const _accessUserLogin = () => {
+		document.querySelector('html').classList.add('locked');
 		setUserLoginOpen(true);
 	};
 
 	const _closeUserLogin = () => {
+		document.querySelector('html').classList.remove('locked');
 		setUserLoginOpen(false);
-	}
+	};
 
 	return (
 		<nav id='App-Navbar' className={'bigfont ' + props.color}>
