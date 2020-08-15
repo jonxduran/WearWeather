@@ -81,7 +81,7 @@
 
 			#CurrentWeather-min {
 				top: 2rem;
-				right: -8rem;
+				right: -7rem;
 				@media screen and (max-width: $fixed-large-mobile-width) {
 					font-size: 8vw !important;
 					line-height: 8vw !important;
@@ -130,7 +130,7 @@
 			}
 
 			@media screen and (max-width: $fixed-med-mobile-width) {
-				margin: 0 1rem;
+				margin: 0 0.2rem;
 			}
 		}
 	}
