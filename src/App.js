@@ -18,7 +18,7 @@ const App = (props) => {
 
 	const initUserSettings = getInitUserSettings(props.user);
 	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
-	const weatherCodeObj = (null !== initWeatherCheck[0][0]) ? WeatherHandler.weatherDecoder(initWeatherCheck[0][0]['currentWeather']['weather'][0]['id']) : WeatherHandler.weatherDecoder(800);
+	const weatherCodeObj = ((null !== initWeatherCheck[0]) && (null !== initWeatherCheck[0][0])) ? WeatherHandler.weatherDecoder(initWeatherCheck[0][0]['currentWeather']['weather'][0]['id']) : WeatherHandler.weatherDecoder(800);
 	/* const weatherCodeObj = WeatherHandler.weatherDecoder(303); */
 	const initState = {
 		user: props.user,
