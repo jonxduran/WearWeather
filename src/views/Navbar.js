@@ -8,12 +8,12 @@ const Navbar = (props) => {
 	const [userLoginOpen, setUserLoginOpen] = useState(false);
 
 	const _accessUserLogin = () => {
-		document.querySelector('html').classList.add('locked');
+		/* document.querySelector('html').classList.add('locked'); */
 		setUserLoginOpen(true);
 	};
 
 	const _closeUserLogin = () => {
-		document.querySelector('html').classList.remove('locked');
+		/* document.querySelector('html').classList.remove('locked'); */
 		setUserLoginOpen(false);
 	};
 

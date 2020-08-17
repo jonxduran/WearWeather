@@ -74,6 +74,7 @@
 				top: 2rem;
 				left: -8rem;
 				@media screen and (max-width: $fixed-large-mobile-width) {
+					left: -6rem;
 					font-size: 8vw !important;
 					line-height: 8vw !important;
 				}
@@ -83,6 +84,7 @@
 				top: 2rem;
 				right: -7rem;
 				@media screen and (max-width: $fixed-large-mobile-width) {
+					right: -5rem;
 					font-size: 8vw !important;
 					line-height: 8vw !important;
 				}
@@ -140,6 +142,9 @@
 		height: 26rem;
 		top: 12rem;
 		left: 0;
+		@media screen and (max-width: $fixed-med-mobile-width) {
+			height: 24rem;
+		}
 
 		.d3-graph {
 			width: calc(100% - 10rem);
@@ -185,7 +190,7 @@
 				width: 20rem;
 			}
 			@media screen and (max-width: $fixed-small-mobile-width) {
-				width: 16rem;
+				width: 15rem;
 			}
 			@media screen and (max-width: $fixed-tiny-mobile-width) {
 				width: 14rem;
