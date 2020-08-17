@@ -1,6 +1,6 @@
 {
 	"name": "wear-weather",
-	"version": "0.5.0",
+	"version": "1.0.0",
 	"private": true,
 	"homepage": "https://jonxduran.github.io/WearWeather/",
 	"dependencies": {

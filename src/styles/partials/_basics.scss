@@ -193,6 +193,16 @@
 	font-weight: 200 !important;
 }
 
+.color2 {
+	color: $text-secondary-color;
+}
+.color3 {
+	color: $text-tertiary-color;
+}
+.color-opposite {
+	color: $text-opposite-color;
+}
+
 
 .shadow-top {
 	box-shadow: -2px -2px 5px $light-shadow;

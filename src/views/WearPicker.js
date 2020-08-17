@@ -74,7 +74,7 @@ const WearPicker = (props) => {
 			<section id='PickedWear-section'>
 				<h3 className='Wear-header biggerfont bold4'>Today's Outfit</h3>
 				{ (selectedClothes.length > 0) ? <>
-					<section id='PickedWear-container' className='displayflex flexwrap horz-scroll'>
+					<section id='PickedWear-container' className='displayflex horz-scroll'>
 						{ selectedClothes.map((selcloth, i) => {
 							return <ClothingItem key={i} data={selcloth} editCloth={(cloth,action)=>editClothing(cloth, action)} addrem={'Remove'} />
 						}) }

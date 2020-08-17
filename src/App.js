@@ -143,7 +143,9 @@ const App = (props) => {
 							{ (null !== appState.user && null !== appState.weather) && <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} /> }
 							</> : <span>loading</span>
 						}
-						<span id='credits' className='smallfont' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></span>
+						<article id='CreditsSection' className='displayflex'>
+							<span id='credits' className='smallfont color2' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></span>
+						</article>
 					</article>
 					<section id='App-main-blur-background' className='positionfixed'></section>
 					<section id='App-main-weather-background' className='positionfixed'>

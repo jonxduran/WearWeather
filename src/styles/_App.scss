@@ -237,11 +237,15 @@
 	margin: auto;
 }
 
-#credits {
-	width: 100% !important;
+#CreditsSection {
+	width: 100%;
 	max-width: 90rem;
-	margin: 0 auto 4rem;
-	a {
-		color: $theme-blue-dark;
+	margin: 0 auto;
+
+	#credits {
+		margin: 0 0 4rem auto;
+		a {
+			color: $theme-blue-dark;
+		}
 	}
 }
