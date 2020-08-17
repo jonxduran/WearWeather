@@ -51,20 +51,20 @@
 
 
 .herofont {
-	font-size:  14rem;
-	line-height: 14rem;
+	font-size:  13rem;
+	line-height: 13rem;
 	padding-bottom: 1rem;
-	@media screen and (max-width: $fixed-large-mobile-width) {
-		font-size: 20vw !important;
-		line-height: 20vw;
+	@media screen and (max-width: $large-mobile-width) {
+		font-size: 22vw !important;
+		line-height: 22vw !important;
 	}
 }
 .herofont:after {
 	font-size:  9rem;
 	line-height: 10rem;
-	@media screen and (max-width: $fixed-large-mobile-width) {
+	@media screen and (max-width: $large-mobile-width) {
 		font-size: 16vw !important;
-		line-height: 16vw;
+		line-height: 16vw !important;
 	}
 }
 .hugefont {
@@ -116,6 +116,59 @@
 .smallfont-height {
 	height: 1.2rem !important;
 	line-height: 1.1rem !important;
+}
+
+@media screen and (max-width: $large-mobile-width) {
+	.hugefont {
+		font-size: 4rem !important;
+	}
+	.biggerfont {
+		font-size: 2.8rem !important;
+	}
+	.bigfont {
+		font-size: 2.4rem !important;
+	}
+	.medfont {
+		font-size: 2rem !important;
+	}
+	.smallfont {
+		font-size: 1.5rem !important;
+	}
+	.smallerfont {
+		font-size: 1.2rem !important;
+	}
+	.tinyfont {
+		font-size: 1.1rem !important;
+	}
+	
+	.hugefont-height {
+		height: 4rem !important;
+		line-height: 3.8rem !important;
+	}
+	.biggerfont-height {
+		height: 2.8rem !important;
+		line-height: 2.6rem !important;
+	}
+	.bigfont-height {
+		height: 2.4rem !important;
+		line-height: 2.2rem !important;
+	}
+	.medfont-height {
+		height: 2rem !important;
+		line-height: 1.8rem !important;
+	}
+	.smallfont-height {
+		height: 1.5rem !important;
+		line-height: 1.4rem !important;
+	}
+	.smallfont-height {
+		height: 1.2rem !important;
+		line-height: 1.1rem !important;
+	}
+	.smallfont-height {
+		height: 1.1rem !important;
+		line-height: 1rem !important;
+	}
 }
 
 .bold8 {

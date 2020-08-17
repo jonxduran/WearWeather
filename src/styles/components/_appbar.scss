@@ -61,7 +61,7 @@
 		background-color: $popup-background-color;
 		padding: 1rem 2rem;
 		z-index: 2;
-		@media screen and (max-width: $fixed-med-mobile-width) {
+		@media screen and (max-width: $med-mobile-width) {
 			width: calc(100% - 4rem);
 		}
 	}
@@ -100,7 +100,7 @@
 			cursor: pointer;
 		}
 		
-		@media screen and (max-width: $fixed-med-mobile-width) {
+		@media screen and (max-width: $med-mobile-width) {
 			flex-direction: column;
 			height: 9rem;
 			margin-bottom: 2rem;
@@ -156,7 +156,7 @@
 		border: 1px $border-primary-color solid;
 		background-color: $body-secondary-color;
 		box-sizing: border-box;
-		@media screen and (max-width: $fixed-med-mobile-width) {
+		@media screen and (max-width: $med-mobile-width) {
 			height: 42rem;
 		}
 	}

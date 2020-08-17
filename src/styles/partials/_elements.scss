@@ -10,7 +10,7 @@
 		padding: 4rem;
 	}
 	box-sizing: border-box;
-	@media screen and (max-width: $fixed-large-mobile-width) {
+	@media screen and (max-width: $large-mobile-width) {
 		padding: 2rem !important;
 	}
 
@@ -53,7 +53,7 @@
 }
 
 .three-card-row {
-	@media screen and (min-width: $fixed-large-mobile-width+1) {
+	@media screen and (min-width: $large-mobile-width+1) {
 		.card {
 			width: calc(33% - 1.2rem);
 			margin: 1rem;
@@ -66,7 +66,7 @@
 			margin-right: 0.1rem;
 		}
 	}
-	@media screen and (max-width: $fixed-large-mobile-width) {
+	@media screen and (max-width: $large-mobile-width) {
 		.card {
 			width: calc(50% - 1.04rem);
 			margin: 1rem;
@@ -78,7 +78,7 @@
 			margin-right: 0;
 		}
 	}
-	@media screen and (max-width: $fixed-small-mobile-width) {
+	@media screen and (max-width: $small-mobile-width) {
 		.card {
 			width: calc(100% - 1.04rem) !important;
 			margin: 1rem !important;

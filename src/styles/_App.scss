@@ -141,10 +141,10 @@
 	margin: auto auto 6rem;
 	background: none;
 	z-index: 3;
-	@media screen and (max-width: $fixed-tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		max-width: 90rem;
 	}
-	@media screen and (max-width: $fixed-small-mobile-width) {
+	@media screen and (max-width: $small-mobile-width) {
 		width: calc(100% - 2rem);
 	}
 }

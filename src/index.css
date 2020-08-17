@@ -24,7 +24,7 @@ body {
 }
 @media screen and (max-width: 400px) {
 	body {
-		min-width: 34rem;
+		min-width: 32rem;
 	}
 }
 

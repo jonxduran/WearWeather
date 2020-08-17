@@ -53,15 +53,16 @@
 		#CurrentWeather-circle {
 			width: 50vw;
 			height: 50vw;
-			max-width: 30rem;
-			max-height: 30rem;
+			max-width: 28rem;
+			max-height: 28rem;
 			padding: 2rem;
 			border-radius: 40rem !important;
 			margin: 3rem auto 1rem;
 			border-width: 0.3rem !important;
-			@media screen and (min-width: $tablet-width) {
-				width: 40rem;
-				height: 40rem;
+
+			@media screen and (max-width: $large-mobile-width) {
+				max-width: 26rem;
+				max-height: 26rem;
 			}
 	
 			.temperature-container {
@@ -73,7 +74,7 @@
 			#CurrentWeather-max {
 				top: 2rem;
 				left: -8rem;
-				@media screen and (max-width: $fixed-large-mobile-width) {
+				@media screen and (max-width: $large-mobile-width) {
 					left: -6rem;
 					font-size: 8vw !important;
 					line-height: 8vw !important;
@@ -83,7 +84,7 @@
 			#CurrentWeather-min {
 				top: 2rem;
 				right: -7rem;
-				@media screen and (max-width: $fixed-large-mobile-width) {
+				@media screen and (max-width: $large-mobile-width) {
 					right: -5rem;
 					font-size: 8vw !important;
 					line-height: 8vw !important;
@@ -131,7 +132,10 @@
 				position: absolute;
 			}
 
-			@media screen and (max-width: $fixed-med-mobile-width) {
+			@media screen and (max-width: $tablet-width) {
+				margin: 0 1rem;
+			}
+			@media screen and (max-width: $med-mobile-width) {
 				margin: 0 0.2rem;
 			}
 		}
@@ -142,7 +146,7 @@
 		height: 26rem;
 		top: 12rem;
 		left: 0;
-		@media screen and (max-width: $fixed-med-mobile-width) {
+		@media screen and (max-width: $med-mobile-width) {
 			height: 24rem;
 		}
 
@@ -154,7 +158,7 @@
 				width: 100%;
 				height: 100%;
 			}
-			@media screen and (max-width: $fixed-med-mobile-width) {
+			@media screen and (max-width: $med-mobile-width) {
 				width: calc(100% - 9rem);
 			}
 		}
@@ -183,40 +187,53 @@
 	
 		.ExtendedWeather-day {
 			width: 32rem;
-			@media screen and (max-width: $fixed-large-mobile-width) {
-				width: 26rem;
+			@media screen and (max-width: $large-tablet-width) {
+				width: 28rem;
 			}
-			@media screen and (max-width: $fixed-med-mobile-width) {
-				width: 20rem;
+			@media screen and (max-width: $tablet-width) {
+				width: 25rem;
 			}
-			@media screen and (max-width: $fixed-small-mobile-width) {
+			@media screen and (max-width: $large-mobile-width) {
+				width: 18rem;
+			}
+			@media screen and (max-width: $med-mobile-width) {
 				width: 15rem;
 			}
-			@media screen and (max-width: $fixed-tiny-mobile-width) {
-				width: 14rem;
+			/* @media screen and (max-width: $small-mobile-width) {
+				width: 15rem;
+			} */
+			@media screen and (max-width: $tiny-mobile-width) {
+				width: 13rem;
 			}
 		}
 		.ExtendedWeather-icon {
 			width: 3rem;
-			margin-right: 2rem;
+			margin-right: 4rem;
+			@media screen and (max-width: $large-mobile-width) {
+				margin-right: 2rem;
+			}
 		}
 		.ExtendedWeather-description {
 			display: flex;
+			color: $text-secondary-color;
 			/* font-style: italic; */
-			@media screen and (max-width: $fixed-med-mobile-width) {
+			@media screen and (max-width: $large-mobile-width) {
 				display: none;
 			}
 		}
 		.ExtendedWeather-temp {
 			width: 15rem;
 			margin-left: auto;
-			@media screen and (max-width: $fixed-tablet-width) {
+			@media screen and (max-width: $tablet-width) {
 				width: 12rem;
 			}
-			@media screen and (max-width: $fixed-small-mobile-width) {
+			@media screen and (max-width: $med-mobile-width) {
 				width: 9rem;
 			}
-			@media screen and (max-width: $fixed-tiny-mobile-width) {
+			@media screen and (max-width: $small-mobile-width) {
+				width: 8rem;
+			}
+			@media screen and (max-width: $tiny-mobile-width) {
 				width: 7rem;
 			}
 		}
