@@ -87,8 +87,7 @@ const WearPicker = (props) => {
 				</article> }
 			</section>
 
-			<span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span>
-
+			{/* <span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span> */}
 		</section>
 	)
 

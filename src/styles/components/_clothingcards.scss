@@ -27,7 +27,7 @@
 			width: calc(100% - 5.7rem);
 			height: calc(100% - 6rem);
 			z-index: 2;
-			transition: width $fast-animation ease-out;
+			transition: width $fast-animation ease-out, height $fast-animation ease-in-out;
 		}
 		
 		.card-icon-container {
@@ -48,14 +48,14 @@
 
 		.card-color-picker-container {
 			width: calc(100% - 4rem);
-			height: calc(100% - 15rem);
+			height: 0rem;
 			bottom: 2rem;
 			right: 2rem;
 			background-color: $fluent-background-color-blur;
 			backdrop-filter: saturate(180%) blur(2px);
 			opacity: 0;
 			z-index: 1;
-			transition: opacity $fast-animation ease-in-out, z-index $fast-animation ease-in-out;
+			transition: height $fast-animation ease-in-out, opacity $fast-animation ease-in-out, z-index $fast-animation ease-in-out;
 
 			.card-color-picker-close {
 				top: 0;
@@ -143,6 +143,7 @@
 				height: 10rem;
 			}
 			.card-color-picker-container {
+				height: calc(100% - 15rem);
 				opacity: 1;
 				z-index: 3;
 			}

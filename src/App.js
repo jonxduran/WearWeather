@@ -53,10 +53,12 @@ const App = (props) => {
 		console.log('_setNewCity current weather: ', appState.weather);
 		console.log('new weather for city: ', cityWeather);
 		const updatedWeather = WeatherHandler.addToWeather(appState.weather, cityWeather);
+		const updatedWeatherCodeObj = ((null !== updatedWeather) && (null !== updatedWeather[0])) ? WeatherHandler.weatherDecoder(updatedWeather[0]['currentWeather']['weather'][0]['id']) : WeatherHandler.weatherDecoder(800);
 		const newState = {...appState};
 		newState.weatherLoading = false;
 		newState.weatherCached = false;
 		newState.weather = updatedWeather;
+		newState.weatherCodeObj = updatedWeatherCodeObj;
 		setAppState(newState);
 	};
 
@@ -141,6 +143,7 @@ const App = (props) => {
 							{ (null !== appState.user && null !== appState.weather) && <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} /> }
 							</> : <span>loading</span>
 						}
+						<span id='credits' className='smallfont' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></span>
 					</article>
 					<section id='App-main-blur-background' className='positionfixed'></section>
 					<section id='App-main-weather-background' className='positionfixed'>
@@ -170,8 +173,10 @@ const App = (props) => {
 					</section>
 				</main>
 				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} userSettings={appState.userSettings} sendNewSetting={(ky, vl)=>_setNewSetting(ky, vl)} refreshWeather={_tryUpdateWeather} />
-			</> : <main id='App-main' className='displayflex positionrel'>
-				<CitySelector weather={appState.weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} /> 
+			</> : <main id='App-main' className='full displayflex positionrel'>
+				<article id='App-main-inner' className='displayflex flexcol marginauto'>
+					<CitySelector weather={appState.weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} />
+				</article>
 			</main> }
 		</div>
 	);

@@ -1,11 +1,16 @@
 
 #App-main {
 	width: 100%;
-	height: 100%;
+	/* height: 100%; */
+	height: calc(100% - 4px);
 	background-color: $body-primary-color;
 	color: $text-primary-color;
 	overflow-y: auto;
+	padding-top: 4px;
 	z-index: 1;
+	&.full {
+		height: 100vh;
+	}
 
 	&.light {
 		background-color: $body-primary-color-light;
@@ -27,13 +32,15 @@
 	}
 
 	#App-main-blur-background {
-		width: calc(100% - 1.5rem);
+		/* width: calc(100% - 1.5rem); */
+		width: 100%;
 		height: 100%;
 		backdrop-filter: blur(4px);
 		z-index: 2;
 	}
 	#App-main-weather-background {
-		width: calc(100% - 1.5rem);
+		/* width: calc(100% - 1.5rem); */
+		width: 100%;
 		height: 100%;
 		overflow: hidden;
 		z-index: 1;
@@ -134,7 +141,7 @@
 	margin: auto auto 6rem;
 	background: none;
 	z-index: 3;
-	@media screen and (max-width: $fixed-tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		max-width: 90rem;
 	}
 	@media screen and (max-width: $small-mobile-width) {
@@ -155,10 +162,14 @@
 	&:last-child {
 		padding-bottom: 3rem !important;
 	}
+	@media screen and (max-width: $med-mobile-width) {
+		padding-bottom: 8rem;
+	}
 }
 
 #CitySelector {
-	width: 40rem;
+	width: 100%;
+	max-width: 40rem;
 	height: auto;
 	padding: 2rem 3rem;
 }
@@ -226,3 +237,11 @@
 	margin: auto;
 }
 
+#credits {
+	width: 100% !important;
+	max-width: 90rem;
+	margin: 0 auto 4rem;
+	a {
+		color: $theme-blue-dark;
+	}
+}

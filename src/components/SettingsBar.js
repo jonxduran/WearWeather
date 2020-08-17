@@ -92,9 +92,9 @@ const SettingsBar = (props) => {
 				</div>
 			</section>
 			
-			<section id='Overflow-section' className={'positionabs' + ((menuOpen) ? ' open' :'')}>
+			<section id='Overflow-section' className={'positionfixed' + ((menuOpen) ? ' open' :'')}>
 				<div id='Overflow-screen' className='positionabs' onClick={()=>_overlayCheck(false)}></div>
-				<article id='Overflow-popup' className='displayflex flexcol marginauto popup popup-shadow'>
+				<article id='Overflow-popup' className='displayflex flexcol marginauto positionrel popup popup-shadow'>
 					<h3 className='Overflow-row header-row displayflex positionrel'>
 						<div className="Overflow-row-title displayflex">
 							{ (props.user !== null) ? <div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
