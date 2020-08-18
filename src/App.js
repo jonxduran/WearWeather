@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy } from 'react';
 import './styles/ThemeSwitcher.scss';
-
 import { getInitUserSettings, getSettings, setNewSetting } from './status/SettingsHandler';
 import { handlerToggleTheme } from './status/ThemeHandler';
 import * as WeatherHandler from './status/WeatherHandler';
-
 import { getAllWeatherData } from './api/WeatherApi';
 import Navbar from './views/Navbar';
 import WeatherDaily from './views/WeatherDaily';
 import WearSection from './views/WearSection';
 import CitySelector from './components/CitySelector';
+const AccountIcon = lazy(() => import('mdi-react/AccountIcon'));
 
 
 const App = (props) => {
@@ -140,11 +139,19 @@ const App = (props) => {
 					<article id='App-main-inner' className='displayflex flexcol'>
 						{ (appState.weatherLoading === false) ? <>
 							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} weatherCodeObj={appState.weatherCodeObj} />
-							{ (null !== appState.user && null !== appState.weather) && <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} /> }
+							{ (null !== appState.user && null !== appState.weather) ? <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} />
+							: <section id='WearInformer-section'>
+								<article class='card largecard fluent-card card-shadow displayflex'>
+									<React.Suspense fallback={<></>}>
+										{<AccountIcon />}
+									</React.Suspense>
+									<p className='medfont marginauto-height nonselect'>Sign in below to start planning your next outfit</p>
+								</article>
+							</section> }
 							</> : <span>loading</span>
 						}
-						<article id='CreditsSection' className='displayflex'>
-							<span id='credits' className='smallfont color2' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></span>
+						<article id='Credits-section' className='displayflex'>
+							<p id='credits' className='smallfont color3' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></p>
 						</article>
 					</article>
 					<section id='App-main-blur-background' className='positionfixed'></section>

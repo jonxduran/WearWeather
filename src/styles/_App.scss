@@ -237,7 +237,28 @@
 	margin: auto;
 }
 
-#CreditsSection {
+#WearInformer-section {
+	width: 100%;
+	max-width: 90rem;
+	margin: 3rem auto 10rem;
+	@media screen and (max-width: $med-mobile-width) {
+		margin-top: 1rem;
+	}
+
+	svg {
+		width: 3rem;
+		min-width: 3rem;
+		height: 2.8rem;
+		margin-right: 1.2rem;
+		@media screen and (max-width: $large-mobile-width) {
+			width: 2.6rem;
+			min-width: 2.6rem;
+			height: 2.5rem;
+		}
+	}
+}
+
+#Credits-section {
 	width: 100%;
 	max-width: 90rem;
 	margin: 0 auto;
