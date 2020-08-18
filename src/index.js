@@ -9,7 +9,7 @@ import firebase from './status/Firebase';
 
 /* Check for cookie here */
 /* let initUserId = '00000001'; */
-console.log(process.env);
+/* console.log(process.env); */
 let user = null;
 /* let myFirestore = null; */
 let myFireDatabase = null;

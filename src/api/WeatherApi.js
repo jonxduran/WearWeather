@@ -6,7 +6,7 @@ import EXTENDEDWEATHER from '../assets/sampleExtendedWeather.json'; */
 
 export function getCurrentData(city) {
 	/* return CURRENTWEATHER; */
-	const currentUrl = CONSTANTS.currentForecastUrl + `&q=${city}`;
+	const currentUrl = CONSTANTS.currentForecastUrl + process.env.REACT_APP_WEATHER_APIKEY + `&q=${city}`;
 	return fetch(currentUrl).then(res => {
 		if (!res.ok) {
 			throw Error('currentForecast API error')
@@ -19,7 +19,7 @@ export function getCurrentData(city) {
 
 export function getHourlyData(city) {
 	/* return HOURLYWEATHER; */
-	const hourlyUrl = CONSTANTS.hourlyForecastUrl + `&q=${city}`;
+	const hourlyUrl = CONSTANTS.hourlyForecastUrl + process.env.REACT_APP_WEATHER_APIKEY + `&q=${city}`;
 	return fetch(hourlyUrl).then(res => {
 		if (!res.ok) {
 			throw Error('hourlyForecast API error')
@@ -32,7 +32,7 @@ export function getHourlyData(city) {
 
 export function getExtendedData(city) {
 	/* return EXTENDEDWEATHER; */
-	const extendedUrl = CONSTANTS.extendedForecastUrl + `&q=${city}`;
+	const extendedUrl = CONSTANTS.extendedForecastUrl + process.env.REACT_APP_WEATHER_APIKEY + `&q=${city}`;
 	return fetch(extendedUrl).then(res => {
 		if (!res.ok) {
 			throw Error('extendedForecast API error')

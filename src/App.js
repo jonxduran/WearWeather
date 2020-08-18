@@ -141,7 +141,7 @@ const App = (props) => {
 							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} weatherCodeObj={appState.weatherCodeObj} />
 							{ (null !== appState.user && null !== appState.weather) ? <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} />
 							: <section id='WearInformer-section'>
-								<article class='card largecard fluent-card card-shadow displayflex'>
+								<article className='card largecard fluent-card card-shadow displayflex'>
 									<React.Suspense fallback={<></>}>
 										{<AccountIcon />}
 									</React.Suspense>
@@ -151,7 +151,7 @@ const App = (props) => {
 							</> : <span>loading</span>
 						}
 						<article id='Credits-section' className='displayflex'>
-							<p id='credits' className='smallfont color3' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></p>
+							<p id='credits' className='smallerfont color3' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></p>
 						</article>
 					</article>
 					<section id='App-main-blur-background' className='positionfixed'></section>
