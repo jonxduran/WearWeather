@@ -1,6 +1,6 @@
 {
 	"dailyWeatherUrl": "",
-	"currentForecastUrl": "https://api.openweathermap.org/data/2.5/weather?appid=772386264530ffc4d6ea00e44ac3f7a4",
-	"hourlyForecastUrl": "https://api.openweathermap.org/data/2.5/forecast?appid=772386264530ffc4d6ea00e44ac3f7a4",
-	"extendedForecastUrl": "https://api.openweathermap.org/data/2.5/forecast/daily?appid=772386264530ffc4d6ea00e44ac3f7a4"
+	"currentForecastUrl": "https://api.openweathermap.org/data/2.5/weather?appid=",
+	"hourlyForecastUrl": "https://api.openweathermap.org/data/2.5/forecast?appid=",
+	"extendedForecastUrl": "https://api.openweathermap.org/data/2.5/forecast/daily?appid="
 }

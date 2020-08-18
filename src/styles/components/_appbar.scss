@@ -190,7 +190,7 @@
 			li:last-child button {
 				background-color: $email-signin !important;
 				.firebaseui-idp-text {
-					color: $text-opposite-color !important;
+					color: white !important;
 				}
 				&:hover {
 					background-color: $email-signin-hover !important;
