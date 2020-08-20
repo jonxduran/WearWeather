@@ -1,8 +1,13 @@
 
-
-
 #CurrentWeatherCard-section {
 	width: 100%;
+
+	header {
+		h1, h2, p {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
 
 	#CurrentWeatherCard-description {
 		margin-top: 1rem;
@@ -232,14 +237,14 @@
 				width: 11rem;
 			}
 			@media screen and (max-width: $med-mobile-width) {
-				width: 8rem;
+				width: 9rem;
 			}
 			@media screen and (max-width: $small-mobile-width) {
-				width: 7.5rem;
+				width: 8rem;
 			}
-			@media screen and (max-width: $tiny-mobile-width) {
-				width: 7rem;
-			}
+			/* @media screen and (max-width: $tiny-mobile-width) {
+				width: 8rem;
+			} */
 		}
 		.ExtendedWeather-temp span:first-child {
 			margin: auto auto auto 0;

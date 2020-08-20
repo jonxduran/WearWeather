@@ -34,6 +34,7 @@ let usersClothes = [
 		"weatherId": 800
 	}
 ];
+/* let usersClothes = []; */
 
 export function getClothes(db, temperature, userObject) {
 	if (usersClothes.length > 0) {
@@ -59,7 +60,7 @@ export function getClothes(db, temperature, userObject) {
 const setClothes = function (data, temperature) {
 	const tempHigh = roundNumber(temperature + 8);
 	const tempLow = roundNumber(temperature - 8);
-	console.log(temperature, tempHigh, tempLow);
+	console.log('setClothes temperature, high, low: ', temperature, tempHigh, tempLow);
 	const timeKeys = Object.keys(data);
 	const timeKeysLen = timeKeys.length;
 	let filteredData = [];
@@ -70,7 +71,7 @@ const setClothes = function (data, temperature) {
 			filteredData.push(data[timeKeys[i]]);
 		};
 	};
-	console.log('filteredData: ', filteredData);
+	console.log('setClothes() filteredData: ', filteredData);
 	usersClothes = filteredData;
 	/* return data[timeKeys[0]].clothing; */
 };

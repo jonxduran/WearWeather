@@ -30,7 +30,7 @@ const WearSuggester = (props) => {
 
 	const getSuggestedClothes = function() {
 		getClothes(props.db, props.weather[props.currentCity].currentWeather.main.temp, props.userSettings.userObject).then(newClothes => {
-			/* console.log('New Clothes: ', newClothes); */
+			/* console.log('getSuggestedClothes New Clothes: ', newClothes); */
 			setSuggestedClothes(newClothes);
 		});
 	};
@@ -56,8 +56,8 @@ const WearSuggester = (props) => {
 							return <SuggestedClothingItem data={clo} key={i} editCloth={(cloth)=>editClothing(cloth, i)} addrem={'Add'} />
 						}) }
 					</section>
-					<article className='Wear-submit-container displayflex positionrel'>
-						<button className='solid-button large smallfont' onClick={getNewSuggested}>Suggest New Clothes</button>
+					<article className='single-button-row'>
+						<button className='material-button blue-button large' onClick={getNewSuggested}>Suggest New Clothes</button>
 					</article>
 				</>
 				: <article id='NoSuggestedClothes' className='displayflex flexcol nonselect'>

@@ -258,6 +258,20 @@
 	}
 }
 
+#LogIn-container {
+	width: 100%;
+	max-width: 90rem;
+	height: 4rem;
+	margin: 0 auto;
+	@media screen and (max-width: $large-mobile-width) {
+		height: 3rem;
+	}
+	button {
+		right: 0;
+		top: 1rem;
+	}
+}
+
 #Credits-section {
 	width: 100%;
 	max-width: 90rem;

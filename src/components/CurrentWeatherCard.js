@@ -6,9 +6,9 @@ const CurrentWeatherCard = ({allWeather, scale, currCity, weatherCodeObj}) => {
 	
 	return <section id='CurrentWeatherCard-section' className={'displayflex flexcol marginauto ' + allWeather.currentWeather.weather[currCity].main}>
 		<header className='card-header displayflex flexcol'>
-			<span className='hugefont bold6'>{weekDays[date.getDay()]}</span>
-			<span className='biggerfont bold4'>{allWeather.name}</span>
-			<span id='CurrentWeatherCard-description' className='biggerfont bold3'>{allWeather.currentWeather.weather[0].description}</span>
+			<h1 className='hugefont bold6'>{weekDays[date.getDay()]}</h1>
+			<h2 className='biggerfont bold4'>{allWeather.name}</h2>
+			<p id='CurrentWeatherCard-description' className='biggerfont bold3'>{allWeather.currentWeather.weather[0].description}</p>
 		</header>
 		<article id='CurrentWeatherCard-container' className='displayflex'>
 			<article id='CurrentWeather-circle' className={'card fluent-card card-shadow positionrel ' + weatherCodeObj.color}>

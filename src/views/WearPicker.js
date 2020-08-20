@@ -79,8 +79,8 @@ const WearPicker = (props) => {
 							return <ClothingItem key={i} data={selcloth} editCloth={(cloth,action)=>editClothing(cloth, action)} addrem={'Remove'} />
 						}) }
 					</section>
-					<article id='PickedWear-submit-container' className='Wear-submit-container displayflex positionrel'>
-						<button className='solid-button large teal-button smallfont' onClick={submitClothing}>Submit</button>
+					<article id='PickedWear-submit-container' className='single-button-row'>
+						<button className='material-button large teal-button' onClick={submitClothing}>Save Outfit</button>
 					</article>
 				</> : <article id='NoSelectedCards' className='displayflex flexcol nonselect'>
 						<p className='marginauto medfont'>No Clothes Selected</p>

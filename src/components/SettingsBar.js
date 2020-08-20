@@ -84,7 +84,7 @@ const SettingsBar = (props) => {
 				<div id='Settings-refresh-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={_refreshClick}>
 					<RefreshIcon />
 				</div>
-				{ (props.user === null) ? <div id='Settings-AccountPlus-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={props.accessUserLoginClick}>
+				{ (props.user === null) ? <div id='Settings-AccountPlus-icon' className='Settings-icon displaynone positionrel MDI-container' onClick={props.accessUserLoginClick}>
 					<AccountPlusIcon />
 				</div> : null }
 				<div id='Settings-cog-icon' className='Settings-icon displayflex positionrel MDI-container' onClick={()=>_overlayCheck(!menuOpen)}>
@@ -97,7 +97,7 @@ const SettingsBar = (props) => {
 				<article id='Overflow-popup' className='displayflex flexcol marginauto positionrel popup popup-shadow'>
 					<h3 className='Overflow-row header-row displayflex positionrel'>
 						<div className="Overflow-row-title displayflex">
-							{ (props.user !== null) ? <div className='biggerfont biggerfont-height bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
+							{ (props.user !== null) ? <div className='biggerfont bold4 marginauto-height'>{props.user.displayName}'s Settings</div>
 								: <div className='biggerfont biggerfont-height bold4 marginauto-height'>Settings</div> }
 						</div>
 						<div className='Overflow-row-icon displayflex' onClick={()=>_overlayCheck(false)}>
