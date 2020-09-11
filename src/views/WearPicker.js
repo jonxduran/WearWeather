@@ -41,12 +41,14 @@ const WearPicker = (props) => {
 
 	const submitClothing = function() {
 		const tempNow = new Date();
-		const key = tempNow.getTime() + '_' + roundNumber(props.weather[props.currentCity].currentWeather.main.temp);
+		const tempTime = tempNow.getTime();
+		const key = tempTime + '_' + roundNumber(props.weather[props.currentCity].currentWeather.main.temp);
 		console.log('key: ', key);
 		const submittedClothing = {
 			temperature: props.weather[props.currentCity].currentWeather.main.temp,
 			weatherId: props.weather[props.currentCity].currentWeather.weather[0].id,
-			clothing: selectedClothes
+			clothing: selectedClothes,
+			date: tempTime
 		};
 		console.log('submittedClothing ', submittedClothing);
 	};

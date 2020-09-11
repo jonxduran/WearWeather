@@ -1,11 +1,7 @@
 import CONSTANTS from '../assets/constants.json';
-/* import CURRENTWEATHER from '../assets/sampleCurrentWeather.json';
-import HOURLYWEATHER from '../assets/sampleHourlyWeather.json';
-import EXTENDEDWEATHER from '../assets/sampleExtendedWeather.json'; */
 
 
 export function getCurrentData(city) {
-	/* return CURRENTWEATHER; */
 	const currentUrl = CONSTANTS.currentForecastUrl + process.env.REACT_APP_WEATHER_APIKEY + `&q=${city}`;
 	return fetch(currentUrl).then(res => {
 		if (!res.ok) {
@@ -15,10 +11,9 @@ export function getCurrentData(city) {
 	}).then(res => res.json()).catch(err => {
 		return { 'error': 'Issue getting weather data', 'detailedError': `getCurrentData API fail for ${city}` };
 	});
-}
+};
 
 export function getHourlyData(city) {
-	/* return HOURLYWEATHER; */
 	const hourlyUrl = CONSTANTS.hourlyForecastUrl + process.env.REACT_APP_WEATHER_APIKEY + `&q=${city}`;
 	return fetch(hourlyUrl).then(res => {
 		if (!res.ok) {
@@ -28,10 +23,9 @@ export function getHourlyData(city) {
 	}).then(res => res.json()).catch(err => {
 		return { 'error': 'Issue getting weather data', 'detailedError': `getHourlyData API fail for ${city}` };
 	});
-}
+};
 
 export function getExtendedData(city) {
-	/* return EXTENDEDWEATHER; */
 	const extendedUrl = CONSTANTS.extendedForecastUrl + process.env.REACT_APP_WEATHER_APIKEY + `&q=${city}`;
 	return fetch(extendedUrl).then(res => {
 		if (!res.ok) {
@@ -41,7 +35,7 @@ export function getExtendedData(city) {
 	}).then(res => res.json()).catch(err => {
 		return { 'error': 'Issue getting weather data', 'detailedError': `getExtendedData API fail for ${city}` };
 	});
-}
+};
 
 export function getAllWeatherData(city){
 	return Promise.all([

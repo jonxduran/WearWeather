@@ -117,6 +117,22 @@
 	}
 }
 
+.two-button-row {
+	width: 100%;
+	display: flex;
+	position: relative;
+
+	button {
+		margin: auto 0.75rem;
+		&:first-child {
+			margin-left: auto;
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
 
 .popup {
 	border-radius: 0.4rem;
@@ -179,7 +195,7 @@
 	transition: all $fast-animation ease-in-out;
 
 	&.med {
-		padding: 1.2rem 2.4rem;
+		padding: 1.1rem 2.4rem;
 		font-size: 1.7rem;
 		border-radius: 3rem;
 		@media screen and (max-width: $med-mobile-width) {
@@ -215,6 +231,14 @@
 		&:hover {
 			border-color: $button-teal-hover-border-color;
 			background-color: $button-teal-hover-background-color;
+		}
+	}
+
+	&.faded {
+		cursor: not-allowed !important;
+		opacity: 0.5;
+		&:hover {
+			background-color: $button-default-color-1 !important;
 		}
 	}
 }
