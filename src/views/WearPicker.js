@@ -1,5 +1,6 @@
 import React from 'react';
 import ClothingItem from '../components/ClothingItem';
+import NewClothingItem from '../components/NewClothingItem';
 import { roundNumber } from '../assets/common';
 
 
@@ -65,7 +66,7 @@ const WearPicker = (props) => {
 							<h4 className='bigfont bold4'>{clothcat}</h4>
 							<section id={clothcat+'-container'} className='displayflex horz-scroll'>
 								{ otherClothes[clothcat].map((catcloth, j) => {
-									return <ClothingItem key={j} data={catcloth} addrem={'Add'} editCloth={(cloth,action)=>editClothing(cloth, action)} />
+									return <NewClothingItem key={j} data={catcloth} addrem={'Add'} editCloth={(cloth,action)=>editClothing(cloth, action)} />
 								}) }
 							</section>
 						</section> : null

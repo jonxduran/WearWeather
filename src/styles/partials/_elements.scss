@@ -5,13 +5,16 @@
 }
 
 .card {
-	padding: 3rem;
+	padding: 2rem;
 	&.largecard {
 		padding: 4rem;
+		@media screen and (max-width: $large-mobile-width) {
+			padding: 2rem !important;
+		}
 	}
 	box-sizing: border-box;
 	@media screen and (max-width: $large-mobile-width) {
-		padding: 2rem !important;
+		padding: 1.6rem !important;
 	}
 
 	&.solid-card {
