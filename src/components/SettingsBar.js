@@ -31,6 +31,7 @@ const SettingsBar = (props) => {
 			po.active = true;
 		};
 	});
+	console.log('pronounObj ', pronounObj);
 	const [menuOpen, setMenu] = useState(false);
 	const themeRef = useRef();
 	const unitRef = useRef();

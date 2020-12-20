@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 
-const DressIcon = lazy(() => import('../assets/icons/jsx/Dress'));
+const SundressIcon = lazy(() => import('../assets/icons/jsx/SunDress'));
 const DressShirtIcon = lazy(() => import('../assets/icons/jsx/DressShirt'));
 const JeansIcon = lazy(() => import('../assets/icons/jsx/Jeans'));
 const LongSocksIcon = lazy(() => import('../assets/icons/jsx/LongSocks'));
@@ -14,8 +14,8 @@ const TShirtIcon = lazy(() => import('../assets/icons/jsx/TShirt'));
 
 
 export function getClothingSvg(title, primaryColor, secondaryColor, tertiaryColor) {
-	if (title === 'dress') {
-		return <DressIcon primaryColor={primaryColor} secondaryColor={secondaryColor} />;
+	if (title === 'sundress') {
+		return <SundressIcon primaryColor={primaryColor} secondaryColor={secondaryColor} />;
 	} else if (title === 'dressShirt') {
 		return <DressShirtIcon primaryColor={primaryColor} secondaryColor={secondaryColor} />;
 	} else if (title === 'jeans') {

@@ -49,7 +49,7 @@ const WearSuggester = (props) => {
 
 	return (
 		<section id='WearSuggester' className='displayflex flexcol'>
-			<h3 className='Wear-header biggerfont bold4'>Suggested for you</h3>
+			<h3 className='Wear-header hugefont bold4'>Suggested for you</h3>
 			{ (null===suggestedClothes) ?
 				<section id='SuggestedClothes-container' className='displayflex three-card-row horz-scroll'>
 					<div className='loadingcard displayflex'>
