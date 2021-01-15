@@ -29,7 +29,7 @@ const UserLogin = (props) => {
 			<article id='UserLogin-card' className='displayflex flexcol marginauto'>
 				<section id='FirebaseUI-container' className='displayflex' ref={firebaseUIRef}></section>
 				<div id='UserLogin-close-container' className='displayflex'>
-					<button id='UserLogin-close' className='outline-button red-button' onClick={props.closeClick}>Cancel</button>
+					<button id='UserLogin-close' className='solid-button red-button smallerfont' onClick={props.closeClick}>Cancel</button>
 				</div>
 			</article>
 		</section>

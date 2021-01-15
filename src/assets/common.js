@@ -58,3 +58,7 @@ export function debounce(func, duration) {
 export function roundNumber(num) {
 	return Math.round(num);
 };
+
+export function getRGB(color) {
+	return color.replace(/[^\d,]/g, '').split(',');
+};

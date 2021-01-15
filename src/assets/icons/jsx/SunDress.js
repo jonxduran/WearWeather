@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DressIcon = (props) => {
+const SundressIcon = (props) => {
 	const stylePrimary = (props.primaryColor !== null) ? { fill: props.primaryColor } : null;
 
 	return <svg version="1.1" id="DressIcon" x="0px" y="0px" viewBox="0 0 512 512">
@@ -44,4 +44,4 @@ const DressIcon = (props) => {
 	</svg>
 };
 
-export default DressIcon;
+export default SundressIcon;

@@ -1,4 +1,5 @@
 import React from 'react';
+/* import OldClothingItem from '../components/OldClothingItem'; */
 import ClothingItem from '../components/ClothingItem';
 import { roundNumber } from '../assets/common';
 
@@ -41,12 +42,14 @@ const WearPicker = (props) => {
 
 	const submitClothing = function() {
 		const tempNow = new Date();
-		const key = tempNow.getTime() + '_' + roundNumber(props.weather[props.currentCity].currentWeather.main.temp);
+		const tempTime = tempNow.getTime();
+		const key = tempTime + '_' + roundNumber(props.weather[props.currentCity].currentWeather.main.temp);
 		console.log('key: ', key);
 		const submittedClothing = {
 			temperature: props.weather[props.currentCity].currentWeather.main.temp,
 			weatherId: props.weather[props.currentCity].currentWeather.weather[0].id,
-			clothing: selectedClothes
+			clothing: selectedClothes,
+			date: tempTime
 		};
 		console.log('submittedClothing ', submittedClothing);
 	};
@@ -56,11 +59,11 @@ const WearPicker = (props) => {
 		<section id='WearPicker' className='main-tab displayflex flexcol'>
 			
 			<section id='AllWear-section'>
-				<h3 className='Wear-header biggerfont bold4'>Pick your outfit</h3>
+				<h3 className='Wear-header hugefont bold4'>Pick your outfit</h3>
 				<article id='AllWear-container' className='displayflex flexcol'>
 					{ clothingCategories.map((clothcat, i) => {
 						return (otherClothes[clothcat].length > 0) ? <section id={clothcat+'-section'} key={i}>
-							<h4 className='bigfont bold4'>{clothcat}</h4>
+							<h4 className='biggerfont bold4'>{clothcat}</h4>
 							<section id={clothcat+'-container'} className='displayflex horz-scroll'>
 								{ otherClothes[clothcat].map((catcloth, j) => {
 									return <ClothingItem key={j} data={catcloth} addrem={'Add'} editCloth={(cloth,action)=>editClothing(cloth, action)} />
@@ -72,15 +75,15 @@ const WearPicker = (props) => {
 			</section>
 
 			<section id='PickedWear-section'>
-				<h3 className='Wear-header biggerfont bold4'>Today's Outfit</h3>
+				<h3 className='Wear-header hugefont bold4'>Today's Outfit</h3>
 				{ (selectedClothes.length > 0) ? <>
 					<section id='PickedWear-container' className='displayflex horz-scroll'>
 						{ selectedClothes.map((selcloth, i) => {
 							return <ClothingItem key={i} data={selcloth} editCloth={(cloth,action)=>editClothing(cloth, action)} addrem={'Remove'} />
 						}) }
 					</section>
-					<article id='PickedWear-submit-container' className='Wear-submit-container displayflex positionrel'>
-						<button className='solid-button large teal-button smallfont' onClick={submitClothing}>Submit</button>
+					<article id='PickedWear-submit-container' className='single-button-row'>
+						<button className='material-button large teal-button' onClick={submitClothing}>Save Outfit</button>
 					</article>
 				</> : <article id='NoSelectedCards' className='displayflex flexcol nonselect'>
 						<p className='marginauto medfont'>No Clothes Selected</p>

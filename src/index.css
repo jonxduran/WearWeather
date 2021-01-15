@@ -35,7 +35,7 @@ body {
 
 /* scrollbar */
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 835px) {
 	::-webkit-scrollbar {
 		width: 1.5rem;
 	}

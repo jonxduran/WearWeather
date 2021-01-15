@@ -11,6 +11,12 @@
 			"selected": false
 		}
 	},
+	"outerwear": {
+		
+	},
+	"suits": {
+		
+	},
 	"tops": {
 		"tShirt": {
 			"name": "t-shirt",
@@ -32,22 +38,24 @@
 			"tertiaryColor": null,
 			"selected": false
 		},
-		"dress": {
-			"name": "dress",
-			"title": "dress",
-			"category": "tops",
-			"pronoun": "she",
-			"primaryColor": "rgb(212, 184, 184)",
-			"secondaryColor": null,
-			"tertiaryColor": null,
-			"selected": false
-		},
 		"sweater": {
 			"name": "sweater",
 			"title": "sweater",
 			"category": "tops",
 			"pronoun": "all",
 			"primaryColor": "rgb(103, 129, 103)",
+			"secondaryColor": null,
+			"tertiaryColor": null,
+			"selected": false
+		}
+	},
+	"dresses": {
+		"sundress": {
+			"name": "sundress",
+			"title": "sundress",
+			"category": "dresses",
+			"pronoun": "she",
+			"primaryColor": "rgb(212, 184, 184)",
 			"secondaryColor": null,
 			"tertiaryColor": null,
 			"selected": false
@@ -95,6 +103,9 @@
 			"selected": false
 		}
 	},
+	"accessories": {
+
+	},
 	"tights": {
 		"tights": {
 			"name": "tights",
@@ -118,5 +129,8 @@
 			"tertiaryColor": "rgb(90, 113, 98)",
 			"selected": false
 		}
+	},
+	"shoes": {
+
 	}
 }

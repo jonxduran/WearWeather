@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
 import { getInitUserSettings, getSettings, setNewSetting } from './status/SettingsHandler';
 import { handlerToggleTheme } from './status/ThemeHandler';
@@ -8,7 +8,6 @@ import Navbar from './views/Navbar';
 import WeatherDaily from './views/WeatherDaily';
 import WearSection from './views/WearSection';
 import CitySelector from './components/CitySelector';
-const AccountIcon = lazy(() => import('mdi-react/AccountIcon'));
 
 
 const App = (props) => {
@@ -131,23 +130,25 @@ const App = (props) => {
 		};
 	};
 
+	const _loginClick = () => {
+		if (document.getElementById('Settings-AccountPlus-icon')) {
+			document.getElementById('Settings-AccountPlus-icon').click();
+		};
+	};
+
 	console.log('render appState: ', appState);
 	return (
 		<div id='App' className={'displayflex positionrel ' + ((appState.user === null) ? 'nouser ' : '') + appState.themeObj[appState.userSettings.theme].class}>
 			{ (null !== appState.weatherCached) ? <>
 				<main id='App-main' className={'displayflex marginauto positionrel' + ((null === appState.weather) ? ' full' : '') + ' ' + appState.weatherCodeObj.ambiance + ' ' + appState.weatherCodeObj.background}>
 					<article id='App-main-inner' className='displayflex flexcol'>
+						{ (appState.user === null) ? <article id='LogIn-container' className='single-button-row right'>
+							<button className='material-button blue-button med positionabs' onClick={_loginClick}>Log In</button>
+						</article> : null }
 						{ (appState.weatherLoading === false) ? <>
 							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} weatherCodeObj={appState.weatherCodeObj} />
 							{ (null !== appState.user && null !== appState.weather) ? <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} />
-							: <section id='WearInformer-section'>
-								<article className='card largecard fluent-card card-shadow displayflex'>
-									<React.Suspense fallback={<></>}>
-										{<AccountIcon />}
-									</React.Suspense>
-									<p className='medfont marginauto-height nonselect'>Sign in below to start planning your next outfit</p>
-								</article>
-							</section> }
+							: null }
 							</> : <span>loading</span>
 						}
 						<article id='Credits-section' className='displayflex'>
