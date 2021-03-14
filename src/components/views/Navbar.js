@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SettingsBar from '../components/SettingsBar';
-import UserLogin from '../components/UserLogin';
+import SettingsBar from '../../components/SettingsBar';
+import UserLogin from '../../components/UserLogin';
 
 
 const Navbar = (props) => {

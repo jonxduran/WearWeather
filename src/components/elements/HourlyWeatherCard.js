@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { weatherDecoder } from '../status/WeatherHandler';
-import { getTemperature, getSimpleTime } from '../assets/common';
+import { weatherDecoder } from '../../data/status/WeatherHandler';
+import { getTemperature, getSimpleTime } from '../../assets/common';
 import * as d3 from 'd3';
 
 

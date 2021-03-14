@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { getAllWeatherData } from '../api/WeatherApi';
+import { getAllWeatherData } from '../../data/api/WeatherApi';
 
 
 const CitySelector = (props) => {

@@ -3,7 +3,7 @@ import React, { useState, useRef, lazy } from 'react';
 import RefreshIcon from 'mdi-react/RefreshIcon';
 import AccountPlusIcon from 'mdi-react/AccountPlusIcon';
 import CogIcon from 'mdi-react/CogIcon';
-import firebase from '../status/Firebase';
+import firebase from '../data/status/Firebase';
 
 
 const CloseIcon = lazy(()=>import('mdi-react/WindowCloseIcon'));

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 //import { getSettings } from './status/SettingsHandler';
 import './index.css';
-import firebase from './status/Firebase';
+import firebase from './data/status/Firebase';
 //import * as serviceWorker from './serviceWorker';
 
 

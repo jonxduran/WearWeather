@@ -1,7 +1,7 @@
 import React from 'react';
-/* import OldClothingItem from '../components/OldClothingItem'; */
-import ClothingItem from '../components/ClothingItem';
-import { roundNumber } from '../assets/common';
+/* import OldClothingItem from '../elements/OldClothingItem'; */
+import ClothingItem from '../elements/ClothingItem';
+import { roundNumber } from '../../assets/common';
 
 
 const WearPicker = (props) => {

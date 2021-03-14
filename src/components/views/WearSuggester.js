@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SuggestedClothingItem from '../components/SuggestedClothingItem';
-import { getClothes } from '../api/ClothesApi';
+import SuggestedClothingItem from '../elements/SuggestedClothingItem';
+import { getClothes } from '../../data/api/ClothesApi';
 
 
 const WearSuggester = (props) => {
