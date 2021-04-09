@@ -1,4 +1,4 @@
-import CONSTANTS from '../assets/constants.json';
+import CONSTANTS from '../../assets/constants.json';
 
 
 export function getCurrentData(city) {

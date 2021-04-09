@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { isNight } from '../assets/common';
+import { isNight } from '../../assets/common';
 
 const SunnyClearIcon = lazy(() => import('mdi-react/WeatherSunnyIcon'));
 const NightClearIcon = lazy(() => import('mdi-react/WeatherNightIcon'));

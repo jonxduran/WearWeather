@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ThemeSwitcher.scss';
-import { getInitUserSettings, getSettings, setNewSetting } from './status/SettingsHandler';
-import { handlerToggleTheme } from './status/ThemeHandler';
-import * as WeatherHandler from './status/WeatherHandler';
-import { getAllWeatherData } from './api/WeatherApi';
-import Navbar from './views/Navbar';
-import WeatherDaily from './views/WeatherDaily';
-import WearSection from './views/WearSection';
-import CitySelector from './components/CitySelector';
+import { getInitUserSettings, getSettings, setNewSetting } from './data/status/SettingsHandler';
+import { handlerToggleTheme } from './data/status/ThemeHandler';
+import * as WeatherHandler from './data/status/WeatherHandler';
+import { getAllWeatherData } from './data/api/WeatherApi';
+import Navbar from './components/views/Navbar';
+import WeatherDaily from './components/views/WeatherDaily';
+import WearSection from './components/views/WearSection';
+import CitySelector from './components/elements/CitySelector';
 
 
 const App = (props) => {

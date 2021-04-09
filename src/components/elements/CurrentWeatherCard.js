@@ -1,5 +1,5 @@
 import React from 'react';
-import { weekDays, getTemperature } from '../assets/common';
+import { weekDays, getTemperature } from '../../assets/common';
 
 const CurrentWeatherCard = ({allWeather, scale, currCity, weatherCodeObj}) => {
 	const date = new Date(allWeather.currentWeather.dt * 1000);

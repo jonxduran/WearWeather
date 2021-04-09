@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import firebase, { firebaseUI, firebaseUIConfig } from '../status/Firebase';
+import firebase, { firebaseUI, firebaseUIConfig } from '../data/status/Firebase';
 
 
 const UserLogin = (props) => {

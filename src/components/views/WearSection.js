@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WearPicker from './WearPicker';
 import WearSuggester from './WearSuggester';
-import ClothingMap from '../assets/clothingMap.json';
+import ClothingMap from '../../assets/clothingMap.json';
 
 
 const WearSection = (props) => {

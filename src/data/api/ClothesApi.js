@@ -1,4 +1,4 @@
-import { roundNumber } from '../assets/common';
+import { roundNumber } from '../../assets/common';
 
 
 let usersClothes = [

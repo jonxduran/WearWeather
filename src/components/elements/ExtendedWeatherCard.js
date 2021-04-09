@@ -1,6 +1,6 @@
 import React from 'react';
-import { weatherDecoder } from '../status/WeatherHandler';
-import * as Common from '../assets/common';
+import { weatherDecoder } from '../../data/status/WeatherHandler';
+import * as Common from '../../assets/common';
 
 
 const ExtendedWeatherCard = (props) => {

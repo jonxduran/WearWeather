@@ -1,5 +1,5 @@
 import React from 'react';
-import { getClothingSvg } from '../status/ClothingHandler';
+import { getClothingSvg } from '../../data/status/ClothingHandler';
 
 
 const SuggestedClothingItem = (props) => {
