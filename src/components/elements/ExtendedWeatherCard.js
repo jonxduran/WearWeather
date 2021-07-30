@@ -7,11 +7,11 @@ const ExtendedWeatherCard = (props) => {
 	const dte = new Date(props.data.dt*1000);
 	return <article className='ExtendedWeather-row displayflex'>
 		<div className='ExtendedWeather-day displayflex'>
-			<span className='medfont medfont-height marginauto-height bold5'>{Common.weekDays[dte.getDay()]}</span>
+			<span className='medfont medfont-height marginauto-height bold5'>{Common.weekdaysLong[dte.getDay()]}</span>
 		</div>
 		<div className='ExtendedWeather-icon'>
 			<React.Suspense fallback={<></>}>
-				<span className='biggerfont biggerfont-height weather-icon-container'>{weatherDecoder(props.data.weather[props.currentCity].id).icon}</span>
+				<span className='biggerfont biggerfont-height weather-icon-container'>{weatherDecoder(props.data.weather[props.currentCityIndex].id).icon}</span>
 			</React.Suspense>
 		</div>
 		<div className='ExtendedWeather-description'>

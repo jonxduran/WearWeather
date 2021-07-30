@@ -19,7 +19,7 @@ const CitySelector = (props) => {
 			};
 		};
 		if (false === match) {
-			getAllWeatherData(city)
+			getAllWeatherData('city', city)
 			.then(([currentData, hourlyData, extendedData]) => {
 				console.log('CitySelector data: ', [currentData, hourlyData, extendedData]);
 				if (currentData.error || hourlyData.error || extendedData.error) {

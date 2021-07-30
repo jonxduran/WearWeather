@@ -1,41 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/ThemeSwitcher.scss';
-import { getInitUserSettings, getSettings, setNewSetting } from './data/status/SettingsHandler';
+import { getInitUserSettings } from './data/status/SettingsHandler'; /* , getSettings, setNewSetting */
 import { handlerToggleTheme } from './data/status/ThemeHandler';
 import * as WeatherHandler from './data/status/WeatherHandler';
-import { getAllWeatherData } from './data/api/WeatherApi';
+/* import { getAllWeatherData } from './data/api/WeatherApi'; */
 import Navbar from './components/views/Navbar';
-import WeatherDaily from './components/views/WeatherDaily';
-import WearSection from './components/views/WearSection';
+import WeatherTab from './components/views/WeatherTab';
+import WearTab from './components/views/WearTab';
 import CitySelector from './components/elements/CitySelector';
 
 
 const App = (props) => {
 
-	console.log('beginning of App');
-
+	console.log('\nBeginning of App');
+	const initDte = new Date().getTime();
 	const initUserSettings = getInitUserSettings(props.user);
 	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
-	const weatherCodeObj = ((null !== initWeatherCheck[0]) && (null !== initWeatherCheck[0][0])) ? WeatherHandler.weatherDecoder(initWeatherCheck[0][0]['currentWeather']['weather'][0]['id']) : WeatherHandler.weatherDecoder(800);
-	/* const weatherCodeObj = WeatherHandler.weatherDecoder(303); */
 	const initState = {
+		ver: initDte,
 		user: props.user,
+		/* myLocation: props.myLocation, */
+		hasLocAccess: props.hasLocAccess,
 		userSettings: initUserSettings,
 		themeObj: (handlerToggleTheme(initUserSettings.theme)),
-		currentCity: 0,
-		weather: initWeatherCheck[0],
-		weatherCached: initWeatherCheck[1],
-		weatherLoading: ((false === initWeatherCheck[1]) ? false : true),
-		weatherCodeObj: weatherCodeObj
+		activeTab: 0,
+		showNav: !initWeatherCheck.isWeatherCached
 	};
 	const [appState, setAppState] = useState(initState);
 
 	
-	useEffect(() => {
+	/* useEffect(() => {
 		_tryUpdateWeather();
 	}, 
 	// eslint-disable-next-line
-	[]);
+	[]); */
 
 
 	const _setNewUser = (newUser) => {
@@ -60,59 +58,28 @@ const App = (props) => {
 		setAppState(newState);
 	};
 
-	const _tryUpdateWeather = () => {
-		const weatherCheck = WeatherHandler.weatherCacheCheck();
-		console.log('Check if weatherCached is old: ', weatherCheck[1]);
-		if (true === weatherCheck[1]) {
-			_updateWeather();
-			console.log('updated weather from useEffect');
-		};
-	}
+	const _setActiveTab = (newTabIndex) => {
+		const editState = {...appState};
+		editState.activeTab = newTabIndex;
+		setAppState(editState);
+		document.getElementById('App-main').scrollTo(0,0);
+	};
 
-	const _updateWeather = () => {
-		let newWeather = (null === appState.weather) ? initWeatherCheck[0] : appState.weather.slice();
-		let city = newWeather[appState.currentCity]['name'];
-		console.log('App updating Weather for city: ', city);
-		getAllWeatherData(city).then(([currentData, hourlyData, extendedData]) => {
-			console.log('_updateWeather data: ', [currentData, hourlyData, extendedData]);
-			if (currentData.error || hourlyData.error || extendedData.error) {
-				console.log('Weather data error');
-				console.log('Setting weather from cache: ', initWeatherCheck[0][appState.currentCity]);
-				const weatherCodeObj = WeatherHandler.weatherDecoder(initWeatherCheck[0][appState.currentCity]['currentWeather']['weather'][0]['id']);
-				const newState = {...appState};
-				newState.weatherLoading = false;
-				newState.weather = initWeatherCheck[0];
-				newState.weatherCodeObj = weatherCodeObj;
-				setAppState(newState);
-			} else {
-				let newWeatherData = {
-					'index': appState.currentCity,
-					'name': currentData.name,
-					'id': currentData.id,
-					'currentWeather': currentData,
-					'hourlyWeather': hourlyData,
-					'extendedWeather': extendedData
-				};
-				console.log('newWeather: ', newWeatherData);
-				const weatherCodeObj = WeatherHandler.weatherDecoder(currentData['weather'][0]['id']);
-				newWeather[appState.currentCity] = newWeatherData;
-				WeatherHandler.setWeatherCache(newWeather);
-				const newState = {...appState};
-				newState.weatherCached = false;
-				newState.weatherLoading = false;
-				newState.weather = newWeather;
-				newState.weatherCodeObj = weatherCodeObj;
-				console.log('new state: ', newState);
-				setAppState(newState);
-			};
-		});
-	}
+	const _setAppVer = () => {
+		setTimeout(()=> {
+			const dte = new Date().getTime();
+			console.log('_setAppVer ', dte);
+			const editState = {...appState};
+			editState.ver = dte;
+			setAppState(editState);
+		}, 100);
+	};
 
-	const _setNewTheme = (newTheme) => {
+	/* const _setNewTheme = (newTheme) => {
 		console.log('setNewTheme: ', newTheme);
 		let newThemeObj = handlerToggleTheme(newTheme);
-		/* console.log('oldUserSettings: ', {...userSettings}); */
-		/* console.log('newThemeObj: ', newThemeObj); */
+		//console.log('oldUserSettings: ', {...userSettings});
+		//console.log('newThemeObj: ', newThemeObj);
 		const newUserSettings = getSettings();
 		const newState = {...appState};
 		newState.userSettings = {...newUserSettings};
@@ -126,9 +93,9 @@ const App = (props) => {
 		newState.userSettings = newUserSettings;
 		setAppState(newState);
 		if (ky === 'pronoun') {
-			window.location.reload(false);
+			window.location.reload();
 		};
-	};
+	}; */
 
 	const _loginClick = () => {
 		if (document.getElementById('Settings-AccountPlus-icon')) {
@@ -140,20 +107,14 @@ const App = (props) => {
 	return (
 		<div id='App' className={'displayflex positionrel ' + ((appState.user === null) ? 'nouser ' : '') + appState.themeObj[appState.userSettings.theme].class}>
 			{ (null !== appState.weatherCached) ? <>
-				<main id='App-main' className={'displayflex marginauto positionrel' + ((null === appState.weather) ? ' full' : '') + ' ' + appState.weatherCodeObj.ambiance + ' ' + appState.weatherCodeObj.background}>
+				<main id='App-main' className='displayflex marginauto positionrel'>
 					<article id='App-main-inner' className='displayflex flexcol'>
 						{ (appState.user === null) ? <article id='LogIn-container' className='single-button-row right'>
 							<button className='material-button blue-button med positionabs' onClick={_loginClick}>Log In</button>
 						</article> : null }
-						{ (appState.weatherLoading === false) ? <>
-							<WeatherDaily weather={appState.weather}  currWeatherUpdate={()=>_updateWeather()} scale={appState.userSettings.scale} currentCity={appState.currentCity} weatherCodeObj={appState.weatherCodeObj} />
-							{ (null !== appState.user && null !== appState.weather) ? <WearSection weather={appState.weather} scale={appState.userSettings.scale} currentCity={appState.currentCity} userSettings={appState.userSettings} user={appState.user} db={props.db} />
-							: null }
-							</> : <span>loading</span>
-						}
-						<article id='Credits-section' className='displayflex'>
-							<p id='credits' className='smallerfont color3' aria-hidden='true'>Designed by <a href='https://amandainnis.github.io/' target='_blank' rel='noopener noreferrer'>Amanda Innis</a></p>
-						</article>
+						{ (appState.activeTab === 0 ) ? <WeatherTab hasLocAccess={appState.hasLocAccess} user={appState.user} setAppVer={()=>_setAppVer()} /> 
+							: (appState.activeTab === 1 ) ? ( (null !== appState.user) ? <WearTab user={appState.user} db={props.db} /> : null )
+							: (appState.activeTab === 2 ) ? <div>UserPage</div> : null }
 					</article>
 					<section id='App-main-blur-background' className='positionfixed'></section>
 					<section id='App-main-weather-background' className='positionfixed'>
@@ -182,7 +143,7 @@ const App = (props) => {
 						</article>
 					</section>
 				</main>
-				<Navbar user={appState.user} themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} color={appState.weatherCodeObj.color} userSettings={appState.userSettings} sendNewSetting={(ky, vl)=>_setNewSetting(ky, vl)} refreshWeather={_tryUpdateWeather} />
+				{ appState.showNav ? <Navbar user={appState.user} tabPick={(newTab)=>_setActiveTab(newTab)} /> : null }
 			</> : <main id='App-main' className='full displayflex positionrel'>
 				<article id='App-main-inner' className='displayflex flexcol marginauto'>
 					<CitySelector weather={appState.weather} cityPick={(newCityWeather)=>_setNewCity(newCityWeather)} />
@@ -192,6 +153,5 @@ const App = (props) => {
 	);
 
 }
-
 
 export default App;

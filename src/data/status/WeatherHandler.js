@@ -17,6 +17,29 @@ const WindyVariantIcon = lazy(() => import('mdi-react/WeatherWindyVariantIcon'))
 
 const now = new Date(); 
 
+let currentCityIndex = 0;
+
+
+export function getLocation(shouldGetNew, hasLocAccess) {	
+	/* const locScript = document.createElement('script');
+	locScript.type = 'text/javascript';
+	locScript.src = 'https://geolocation-db.com/jsonp';
+	const scs = document.getElementsByTagName('script')[0];
+	console.log(scs);
+	scs.parentNode.insertBefore(locScript, scs);
+	fetch('https://geolocation-db.com/jsonp/').then(res => {
+		if (!res.ok) {
+			throw Error('geolocation-db API error')
+		};
+		return res;
+	}).then(res => {
+		console.log(res);
+	}).catch(err => {
+		const msg = { 'error': 'getLocation()', 'detailedError': err };
+		console.log(msg);
+		return msg
+	}); */
+};
 
 /*
 weather cache exists and is new enough - [weather, false]
@@ -25,6 +48,7 @@ no weather cache exists - [null, null]
 */
 export function weatherCacheCheck() {
 	let weather = null;
+	let weatherDate = null;
 	let weatherCached = false;
 	let oldWeatherStr = localStorage.getItem("weatherCache") || null;
 	if (oldWeatherStr) {
@@ -35,21 +59,26 @@ export function weatherCacheCheck() {
 		/* let checkDate = new Date(checkTime); */
 		/* console.log('cacheDate: ', cacheDate, ' isGreater?checkDate: ', checkDate); */
 		weather = oldWeather.weather;
+		weatherDate = oldWeather.date;
 		if (oldWeather.date < checkTime) {
 			weatherCached = true;
 			console.log('oldWeather is old, marking as cached');
-		} else {
+		} /* else {
 			console.log('oldWeather is still fresh, date more recent than checkDate');
-		};
+		} */;
 	} else {
-		weatherCached = null;
+		weatherCached = true;
 	};
-	return [weather, weatherCached];
+	return {'weather': weather, 'weatherDate': weatherDate, 'isWeatherCached': weatherCached};
 }
 
-/* export function refreshWeather() {
+export function getCurrentCityIndex() {
+	return currentCityIndex;
+};
 
-} */
+export function setCurrentCityIndex(i) {
+	currentCityIndex = i;
+};
 
 export function addToWeather(weatherArr, newWeather) {
 	if (null === weatherArr) { weatherArr = []; };

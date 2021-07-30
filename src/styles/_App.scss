@@ -140,11 +140,17 @@
 		}
 	}
 
+	@media screen and (min-width: 835px) {
+		::-webkit-scrollbar {
+			background-color: $body-primary-color;
+		}
+	}
 }
 #App-main-inner {
 	width: calc(100% - 4rem);
 	max-width: $max-pc-width;
-	margin: auto auto 6rem;
+	/* margin: auto auto 6rem; */
+	margin: auto;
 	background: none;
 	z-index: 3;
 	@media screen and (max-width: $tablet-width) {
@@ -160,7 +166,7 @@
 	padding: 4rem 0;
 }
 
-#WeatherDaily > section {
+#WeatherTab > section {
 	width: 100%;
 	max-width: 90rem;
 	margin: 0 auto;
@@ -181,67 +187,13 @@
 }
 
 
-#App-Navbar {
-	width: 100%;
-	height: 6rem;
-	position: fixed;
-	bottom: 0;
-	background-color: $nav-background-color;
-	color: $text-primary-color;
-	backdrop-filter: saturate(180%) blur(3px);
-	border-top: 1px $nav-border-color solid;
-	box-sizing: border-box;
-	z-index: 2;
-	&.yellow {
-		background-color: $fluent-yellow;
-	}
-	&.blue {
-		background-color: $fluent-blue;
-	}
-	&.darkblue {
-		background-color: $fluent-darkblue;
-	}
-	&.gray {
-		background-color: $fluent-gray;
-	}
-	&.lightgray {
-		background-color: $fluent-lightgray;
-	}
-}
-#App-Navbar-tabs {
-	max-width: calc(100% - 6rem);
-	height: 100%;
-	margin-left: 3rem;
-	@media screen and (max-width: $small-mobile-width) {
-		margin-left: 1rem;
+#WearTab {
+
+	#WearCartFAB {
+		background-color: $button-default-color-2;
 	}
 }
 
-.Navbar-tab {
-	width: 50%;
-	height: 100%;
-	margin: auto 2rem;
-	@media screen and (max-width: $tiny-mobile-width) {
-		margin-left: 1rem;
-	}
-}
-.Navbar-tab-inner {
-	min-width: 6rem;
-	height: 100%;
-}
-.Navbar-tab-icon {
-	height: 3.5rem;
-	margin: 0 auto;
-	svg {
-		width: 3rem;
-		height: 3rem;
-		margin: auto;
-	}
-}
-.Navbar-tab-title {
-	text-align: center;
-	margin: auto;
-}
 
 #WearInformer-section {
 	width: 100%;

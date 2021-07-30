@@ -1,29 +1,51 @@
 import React, { useState } from 'react';
-import SettingsBar from '../../components/SettingsBar';
-import UserLogin from '../../components/UserLogin';
+
+/* import UserLogin from '../../components/UserLogin'; */
 
 
 const Navbar = (props) => {
 	
-	const [userLoginOpen, setUserLoginOpen] = useState(false);
-
+	/* const [userLoginOpen, setUserLoginOpen] = useState(false);
 	const _accessUserLogin = () => {
-		/* document.querySelector('html').classList.add('locked'); */
 		setUserLoginOpen(true);
 	};
-
 	const _closeUserLogin = () => {
-		/* document.querySelector('html').classList.remove('locked'); */
 		setUserLoginOpen(false);
+	}; 
+	appjs themeObj={appState.themeObj} sendNewTheme={(newTheme)=>_setNewTheme(newTheme)} userUpdate={(user)=>_setNewUser(user)} userSettings={appState.userSettings} sendNewSetting={(ky, vl)=>_setNewSetting(ky, vl)} */
+
+	const tabs = [
+		{ 'name': 'Weather', 'active': true },
+		{ 'name': 'Wear', 'active': false },
+		{ 'name': 'Profile', 'active': false }
+	];
+	const initState = {
+		tabs: tabs
 	};
 
+	const [navState, setNavState] = useState(initState);
+
+	const setNavTab = (i) => {
+		const editState = {...navState};
+		editState.tabs.forEach(tab => tab.active=false);
+		editState.tabs[i].active = true;
+		setNavState(editState);
+		props.tabPick(i);
+	};
+
+
 	return (
-		<nav id='App-Navbar' className={'bigfont ' + props.color}>
-			<SettingsBar user={props.user} themeObj={props.themeObj} sendNewTheme={(newTheme)=>props.sendNewTheme(newTheme)} accessUserLoginClick={()=>_accessUserLogin()} userSettings={props.userSettings} sendNewSetting={(ky, vl)=>props.sendNewSetting(ky, vl)} refreshWeather={props.refreshWeather} />
-			{ userLoginOpen && <UserLogin user={props.user} userUpdate={(newUser)=>props.userUpdate(newUser)} closeClick={_closeUserLogin} /> }
+		<nav id='App-Navbar' className={((navState.tabs[1].active===true) ? ' FAB' : '')}>
+			<section id='App-Navbar-inner' className='displayflex'>
+				{ navState.tabs.map((tab, i) => {
+					return <div className={'Navbar-tab displayflex nonselect pointer' + (tab.active ? ' active' : '')} key={i} onClick={()=>setNavTab(i)}>
+						<span className='medfont marginauto'>{tab.name}</span>
+					</div>
+				}) }
+			</section>
 		</nav>
 	);
 
-}
+};
 
 export default Navbar;

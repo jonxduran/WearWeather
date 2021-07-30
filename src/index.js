@@ -8,8 +8,8 @@ import firebase from './data/status/Firebase';
 
 
 /* Check for cookie here */
-/* let initUserId = '00000001'; */
 /* console.log(process.env); */
+
 let user = null;
 /* let myFirestore = null; */
 let myFireDatabase = null;
@@ -31,13 +31,56 @@ firebase.auth().onAuthStateChanged(function(userCheck) {
 	}
 	userSettings={initSettings} */
 
-	const gpsAvailable = ("geolocation" in navigator) ? true : false;
+	/* const renderReact = function(loc) {
+		ReactDOM.render(
+			<App user={user} db={myFireDatabase} myLocation={loc} />, 
+			document.getElementById('root')
+		);
+	}; */
 
-	ReactDOM.render(
-		<App user={user} db={myFireDatabase} gpsAvailable={gpsAvailable} />, 
-		document.getElementById('root')
-	);
+	const renderReact = function(loc) {
+		ReactDOM.render(
+			<App user={user} db={myFireDatabase} hasLocAccess={loc} />, 
+			document.getElementById('root')
+		);
+	};
 
+	/* const getMyIPLocation = function() {
+		console.log('getMyIPLocation');
+	}; */
+
+	/* const getMyDeviceLocation = function(clearPrompt) {
+		navigator.geolocation.getCurrentPosition((pos)=>{
+			const crd = pos.coords;
+			if (clearPrompt) { document.getElementById('LocationAsker').classList.add('displaynone'); };
+			renderReact(crd);
+		},(err)=>{
+			console.error(err);
+			if (clearPrompt) { document.getElementById('LocationAsker').classList.add('displaynone'); };
+			getMyIPLocation();
+		});
+	}; */
+	
+	if ("geolocation" in navigator) {
+		navigator.permissions.query({name:'geolocation'}).then(function(result) {
+			if (result.state === 'granted') {
+				/* getMyDeviceLocation(); */
+				renderReact(true);
+			} else if (result.state === 'prompt') {
+				alert('To use WearWeather, please enable location services when prompted');
+				/* document.getElementById('LocationAsker').classList.remove('displaynone');
+				getMyDeviceLocation(true); */
+				renderReact(true);
+			} else {
+				alert('Please undo denial of location permission in order to use WearWeather');
+				/* getMyDeviceLocation(); */
+				renderReact(false);
+			};
+		});
+	} else {
+		/* getMyIPLocation(); */
+		renderReact(false);
+	};
 });
 
 

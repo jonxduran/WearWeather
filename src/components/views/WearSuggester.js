@@ -27,7 +27,7 @@ const WearSuggester = (props) => {
 	};
 
 	const getSuggestedClothes = function() {
-		getClothes(props.db, props.weather[props.currentCity].currentWeather.main.temp, props.userSettings.userObject).then(newClothes => {
+		getClothes(props.db, props.weather[props.currentCityIndex].currentWeather.main.temp, props.userSettings.userObject).then(newClothes => {
 			console.log('getSuggestedClothes New Clothes: ', newClothes);
 			const newMax = newClothes.length;
 			setSuggestedNumbers({ index: 0, max: newMax });

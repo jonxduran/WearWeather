@@ -20,7 +20,7 @@ $slow-weather: 1.25s;
 		@import './_LightTheme';
 		@import './partials/_basics.scss';
 		@import './partials/_elements.scss';
-		@import './components/_appbar.scss';
+		@import './components/_navbar.scss';
 		@import './components/_weathercards.scss';
 		@import './components/clothingcards';
 		@import './_App.scss';
@@ -29,7 +29,7 @@ $slow-weather: 1.25s;
 		@import './_DarkTheme.scss';
 		@import './partials/_basics.scss';
 		@import './partials/_elements.scss';
-		@import './components/_appbar.scss';
+		@import './components/_navbar.scss';
 		@import './components/_weathercards.scss';
 		@import './components/clothingcards';
 		@import './_App.scss';
@@ -37,7 +37,7 @@ $slow-weather: 1.25s;
 	height: 100%;
 }
 
-#App.nouser #WeatherDaily {
+#App.nouser #WeatherTab {
 	width: 100% !important;
 	max-width: 100rem;
 	margin: 0 auto;
