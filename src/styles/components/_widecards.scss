@@ -1,0 +1,17 @@
+.wide-card {
+	display: flex;
+
+	.icon-container {
+		width: 8rem;
+		height: 100%;
+		display: flex;
+
+	}
+
+	.main-container {
+		width: calc(100% - 12rem);
+		height: 100%;
+		display: flex;
+		margin-left: 4rem;
+	}
+}

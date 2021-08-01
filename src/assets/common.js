@@ -49,9 +49,12 @@ export function getFullTime(tme, scale, ampm) {
 		if (hr === 0) {
 			hour = '12';
 			if (ampm) { apm = 'am'; };
-		} else if (hr < 13) {
+		} else if (hr < 12) {
 			hour = hr;
 			if (ampm) { apm = 'am'; };
+		} else if (hr === 12) {
+			hour = hr;
+			if (ampm) { apm = 'pm'; };
 		} else {
 			hour = hr-12;
 			if (ampm) { apm = 'pm'; };

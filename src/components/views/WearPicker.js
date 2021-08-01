@@ -74,7 +74,7 @@ const WearPicker = (props) => {
 				</article>
 			</section>
 
-			<section id='PickedWear-section'>
+			{/* <section id='PickedWear-section'>
 				<h3 className='Wear-header hugefont bold4'>Today's Outfit</h3>
 				{ (selectedClothes.length > 0) ? <>
 					<section id='PickedWear-container' className='displayflex horz-scroll'>
@@ -90,7 +90,7 @@ const WearPicker = (props) => {
 				</article> }
 			</section>
 
-			{/* <span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span> */}
+			<span style={{marginTop: '10rem'}}>Icons by itim2101, Good Ware, Smashicons</span> */}
 		</section>
 	)
 

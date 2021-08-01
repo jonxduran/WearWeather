@@ -71,8 +71,10 @@ const WeatherTab = (props) => {
 				console.log(weatherState.weather);
 				const weatherCodeObj = weatherDecoder(currentData['weather'][0]['id']);
 				newWeatherArr[weatherState.currentCityIndex] = newWeatherData;
-				setWeatherCache(newWeatherArr);
+				const nowUnixTime = new Date().getTime();
+				setWeatherCache(newWeatherArr, nowUnixTime);
 				const newState = {...weatherState};
+				newState.weatherDate = nowUnixTime;
 				newState.weatherCached = false;
 				newState.weatherLoading = false;
 				newState.weather = newWeatherArr;

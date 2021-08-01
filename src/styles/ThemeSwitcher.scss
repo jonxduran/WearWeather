@@ -1,6 +1,8 @@
 $navbarh: 6rem;
 $open-navbarh: 18rem;
 $max-pc-width: 160rem;
+$wear-transform-width: 1599px;
+$nav-transform-width: 1200px;
 $large-tablet-width: 834px;
 $tablet-width: 768px;
 $large-mobile-width: 600px;
@@ -22,7 +24,8 @@ $slow-weather: 1.25s;
 		@import './partials/_elements.scss';
 		@import './components/_navbar.scss';
 		@import './components/_weathercards.scss';
-		@import './components/clothingcards';
+		@import './components/_wearcards.scss';
+		@import './components/_widecards.scss';
 		@import './_App.scss';
 	}
 	&.dark-theme {
@@ -31,7 +34,8 @@ $slow-weather: 1.25s;
 		@import './partials/_elements.scss';
 		@import './components/_navbar.scss';
 		@import './components/_weathercards.scss';
-		@import './components/clothingcards';
+		@import './components/_wearcards.scss';
+		@import './components/_widecards.scss';
 		@import './_App.scss';
 	}
 	height: 100%;

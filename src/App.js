@@ -16,6 +16,7 @@ const App = (props) => {
 	const initDte = new Date().getTime();
 	const initUserSettings = getInitUserSettings(props.user);
 	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
+	const initShowNav = Boolean(!initWeatherCheck.isWeatherCached);
 	const initState = {
 		ver: initDte,
 		user: props.user,
@@ -24,7 +25,7 @@ const App = (props) => {
 		userSettings: initUserSettings,
 		themeObj: (handlerToggleTheme(initUserSettings.theme)),
 		activeTab: 0,
-		showNav: !initWeatherCheck.isWeatherCached
+		showNav: initShowNav
 	};
 	const [appState, setAppState] = useState(initState);
 
@@ -71,6 +72,7 @@ const App = (props) => {
 			console.log('_setAppVer ', dte);
 			const editState = {...appState};
 			editState.ver = dte;
+			editState.showNav = true;
 			setAppState(editState);
 		}, 100);
 	};
@@ -116,7 +118,7 @@ const App = (props) => {
 							: (appState.activeTab === 1 ) ? ( (null !== appState.user) ? <WearTab user={appState.user} db={props.db} /> : null )
 							: (appState.activeTab === 2 ) ? <div>UserPage</div> : null }
 					</article>
-					<section id='App-main-blur-background' className='positionfixed'></section>
+					{/* <section id='App-main-blur-background' className='positionfixed'></section>
 					<section id='App-main-weather-background' className='positionfixed'>
 						<article id='rain-container' className='App-main-weather-container'>
 							<span className='raindrop-container one'>
@@ -141,7 +143,7 @@ const App = (props) => {
 								<span className='raindrop weather-drop'></span>
 							</span>
 						</article>
-					</section>
+					</section> */}
 				</main>
 				{ appState.showNav ? <Navbar user={appState.user} tabPick={(newTab)=>_setActiveTab(newTab)} /> : null }
 			</> : <main id='App-main' className='full displayflex positionrel'>

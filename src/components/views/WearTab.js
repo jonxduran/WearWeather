@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import WearPicker from './WearPicker';
 import WearSuggester from './WearSuggester';
 import WearCart from '../elements/WearCart';
+import WearSidebar from '../elements/WearSidebar';
 import { getInitUserSettings } from '../../data/status/SettingsHandler';
 import { handlerToggleTheme } from '../../data/status/ThemeHandler';
 import { weatherCacheCheck, getCurrentCityIndex } from '../../data/status/WeatherHandler';
@@ -58,12 +59,15 @@ const WearTab = (props) => {
 	};
 
 	return (
-		<section id='WearTab' className='main-tab displayflex flexcol positionrel'>
-			<WearSuggester weather={wearState.weather} currentCityIndex={wearState.currentCityIndex} editClothing={(clothesArr)=>wearSetter(clothesArr)} db={props.db} user={props.user} userSettings={wearState.userSettings} />
-			<WearPicker weather={wearState.weather} currentCityIndex={wearState.currentCityIndex} clothing={wearState.clothing} editClothing={(clothing)=>wearSetter(clothing)} />
-			<WearCart />
+		<section id='WearTab' className='main-tab displayflex positionrel'>
+			<article id='WearTab-main' className='displayflex flexcol'>
+				<WearSuggester weather={wearState.weather} currentCityIndex={wearState.currentCityIndex} editClothing={(clothesArr)=>wearSetter(clothesArr)} db={props.db} user={props.user} userSettings={wearState.userSettings} />
+				<WearPicker weather={wearState.weather} currentCityIndex={wearState.currentCityIndex} clothing={wearState.clothing} editClothing={(clothing)=>wearSetter(clothing)} />
+				<WearCart clothing={wearState.clothing} />
+			</article>
+			<WearSidebar weather={wearState.weather} currentCityIndex={wearState.currentCityIndex} clothing={wearState.clothing} editClothing={(clothing)=>wearSetter(clothing)} />
 		</section>
-	)
+	);
 
 };
 

@@ -140,11 +140,11 @@
 		}
 	}
 
-	@media screen and (min-width: 835px) {
+	/* @media screen and (min-width: 835px) {
 		::-webkit-scrollbar {
 			background-color: $body-primary-color;
 		}
-	}
+	} */
 }
 #App-main-inner {
 	width: calc(100% - 4rem);
@@ -172,7 +172,7 @@
 	margin: 0 auto;
 	padding-bottom: 12rem;
 	&:last-child {
-		padding-bottom: 3rem !important;
+		padding-bottom: 0rem !important;
 	}
 	@media screen and (max-width: $med-mobile-width) {
 		padding-bottom: 8rem;
@@ -188,9 +188,203 @@
 
 
 #WearTab {
+	width: calc(100vw - 2rem);
+	left: 0;
+	top: 0;
+	position: absolute;
+	@media screen and (max-width: $wear-transform-width) {
+		width: 100%;
+		left: auto;
+		top: auto;
+		position: relative;
+		overflow: hidden;
 
-	#WearCartFAB {
-		background-color: $button-default-color-2;
+		#WearTab-main {
+			width: 100% !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+	}
+	
+
+	#WearTab-main {
+		width: calc(80% - 60rem);
+		margin-left: 10%;
+		z-index: 1;
+
+		.Wear-header {
+			margin: 2rem auto 4rem 0;
+		}
+
+		> section {
+			width: 100%;
+			max-width: 90rem;
+			margin: 0 auto;
+			padding-bottom: 12rem;
+		}
+
+		#WearSuggester {
+	
+			#SuggestedClothes-container {
+				width: 100%;
+				margin: 2rem auto;
+			}
+		}
+
+		#WearPicker {
+			#AllWear-container {
+				margin: 0 auto 6rem;
+			
+				> section {
+					margin-bottom: 3rem;
+				}
+				h4 {
+					margin: 0 0 1rem;
+				}
+			}
+
+			#PickedWear-section {
+				margin-bottom: 6rem;
+			}
+			
+			#PickedWear-container {
+				margin: 2rem auto;
+			}
+
+			#NoSelectedCards {
+				width: 100%;
+				height: 25rem;
+				margin-top: 2rem;
+				border: 2px $text-secondary-color dashed;
+				box-sizing: border-box;
+				border-radius: 1rem;;
+				opacity: 0.5;
+				cursor: default !important;
+			}
+		}
+
+		#WearCartFAB-container {
+			max-width: 120rem;
+			height: 0;
+			position: fixed;
+			padding-bottom: 0;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 3;
+			#WearCartFAB {
+				background-color: $button-default-color-2;
+				color: $button-default-text-color-2;
+				right: 2rem;
+				bottom: -10rem;
+				transition: bottom $fast-animation ease-in-out;
+				@media screen and (max-width: $wear-transform-width) {
+					bottom: 4rem;
+				}
+				@media screen and (max-width: $nav-transform-width) {
+					bottom: 7rem;
+				}
+			}
+		}
+	}
+
+	#WearTab-sidebar {
+		width: 100%;
+		max-width: 50rem;
+		height: calc(100vh - 20rem);
+		margin-right: 10%;
+		padding: 2rem;
+		/* background-color: $body-primary-color-medium; */
+		top: 6rem;
+		right: 0rem;
+		transition: right $fast-animation ease-in-out;
+		z-index: 2;
+
+		> header {
+			text-align: center;
+			@media screen and (max-width: $tablet-width) {
+				font-size: 3.6rem !important;
+				line-height: 3.4rem !important;
+			}
+		}
+
+		#WearSidebar-cards-container {
+			margin-top: 2rem;
+			margin-bottom: auto;
+			overflow: auto;
+			> .wide-card {
+				height: 12rem;
+				margin-bottom: 1rem;
+				border-bottom: 1px solid $fluent-gray;
+				&:last-child {
+					margin-bottom: 0 !important;
+					border-bottom: none !important;
+				}
+				.main-container {
+					p {
+						margin: auto auto auto 0;
+					}
+					button {
+						height: 4rem;
+						margin: auto 0 auto auto;
+					}
+				}
+			}
+		}
+
+		#WearSidebar-cards-empty {
+			margin-top: 4rem;
+			margin-bottom: auto;
+			padding: 2rem 0;
+			border: 2px #3c3c3f dashed;
+			> p {
+				margin: 5rem auto;
+			}
+		}
+
+		#WearSidebar-buttons-section {
+			margin-top: 4rem;
+			.buttons-container {
+				width: 100%;
+				max-width: 10rem;
+			}
+		}
+
+		#WearSidebar-close-section {
+			display: none;
+			@media screen and (max-width: $tablet-width) {
+				display: flex;
+				margin-top: 2rem;
+			}
+			> #WearCloseFAB {
+				margin-left: auto;
+				padding: 0 0 2px 0;
+				background-color: $button-red-background-color;
+				border-color: $button-red-border-color;
+				color: $text-opposite-color;
+			}
+		}
+
+		@media screen and (max-width: $wear-transform-width) {
+			width: calc(100% - 9rem) !important;
+			height: calc(100vh - 26rem) !important;
+			right: -100% !important;
+			margin-right: 0 !important;
+			&.show {
+				right: 3rem !important;
+				/* max-width: none; */
+			}
+		}
+		@media screen and (max-width: $tablet-width) {
+			width: 100% !important;
+			max-width: none;
+			height: calc(100vh - 6rem) !important;
+			top: 0rem;
+			border-radius: 0;
+			&.show {
+				right: 0rem !important;
+			}
+		}
 	}
 }
 

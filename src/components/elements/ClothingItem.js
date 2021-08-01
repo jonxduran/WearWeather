@@ -83,7 +83,7 @@ const ClothingItem = (props) => {
 
 	
 	return (
-		<article className={'card fluent-card card-shadow displayflex nonselect positionrel ' + (clothingState.cardActive ? 'active' : '')}>
+		<article className={'card fluent-card wear-card card-shadow displayflex nonselect positionrel ' + (clothingState.cardActive ? 'active' : '')}>
 			<section className='card-contents displayflex flexcol positionabs'>
 				<span className='card-icon-container displayflex'>
 					<React.Suspense fallback={<></>}>

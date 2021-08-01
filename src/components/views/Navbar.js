@@ -35,10 +35,10 @@ const Navbar = (props) => {
 
 
 	return (
-		<nav id='App-Navbar' className={((navState.tabs[1].active===true) ? ' FAB' : '')}>
+		<nav id='App-Navbar' className='displayflex positionfixed'>
 			<section id='App-Navbar-inner' className='displayflex'>
 				{ navState.tabs.map((tab, i) => {
-					return <div className={'Navbar-tab displayflex nonselect pointer' + (tab.active ? ' active' : '')} key={i} onClick={()=>setNavTab(i)}>
+					return <div className={'Navbar-tab displayflex positionrel nonselect pointer' + (tab.active ? ' active' : '')} key={i} onClick={()=>setNavTab(i)}>
 						<span className='medfont marginauto'>{tab.name}</span>
 					</div>
 				}) }

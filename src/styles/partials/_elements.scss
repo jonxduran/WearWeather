@@ -4,6 +4,18 @@
 	height: 100%;
 }
 
+.horz-scroll {
+	padding-bottom: 1rem;
+	> .card {
+		&:first-child {
+			margin-left: 0.2rem;
+		}
+		&:last-child {
+			margin-right: 0.2rem;
+		}
+	}
+}
+
 .card {
 	padding: 2rem;
 	&.largecard {
@@ -32,7 +44,7 @@
 
 	&.fluent-card {
 		background-color: $fluent-background-color;
-		backdrop-filter: saturate(180%) blur(2px);
+		/* backdrop-filter: saturate(180%) blur(2px); */
 		border-radius: 0.75rem;
 
 		&.yellow {
@@ -47,7 +59,17 @@
 		&.lightgray {
 			border: 0.1rem $fluent-lightgray solid;
 		}
-	}	
+	}
+
+	&.wear-card {
+		min-width: 28.5rem;
+		min-height: 38rem;
+		margin: 1rem;
+	}
+
+	&.wide-card {
+		min-width: 100%;
+	}
 }
 
 .card-row {
@@ -191,7 +213,7 @@
 	background-color: $button-default-color-1;
 	font-size: 1.6rem;
 	border: 0.1rem $button-default-color-2 solid;
-	border-radius: 1.5rem;
+	border-radius: 0.4rem;
 	box-sizing: border-box;
 	padding: 0.8rem 1.5rem;
 	cursor: pointer;
@@ -200,7 +222,6 @@
 	&.med {
 		padding: 1.1rem 2.4rem;
 		font-size: 1.7rem;
-		border-radius: 3rem;
 		@media screen and (max-width: $med-mobile-width) {
 			padding: 1rem 2.1rem;
 			font-size: 1.6rem;
@@ -210,7 +231,6 @@
 	&.large {
 		padding: 2rem 4rem;
 		font-size: 2rem;
-		border-radius: 3rem;
 		@media screen and (max-width: $med-mobile-width) {
 			padding: 1.8rem 3.6rem;
 			font-size: 1.8rem;
@@ -392,10 +412,10 @@
 		-ms-transition: all .3s;
 		-ms-transition: all .3s;
 		transition: all .3s;  
-		backface-visibility:hidden;
 		-webkit-backface-visibility:hidden;
 		-moz-backface-visibility:hidden;
 		-ms-backface-visibility:hidden;
+		backface-visibility:hidden;
 	}
 
 	.dropdown-icon {
@@ -453,9 +473,18 @@
 }
 
 .FAB {
-	width: 8rem;
-	height: 8rem;
-	border-radius: 4rem;
+	width: 10rem;
+	height: 10rem;
+	display: flex;
+	border-radius: 5rem;
 	bottom: 4rem;
-	right: calc(50% - 60rem);
+	right: 0;
+	@media screen and (max-width: $nav-transform-width) {
+		right: 3rem;
+		bottom: 7rem;
+	}
+	@media screen and (max-width: $large-mobile-width) {
+		width: 8rem;
+		height: 8rem;
+	}
 }

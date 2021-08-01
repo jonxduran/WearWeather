@@ -11,7 +11,7 @@ const SuggestedClothingItem = (props) => {
 	};
 
 	return (
-		<article className='card fluent-card card-shadow displayflex nonselect positionrel'>
+		<article className='card fluent-card wear-card card-shadow displayflex nonselect positionrel'>
 			<section className='card-contents displayflex flexcol positionabs'>
 				<span className='card-icon-container displayflex'>
 					<React.Suspense fallback={<></>}>

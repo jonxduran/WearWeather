@@ -87,10 +87,9 @@ export function addToWeather(weatherArr, newWeather) {
 	return finalWeatherArr;
 }
 
-export function setWeatherCache (weatherArr) {
-	let now = new Date().getTime();
+export function setWeatherCache (weatherArr, dteUnixTime) {
 	let weatherCache = {
-		'date': now,
+		'date': dteUnixTime,
 		'weather': weatherArr
 	};
 	console.log('setting weatherCache: ', weatherCache);
