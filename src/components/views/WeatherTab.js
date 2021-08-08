@@ -3,10 +3,10 @@ import CurrentWeatherCard from '../elements/CurrentWeatherCard';
 import HourlyWeatherCard from '../elements/HourlyWeatherCard';
 import ExtendedWeatherCard from '../elements/ExtendedWeatherCard';
 import { getInitUserSettings } from '../../data/status/SettingsHandler';
-import { weatherDecoder, weatherCacheCheck, setWeatherCache, getCurrentCityIndex, setCurrentCityIndex } from '../../data/status/WeatherHandler';
+import { weatherDecoder, weatherCacheCheck, setWeatherCache, getCurrentCityIndex } from '../../data/status/WeatherHandler';
 import { gpsGetter } from '../../data/status/LocationHandler';
 import { getAllWeatherData } from '../../data/api/WeatherApi';
-import CitySelector from '../elements/CitySelector';
+/* import CitySelector from '../elements/CitySelector'; */
 
 
 const WeatherTab = (props) => {

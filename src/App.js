@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './styles/ThemeSwitcher.scss';
-import { getInitUserSettings } from './data/status/SettingsHandler'; /* , getSettings, setNewSetting */
+import { getInitUserSettings, getSettings, setNewSetting } from './data/status/SettingsHandler';
 import { handlerToggleTheme } from './data/status/ThemeHandler';
 import * as WeatherHandler from './data/status/WeatherHandler';
 /* import { getAllWeatherData } from './data/api/WeatherApi'; */
 import Navbar from './components/views/Navbar';
 import WeatherTab from './components/views/WeatherTab';
 import WearTab from './components/views/WearTab';
+import ProfileTab from './components/views/ProfileTab';
 import CitySelector from './components/elements/CitySelector';
 
 
@@ -16,6 +17,7 @@ const App = (props) => {
 	const initDte = new Date().getTime();
 	const initUserSettings = getInitUserSettings(props.user);
 	const initWeatherCheck = WeatherHandler.weatherCacheCheck();
+	const appBackground = (!!initWeatherCheck.weather) ? WeatherHandler.weatherDecoder(initWeatherCheck.weather[0].currentWeather.weather[0].id).ambiance : '';
 	const initShowNav = Boolean(!initWeatherCheck.isWeatherCached);
 	const initState = {
 		ver: initDte,
@@ -37,14 +39,14 @@ const App = (props) => {
 	[]); */
 
 
-	const _setNewUser = (newUser) => {
+	/* const _setNewUser = (newUser) => {
 		console.log('newUser: ', newUser);
 		const newState = {...appState};
 		newState.user = newUser;
 		setAppState(newState);
 		window.location.reload();
 		return false;
-	};
+	}; */
 
 	const _setNewCity = (cityWeather) => {
 		console.log('_setNewCity current weather: ', appState.weather);
@@ -77,7 +79,7 @@ const App = (props) => {
 		}, 100);
 	};
 
-	/* const _setNewTheme = (newTheme) => {
+	const _setNewTheme = (newTheme) => {
 		console.log('setNewTheme: ', newTheme);
 		let newThemeObj = handlerToggleTheme(newTheme);
 		//console.log('oldUserSettings: ', {...userSettings});
@@ -86,6 +88,8 @@ const App = (props) => {
 		const newState = {...appState};
 		newState.userSettings = {...newUserSettings};
 		newState.themeObj = {...newThemeObj};
+		newState.activeTab = 2;
+		newState.showNav = true;
 		setAppState(newState);
 	};
 
@@ -93,11 +97,12 @@ const App = (props) => {
 		const newState = {...appState};
 		const newUserSettings = setNewSetting(ky, vl);
 		newState.userSettings = newUserSettings;
+		newState.activeTab = 2;
 		setAppState(newState);
 		if (ky === 'pronoun') {
 			window.location.reload();
 		};
-	}; */
+	};
 
 	const _loginClick = () => {
 		if (document.getElementById('Settings-AccountPlus-icon')) {
@@ -109,14 +114,14 @@ const App = (props) => {
 	return (
 		<div id='App' className={'displayflex positionrel ' + ((appState.user === null) ? 'nouser ' : '') + appState.themeObj[appState.userSettings.theme].class}>
 			{ (null !== appState.weatherCached) ? <>
-				<main id='App-main' className='displayflex marginauto positionrel'>
+				<main id='App-main' className={'displayflex marginauto positionrel ' + appBackground}>
 					<article id='App-main-inner' className='displayflex flexcol'>
 						{ (appState.user === null) ? <article id='LogIn-container' className='single-button-row right'>
 							<button className='material-button blue-button med positionabs' onClick={_loginClick}>Log In</button>
 						</article> : null }
 						{ (appState.activeTab === 0 ) ? <WeatherTab hasLocAccess={appState.hasLocAccess} user={appState.user} setAppVer={()=>_setAppVer()} /> 
 							: (appState.activeTab === 1 ) ? ( (null !== appState.user) ? <WearTab user={appState.user} db={props.db} /> : null )
-							: (appState.activeTab === 2 ) ? <div>UserPage</div> : null }
+							: (appState.activeTab === 2 ) ? <ProfileTab user={appState.user} userSettings={appState.userSettings} themeObj={appState.themeObj} sendNewSetting={(k, v)=>_setNewSetting(k, v)} sendNewTheme={(t)=>_setNewTheme(t)} db={props.db} /> : null }
 					</article>
 					{/* <section id='App-main-blur-background' className='positionfixed'></section>
 					<section id='App-main-weather-background' className='positionfixed'>

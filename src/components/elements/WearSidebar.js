@@ -65,7 +65,7 @@ const WearSidebar = (props) => {
 				</section>}
 			<section id='WearSidebar-close-section'>
 				<div id="WearCloseFAB" class="FAB">
-					<span class="bigfont bigfont-height marginauto" onClick={toggleSidebar}>Close</span>
+					<span className="bigfont bigfont-height marginauto" onClick={toggleSidebar}>Close</span>
 				</div>
 			</section>
 		</aside>

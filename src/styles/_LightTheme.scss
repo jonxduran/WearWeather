@@ -1,12 +1,14 @@
 
 $body-primary-color: rgb(240, 240, 240);
 $body-primary-color-blur:  rgba(248, 248, 248, 0.4);
-$body-primary-color-light: rgb(240, 240, 240);
-$body-primary-color-medium: rgb(228, 229, 230);
+/* $body-primary-color-light: rgb(240, 240, 240); */
+$body-primary-color-light: rgb(239, 239, 228);
+/* $body-primary-color-medium: rgb(228, 229, 230); */
+$body-primary-color-medium: rgb(227, 228, 218);
 $body-primary-color-dark: rgb(208, 212, 218);
 $body-secondary-color: white;
 
-$fluent-background-color: rgba(248, 248, 248, 0.9);
+$fluent-background-color: rgba(248, 248, 248, 0.95);
 $fluent-background-color-blur: rgba(243, 244, 244, 0.85);
 
 $nav-background-color: rgba(39, 130, 119, 0.8);
@@ -16,8 +18,10 @@ $popup-background-color: rgb(252, 252, 252);
 $popup-overlay-background-color: rgba(0, 0, 0, 0.3);
 $layer-background-color: rgb(236, 237, 238);
 
-$text-primary-color: rgb(20, 20, 20);
-$text-secondary-color: rgb(60, 60, 63);
+/* $text-primary-color: rgb(20, 20, 20); */
+$text-primary-color: rgb(32, 46, 58);
+/* $text-secondary-color: rgb(60, 60, 63); */
+$text-secondary-color: rgb(40, 62, 65);
 $text-tertiary-color: rgb(100, 100, 106);
 $text-opposite-color: rgb(252, 252, 252);
 
@@ -38,6 +42,8 @@ $fluent-darkblue: rgba(42, 102, 149, 0.7);
 $fluent-gray: rgba(150, 160, 165, 0.7);
 $fluent-lightgray: rgba(195, 205, 211, 0.7);
 
+
+$theme-default-med: rgb(129, 121, 12);
 
 $theme-blue-dark: rgb(90, 133, 158);
 $theme-blue-med: rgb(116, 162, 189);
