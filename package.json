@@ -4,15 +4,15 @@
 	"private": true,
 	"homepage": "https://jonxduran.github.io/WearWeather/",
 	"dependencies": {
-		"d3": "^6.2.0",
+		"d3": "^7.4.5",
 		"firebase": "^8.0.1",
 		"firebaseui": "^4.7.1",
-		"mdi-react": "^7.4.0",
-		"node-sass": "^4.14.1",
-		"react": "^16.14.0",
+		"mdi-react": "^8.4.0",
+		"react": "^18.2.0",
 		"react-color": "^2.19.3",
-		"react-dom": "^16.14.0",
-		"react-scripts": "^3.4.3"
+		"react-dom": "^18.2.0",
+		"react-scripts": "^5.0.1",
+		"sass": "^1.53.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
