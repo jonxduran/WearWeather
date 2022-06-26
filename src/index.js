@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function(userCheck) {
 		/* console.log(myFirestore.ref()); */
 	} else {
 		console.log('no userCheck found');
-	}
+	};
 
 	/* let initSettings = JSON.parse(localStorage.getItem("userSettings")) || getSettings();
 	try {
